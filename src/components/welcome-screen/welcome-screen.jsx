@@ -1,7 +1,10 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
-export const WelcomeScreen = () => (
-  <React.Fragment>
+export const WelcomeScreen = (props) => {
+  const {placeCardNames} = props;
+
+  return <React.Fragment>
     <h1 className="visually-hidden">Cities</h1>
     <div className="cities tabs">
       <section className="locations container">
@@ -97,7 +100,7 @@ export const WelcomeScreen = () => (
                   </div>
                 </div>
                 <h2 className="place-card__name">
-                  <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+                  <a href="#">{placeCardNames[0]}</a>
                 </h2>
                 <p className="place-card__type">Apartment</p>
               </div>
@@ -129,7 +132,7 @@ export const WelcomeScreen = () => (
                   </div>
                 </div>
                 <h2 className="place-card__name">
-                  <a href="#">Wood and stone place</a>
+                  <a href="#">{placeCardNames[1]}</a>
                 </h2>
                 <p className="place-card__type">Private room</p>
               </div>
@@ -161,7 +164,7 @@ export const WelcomeScreen = () => (
                   </div>
                 </div>
                 <h2 className="place-card__name">
-                  <a href="#">Canal View Prinsengracht</a>
+                  <a href="#">{placeCardNames[2]}</a>
                 </h2>
                 <p className="place-card__type">Apartment</p>
               </div>
@@ -196,7 +199,7 @@ export const WelcomeScreen = () => (
                   </div>
                 </div>
                 <h2 className="place-card__name">
-                  <a href="#">Nice, cozy, warm big bed apartment</a>
+                  <a href="#">{placeCardNames[3]}</a>
                 </h2>
                 <p className="place-card__type">Apartment</p>
               </div>
@@ -228,7 +231,7 @@ export const WelcomeScreen = () => (
                   </div>
                 </div>
                 <h2 className="place-card__name">
-                  <a href="#">Wood and stone place</a>
+                  <a href="#">{placeCardNames[4]}</a>
                 </h2>
                 <p className="place-card__type">Private room</p>
               </div>
@@ -240,5 +243,9 @@ export const WelcomeScreen = () => (
         </div>
       </div>
     </div>
-  </React.Fragment>
-);
+  </React.Fragment>;
+};
+
+WelcomeScreen.propTypes = {
+  placeCardNames: propTypes.array,
+};
