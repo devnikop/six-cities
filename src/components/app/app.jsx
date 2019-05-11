@@ -11,6 +11,6 @@ export const App = (props) => {
   />;
 };
 
-WelcomeScreen.propTypes = {
+App.propTypes = {
   placeCardNames: propTypes.arrayOf(propTypes.string),
 };
