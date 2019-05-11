@@ -120,5 +120,5 @@ export const WelcomeScreen = (props) => {
 };
 
 WelcomeScreen.propTypes = {
-  placeCardNames: propTypes.array,
+  placeCardNames: propTypes.arrayOf(propTypes.string),
 };
