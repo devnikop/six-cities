@@ -11,11 +11,13 @@ const init = () => {
       `Canal View Prinsengracht`,
       `Nice, cozy, warm big bed apartment`,
     ],
+    onCardNameClick: () => {},
   };
 
   ReactDOM.render(
       <App
         placeCardNames={settings.placeCardNames}
+        onCardNameClick={settings.onCardNameClick}
       />,
       document.querySelector(`#root`)
   );
