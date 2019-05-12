@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 export const WelcomeScreen = (props) => {
-  const {placeCardNames} = props;
+  const {placeCardNames, onCardNameClick} = props;
 
   return <React.Fragment>
     <h1 className="visually-hidden">Cities</h1>
@@ -101,7 +101,7 @@ export const WelcomeScreen = (props) => {
                         <span className="visually-hidden">Rating</span>
                       </div>
                     </div>
-                    <h2 className="place-card__name">
+                    <h2 className="place-card__name" onClick={onCardNameClick}>
                       <a href="#">{cardName}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
@@ -121,4 +121,5 @@ export const WelcomeScreen = (props) => {
 
 WelcomeScreen.propTypes = {
   placeCardNames: propTypes.arrayOf(propTypes.string),
+  onCardNameClick: propTypes.func,
 };
