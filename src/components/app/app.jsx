@@ -4,15 +4,23 @@ import propTypes from 'prop-types';
 import {WelcomeScreen} from "../welcome-screen/welcome-screen.jsx";
 
 export const App = (props) => {
-  const {placeCardNames, onCardNameClick} = props;
+  const {offers, onCardNameClick} = props;
 
   return <WelcomeScreen
-    placeCardNames={placeCardNames}
+    offers={offers}
     onCardNameClick={onCardNameClick}
   />;
 };
 
 App.propTypes = {
-  placeCardNames: propTypes.arrayOf(propTypes.string),
+  offers: propTypes.arrayOf(
+      propTypes.shape({
+        placeName: propTypes.string.isRequired,
+        placeType: propTypes.oneOf([`Apartment`, `Private room`]),
+        isPremium: propTypes.bool,
+        src: propTypes.string,
+        price: propTypes.number,
+      })
+  ),
   onCardNameClick: propTypes.func,
 };
