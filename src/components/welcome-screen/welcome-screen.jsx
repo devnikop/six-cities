@@ -4,12 +4,12 @@ import propTypes from 'prop-types';
 import {OfferList} from '../offer-list/offer-list.jsx';
 
 export const WelcomeScreen = (props) => {
-  const {offers, onCardNameClick} = props;
+  const {offers, onCardClick} = props;
 
   const _getOfferList = () => {
     return <OfferList
       offers={offers}
-      onCardNameClick={onCardNameClick}
+      onCardClick={onCardClick}
     />;
   };
 
@@ -101,5 +101,5 @@ WelcomeScreen.propTypes = {
         price: propTypes.number,
       })
   ),
-  onCardNameClick: propTypes.func,
+  onCardClick: propTypes.func,
 };

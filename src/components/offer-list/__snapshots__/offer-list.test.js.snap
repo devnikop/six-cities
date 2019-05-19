@@ -19,6 +19,7 @@ Array [
     >
       <a
         href="#"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -92,7 +93,6 @@ Array [
       </div>
       <h2
         className="place-card__name"
-        onClick={[MockFunction]}
       >
         <a
           href="#"
@@ -124,6 +124,7 @@ Array [
     >
       <a
         href="#"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -197,7 +198,6 @@ Array [
       </div>
       <h2
         className="place-card__name"
-        onClick={[MockFunction]}
       >
         <a
           href="#"
@@ -229,6 +229,7 @@ Array [
     >
       <a
         href="#"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -302,7 +303,6 @@ Array [
       </div>
       <h2
         className="place-card__name"
-        onClick={[MockFunction]}
       >
         <a
           href="#"
@@ -334,6 +334,7 @@ Array [
     >
       <a
         href="#"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -407,7 +408,6 @@ Array [
       </div>
       <h2
         className="place-card__name"
-        onClick={[MockFunction]}
       >
         <a
           href="#"

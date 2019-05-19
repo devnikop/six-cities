@@ -12,6 +12,7 @@ export class OfferList extends React.PureComponent {
     };
 
     this.onCardHover = this.onCardHover.bind(this);
+    this.onCardClick = this.onCardClick.bind(this);
   }
 
   render() {
@@ -20,18 +21,23 @@ export class OfferList extends React.PureComponent {
 
   _getOfferCard() {
     const {
-      offers,
-      onCardNameClick
+      offers
     } = this.props;
 
     return offers.map((it, i) => <OfferCard
       key={i}
       currentId={i}
       offer={it}
-      onCardNameClick={onCardNameClick}
+      onCardClick={this.onCardClick}
       onCardHover={this.onCardHover}
     />
     );
+  }
+
+  onCardClick(currentCard) {
+    this.setState({
+      offerCard: currentCard,
+    });
   }
 
   onCardHover(currentCard) {
@@ -51,5 +57,5 @@ OfferList.propTypes = {
         price: propTypes.number,
       })
   ),
-  onCardNameClick: propTypes.func,
+  onCardClick: propTypes.func,
 };

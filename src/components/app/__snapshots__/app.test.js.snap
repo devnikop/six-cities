@@ -183,6 +183,7 @@ Array [
             >
               <a
                 href="#"
+                onClick={[Function]}
               >
                 <img
                   alt="Place image"
@@ -287,6 +288,7 @@ Array [
             >
               <a
                 href="#"
+                onClick={[Function]}
               >
                 <img
                   alt="Place image"
@@ -391,6 +393,7 @@ Array [
             >
               <a
                 href="#"
+                onClick={[Function]}
               >
                 <img
                   alt="Place image"
@@ -495,6 +498,7 @@ Array [
             >
               <a
                 href="#"
+                onClick={[Function]}
               >
                 <img
                   alt="Place image"

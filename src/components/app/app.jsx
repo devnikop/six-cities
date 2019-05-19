@@ -4,11 +4,11 @@ import propTypes from 'prop-types';
 import {WelcomeScreen} from "../welcome-screen/welcome-screen.jsx";
 
 export const App = (props) => {
-  const {offers, onCardNameClick} = props;
+  const {offers, onCardClick} = props;
 
   return <WelcomeScreen
     offers={offers}
-    onCardNameClick={onCardNameClick}
+    onCardClick={onCardClick}
   />;
 };
 
@@ -22,5 +22,5 @@ App.propTypes = {
         price: propTypes.number,
       })
   ),
-  onCardNameClick: propTypes.func,
+  onCardClick: propTypes.func,
 };
