@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import {App} from './app.jsx';
+import {OfferList} from './offer-list.jsx';
 
 const mock = {
   offers: [
@@ -36,11 +36,12 @@ const mock = {
   ]
 };
 
-it(`App correctly renders`, () => {
+it(`OfferList correctly renders`, () => {
   const {offers} = mock;
   const tree = renderer
-    .create(<App
+    .create(<OfferList
       offers={offers}
+      onCardNameClick={jest.fn()}
     />)
     .toJSON();
 
