@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 import {OfferList} from '../offer-list/offer-list.jsx';
+import {Map} from '../map/map.jsx';
 
 export const WelcomeScreen = (props) => {
   const {offers, onCardClick} = props;
@@ -84,7 +85,11 @@ export const WelcomeScreen = (props) => {
           </div>
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map"></section>
+          <section className="cities__map map">
+            <Map
+              offers={offers}
+            />
+          </section>
         </div>
       </div>
     </div>
