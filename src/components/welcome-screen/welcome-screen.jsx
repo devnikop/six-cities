@@ -2,9 +2,14 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 import {OfferList} from '../offer-list/offer-list.jsx';
+import {Map} from '../map/map.jsx';
 
 export const WelcomeScreen = (props) => {
-  const {offers, onCardClick} = props;
+  const {
+    offers,
+    onCardClick,
+    leaflet,
+  } = props;
 
   const _getOfferList = () => {
     return <OfferList
@@ -84,7 +89,12 @@ export const WelcomeScreen = (props) => {
           </div>
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map"></section>
+          <section className="cities__map map">
+            <Map
+              offers={offers}
+              leaflet={leaflet}
+            />
+          </section>
         </div>
       </div>
     </div>
@@ -102,4 +112,5 @@ WelcomeScreen.propTypes = {
       })
   ),
   onCardClick: propTypes.func,
+  leaflet: propTypes.object.isRequired,
 };
