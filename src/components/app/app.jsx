@@ -4,11 +4,16 @@ import propTypes from 'prop-types';
 import {WelcomeScreen} from "../welcome-screen/welcome-screen.jsx";
 
 export const App = (props) => {
-  const {offers, onCardClick} = props;
+  const {
+    offers,
+    onCardClick,
+    leaflet,
+  } = props;
 
   return <WelcomeScreen
     offers={offers}
     onCardClick={onCardClick}
+    leaflet={leaflet}
   />;
 };
 
@@ -23,4 +28,5 @@ App.propTypes = {
       })
   ),
   onCardClick: propTypes.func,
+  leaflet: propTypes.object.isRequired,
 };

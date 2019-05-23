@@ -1,13 +1,15 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import leaflet from 'leaflet';
 
 export class Map extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    this.leaflet = props.leaflet;
+    this.offers = props.offers;
+
     this._mapRef = React.createRef();
-    this.icon = leaflet.icon({
+    this.icon = this.leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
@@ -27,7 +29,7 @@ export class Map extends React.PureComponent {
     this.city = [52.38333, 4.9];
     this.zoom = 12;
 
-    this.map = leaflet.map(this._mapRef.current, {
+    this.map = this.leaflet.map(this._mapRef.current, {
       center: this.city,
       zoom: this.zoom,
       zoomControl: false,
@@ -35,22 +37,21 @@ export class Map extends React.PureComponent {
     });
     this.map.setView(this.city, this.zoom);
 
-    leaflet
+    this.leaflet
     .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
         contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
     })
     .addTo(this.map);
 
-    const {offers} = this.props;
-    offers.map((offer) => {
+    this.offers.map((offer) => {
       this._addMarker(offer.coords);
     });
   }
 
   _addMarker(coords) {
     const icon = this.icon;
-    leaflet
+    this.leaflet
       .marker(coords, {icon})
       .addTo(this.map);
   }
@@ -66,4 +67,5 @@ Map.propTypes = {
         price: propTypes.number,
       })
   ),
+  leaflet: propTypes.object.isRequired,
 };

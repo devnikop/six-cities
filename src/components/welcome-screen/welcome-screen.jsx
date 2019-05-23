@@ -5,7 +5,11 @@ import {OfferList} from '../offer-list/offer-list.jsx';
 import {Map} from '../map/map.jsx';
 
 export const WelcomeScreen = (props) => {
-  const {offers, onCardClick} = props;
+  const {
+    offers,
+    onCardClick,
+    leaflet,
+  } = props;
 
   const _getOfferList = () => {
     return <OfferList
@@ -88,6 +92,7 @@ export const WelcomeScreen = (props) => {
           <section className="cities__map map">
             <Map
               offers={offers}
+              leaflet={leaflet}
             />
           </section>
         </div>
@@ -107,4 +112,5 @@ WelcomeScreen.propTypes = {
       })
   ),
   onCardClick: propTypes.func,
+  leaflet: propTypes.object.isRequired,
 };

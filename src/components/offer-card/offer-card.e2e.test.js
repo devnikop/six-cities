@@ -2,21 +2,13 @@ import React from 'react';
 import {mount} from 'enzyme';
 
 import {OfferCard} from './offer-card.jsx';
-
-const mock = {
-  offer: {
-    placeName: `Beautiful & luxurious apartment at great location`,
-    placeType: `Apartment`,
-    isPremium: true,
-    src: `img/apartment-01.jpg`,
-    price: 120,
-  },
-};
+import {offerMock} from '../../mocks/mocksForTests';
 
 it(`Click on photo calls callback`, () => {
-  const {offer} = mock;
+  const offer = offerMock;
   const clickHandler = jest.fn();
   const linkPrevention = jest.fn();
+
   const offerCard = mount(<OfferCard
     offer={offer}
     onCardClick={clickHandler}
