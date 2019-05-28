@@ -1,9 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import {OfferCard} from '../offer-card/offer-card.jsx';
 
-export class OfferList extends React.PureComponent {
+class OfferList extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -16,16 +17,12 @@ export class OfferList extends React.PureComponent {
   }
 
   render() {
-    return this._getOfferCard();
-  }
-
-  _getOfferCard() {
     const {
       offers
     } = this.props;
 
     return offers.map((it, i) => <OfferCard
-      key={i}
+      key={`offer-${i}`}
       currentId={i}
       offer={it}
       onCardClick={this.onCardClick}
@@ -57,5 +54,15 @@ OfferList.propTypes = {
         price: propTypes.number,
       })
   ),
-  onCardClick: propTypes.func,
 };
+
+const mapStateToProps = (state, ownProps) =>
+  Object.assign({}, ownProps, {
+    offers: state.filteredOffers,
+  });
+
+export {OfferList};
+
+export default connect(
+    mapStateToProps
+)(OfferList);

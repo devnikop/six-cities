@@ -1,16 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import leaflet from 'leaflet';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
-import {App} from './components/app/app.jsx';
-import {offers} from './mocks/offers';
+import App from './components/app/app.jsx';
+import {reducer} from './reducer';
 
 const init = () => {
+  const store = createStore(reducer);
+
   ReactDOM.render(
-      <App
-        offers={offers}
-        leaflet={leaflet}
-      />,
+      <Provider store={store}>
+        <App
+          leaflet={leaflet}
+        />
+      </Provider>,
       document.querySelector(`#root`)
   );
 };

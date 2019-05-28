@@ -1,32 +1,24 @@
 import React from "react";
 import propTypes from 'prop-types';
 
-import {WelcomeScreen} from "../welcome-screen/welcome-screen.jsx";
+import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 
-export const App = (props) => {
-  const {
-    offers,
-    onCardClick,
-    leaflet,
-  } = props;
+class App extends React.PureComponent {
+  render() {
+    const {
+      leaflet,
+    } = this.props;
 
-  return <WelcomeScreen
-    offers={offers}
-    onCardClick={onCardClick}
-    leaflet={leaflet}
-  />;
-};
+    return <WelcomeScreen
+      leaflet={leaflet}
+    />;
+  }
+}
 
 App.propTypes = {
-  offers: propTypes.arrayOf(
-      propTypes.shape({
-        placeName: propTypes.string.isRequired,
-        placeType: propTypes.oneOf([`Apartment`, `Private room`]),
-        isPremium: propTypes.bool,
-        src: propTypes.string,
-        price: propTypes.number,
-      })
-  ),
-  onCardClick: propTypes.func,
   leaflet: propTypes.object.isRequired,
 };
+
+export {App};
+
+export default App;

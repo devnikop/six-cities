@@ -1,13 +1,15 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-export class Map extends React.PureComponent {
+class Map extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.leaflet = props.leaflet;
-    this.offers = props.offers;
 
+    this.map = null;
+    this.layerGroup = null;
     this._mapRef = React.createRef();
     this.icon = this.leaflet.icon({
       iconUrl: `img/pin.svg`,
@@ -25,6 +27,11 @@ export class Map extends React.PureComponent {
     this._addMap();
   }
 
+  componentDidUpdate() {
+    this.layerGroup.clearLayers();
+    this._addMarkers();
+  }
+
   _addMap() {
     this.city = [52.38333, 4.9];
     this.zoom = 12;
@@ -37,6 +44,8 @@ export class Map extends React.PureComponent {
     });
     this.map.setView(this.city, this.zoom);
 
+    this.layerGroup = this.leaflet.layerGroup().addTo(this.map);
+
     this.leaflet
     .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
@@ -44,7 +53,11 @@ export class Map extends React.PureComponent {
     })
     .addTo(this.map);
 
-    this.offers.map((offer) => {
+    this._addMarkers();
+  }
+
+  _addMarkers() {
+    this.props.offers.map((offer) => {
       this._addMarker(offer.coords);
     });
   }
@@ -53,7 +66,7 @@ export class Map extends React.PureComponent {
     const icon = this.icon;
     this.leaflet
       .marker(coords, {icon})
-      .addTo(this.map);
+      .addTo(this.layerGroup);
   }
 }
 
@@ -69,3 +82,14 @@ Map.propTypes = {
   ),
   leaflet: propTypes.object.isRequired,
 };
+
+const mapStateToProps = (state, ownProps) =>
+  Object.assign({}, ownProps, {
+    offers: state.filteredOffers,
+  });
+
+export {Map};
+
+export default connect(
+    mapStateToProps
+)(Map);
