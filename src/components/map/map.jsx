@@ -7,7 +7,6 @@ class Map extends React.PureComponent {
     super(props);
 
     this.leaflet = props.leaflet;
-    this.offers = props.offers;
 
     this.map = null;
     this.layerGroup = null;
@@ -29,7 +28,6 @@ class Map extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    this.offers = this.props.offers;
     this.layerGroup.clearLayers();
     this._addMarkers();
   }
@@ -59,7 +57,7 @@ class Map extends React.PureComponent {
   }
 
   _addMarkers() {
-    this.offers.map((offer) => {
+    this.props.offers.map((offer) => {
       this._addMarker(offer.coords);
     });
   }

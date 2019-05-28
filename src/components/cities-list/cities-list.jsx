@@ -23,7 +23,7 @@ const CitiesList = (props) => {
           <li className="locations__item" key={`city-${i}`}>
             <a
               className={`locations__item-link tabs__item ${isActiveCity(it)} `}
-              {...(checkCurrentCity(it) || {href: `#`})}
+              href={checkCurrentCity(it) ? undefined : `#`}
               onClick={() => onCity(it)}
             >
               <span>{it}</span>
