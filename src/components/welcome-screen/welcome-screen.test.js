@@ -1,20 +1,41 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
 
 import {WelcomeScreen} from './welcome-screen.jsx';
-import {offersArrayMock, leafletMock} from '../../mocks/mocksForTests';
+import {leafletMock, offersArrayMock, citiesMock} from '../../mocks/mocksForTests';
 
-it(`Welcome-screen correctly renders`, () => {
-  const offers = offersArrayMock;
-  const leaflet = leafletMock;
+const getFilteredOffers = (city) =>
+  offersArrayMock.filter((offer) =>
+    offer.city === city);
 
-  const tree = renderer
-    .create(<WelcomeScreen
-      offers={offers}
-      leaflet={leaflet}
-      currentCity={offers[0].city}
-    />)
-    .toJSON();
+describe(`Welcome-screen correctly renders`, () => {
+  const initialState = {
+    currentCity: citiesMock[0].name,
+    filteredOffers: getFilteredOffers(citiesMock[0].name),
+    cities: [...new Set(offersArrayMock.map((it) => it.city))]
+  };
 
-  expect(tree).toMatchSnapshot();
+  const mockStore = configureStore();
+  let store;
+  let tree;
+
+  it(`Welcome-screen correctly renders`, () => {
+    const leaflet = leafletMock;
+    const offers = offersArrayMock;
+
+    store = mockStore(initialState);
+
+    tree = renderer
+      .create(<Provider store={store}>
+        <WelcomeScreen
+          offers={offers}
+          leaflet={leaflet}
+          currentCity={offers[0].city}
+        /></Provider>)
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });
