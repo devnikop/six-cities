@@ -11,8 +11,8 @@ it(`Welcome-screen correctly renders`, () => {
   const tree = renderer
     .create(<WelcomeScreen
       offers={offers}
-      onCardNameClick={jest.fn()}
       leaflet={leaflet}
+      currentCity={offers[0].city}
     />)
     .toJSON();
 

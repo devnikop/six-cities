@@ -2,7 +2,7 @@ import {
   citiesMock,
 } from './mocks/mocksForTests';
 import {
-  ActionCreators,
+  ActionCreator,
   reducer,
   getFilteredOffers
 } from './reducer';
@@ -20,13 +20,22 @@ const mock = {
     },
     {
       city: `Amsterdam`,
+      placeName: `Beautiful & luxurious apartment at great location`,
+      placeType: `Apartment`,
+      isPremium: true,
+      src: `img/apartment-01.jpg`,
+      price: 120,
+      coords: [52.3909553943508, 4.85309666406198],
+    },
+    {
+      city: `Amsterdam`,
       placeName: `Nice, cozy, warm big bed apartment`,
       placeType: `Apartment`,
       isPremium: true,
       src: `img/apartment-03.jpg`,
       price: 180,
       coords: [52.3809553943508, 4.939309666406198],
-    },
+    }
   ]
 };
 
@@ -41,7 +50,7 @@ describe(`Business logic work correctly`, () => {
 
 describe(`Action Creators work correctly`, () => {
   it(`City changed correctly`, () => {
-    expect(ActionCreators.changeCity(citiesMock[1].name)).toEqual({
+    expect(ActionCreator.changeCity(citiesMock[1].name)).toEqual({
       type: `CHANGE_CITY`,
       payload: citiesMock[1].name,
     });

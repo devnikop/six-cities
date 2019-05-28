@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 
 const DOES_NOT_EXIST = -1;
 
-export const OfferCard = (props) => {
+const OfferCard = (props) => {
   const {
     currentId,
     offer,
@@ -24,10 +24,14 @@ export const OfferCard = (props) => {
     onCardHover(DOES_NOT_EXIST);
   };
 
+  const isPremium = () =>
+    offer.isPremium ?
+      <div className="place-card__mark">
+        <span>Premium</span>
+      </div> : ``;
+
   return <article className="cities__place-card place-card" onMouseEnter={onCardMouseEnter} onMouseLeave={onCardMouseLeave}>
-    <div className="place-card__mark">
-      <span>{offer.isPremium ? `Premium` : ``}</span>
-    </div>
+    {isPremium()}
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#" onClick={onImageClick}>
         <img className="place-card__image" src={offer.src} width="260" height="200" alt="Place image" />
@@ -73,3 +77,5 @@ OfferCard.propTypes = {
   onCardClick: propTypes.func,
   onCardHover: propTypes.func,
 };
+
+export {OfferCard};

@@ -112,13 +112,7 @@ Array [
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        
-      </span>
-    </div>
+    
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
@@ -217,13 +211,7 @@ Array [
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        
-      </span>
-    </div>
+    
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >

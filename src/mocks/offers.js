@@ -18,6 +18,42 @@ const offers = [
     coords: [52.369553943508, 4.85309666406198],
   },
   {
+    city: `Dusseldorf`,
+    placeName: `Beautiful & luxurious apartment at great location`,
+    placeType: `Apartment`,
+    isPremium: true,
+    src: `img/apartment-01.jpg`,
+    price: 120,
+    coords: [52.3909553943508, 4.85309666406198],
+  },
+  {
+    city: `Hamburg`,
+    placeName: `Wood and stone place`,
+    placeType: `Private room`,
+    isPremium: false,
+    src: `img/room.jpg`,
+    price: 80,
+    coords: [52.369553943508, 4.85309666406198],
+  },
+  {
+    city: `Amsterdam`,
+    placeName: `Beautiful & luxurious apartment at great location`,
+    placeType: `Apartment`,
+    isPremium: true,
+    src: `img/apartment-01.jpg`,
+    price: 120,
+    coords: [52.3909553943508, 4.85309666406198],
+  },
+  {
+    city: `Cologne`,
+    placeName: `Wood and stone place`,
+    placeType: `Private room`,
+    isPremium: false,
+    src: `img/room.jpg`,
+    price: 80,
+    coords: [52.369553943508, 4.85309666406198],
+  },
+  {
     city: `Brussels`,
     placeName: `Canal View Prinsengracht`,
     placeType: `Apartment`,
@@ -60,6 +96,10 @@ const cities = [
   },
   {
     name: `Paris`,
+    coords: [48.856613, 2.352222],
+  },
+  {
+    name: `Moscow`,
     coords: [48.856613, 2.352222],
   },
 ];

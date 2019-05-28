@@ -10,9 +10,10 @@ const getFilteredOffers = (city) =>
 const initialState = {
   currentCity: cities[0].name,
   filteredOffers: getFilteredOffers(cities[0].name),
+  cities: [...new Set(offers.map((it) => it.city))]
 };
 
-const ActionCreators = {
+const ActionCreator = {
   changeCity: (city) => ({
     type: `CHANGE_CITY`,
     payload: city,
@@ -31,7 +32,7 @@ const reducer = (state = initialState, action) => {
 };
 
 export {
-  ActionCreators,
+  ActionCreator,
   reducer,
   getFilteredOffers
 };
