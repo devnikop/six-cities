@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
+import React from 'react';
+import renderer from 'react-test-renderer';
 
 import {App} from './app.jsx';
 import {leafletMock, offersArrayMock, citiesMock} from '../../mocks/mocksForTests';
@@ -28,8 +28,8 @@ describe(`App correctly renders`, () => {
     tree = renderer
       .create(<Provider store={store}>
         <App
-          store={store}
           leaflet={leaflet}
+          store={store}
         /></Provider>)
       .toJSON();
 

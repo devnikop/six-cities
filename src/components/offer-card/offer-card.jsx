@@ -1,5 +1,5 @@
-import React from 'react';
 import propTypes from 'prop-types';
+import React from 'react';
 
 const DOES_NOT_EXIST = -1;
 
@@ -66,6 +66,8 @@ const OfferCard = (props) => {
 
 OfferCard.propTypes = {
   currentId: propTypes.number,
+  onCardClick: propTypes.func,
+  onCardHover: propTypes.func,
   offer: propTypes.shape({
     placeName: propTypes.string.isRequired,
     placeType: propTypes.oneOf([`Apartment`, `Private room`]),
@@ -73,9 +75,6 @@ OfferCard.propTypes = {
     src: propTypes.string,
     price: propTypes.number,
   }),
-
-  onCardClick: propTypes.func,
-  onCardHover: propTypes.func,
 };
 
-export {OfferCard};
+export default OfferCard;

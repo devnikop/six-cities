@@ -1,15 +1,15 @@
-import React from 'react';
-import propTypes from 'prop-types';
 import {connect} from 'react-redux';
+import propTypes from 'prop-types';
+import React from 'react';
 
-import OfferList from '../offer-list/offer-list.jsx';
-import Map from '../map/map.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
+import Map from '../map/map.jsx';
+import OfferList from '../offer-list/offer-list.jsx';
 
 const WelcomeScreen = (props) => {
   const {
-    leaflet,
     currentCity,
+    leaflet,
     offers,
   } = props;
 
@@ -65,6 +65,8 @@ const WelcomeScreen = (props) => {
 };
 
 WelcomeScreen.propTypes = {
+  currentCity: propTypes.string.isRequired,
+  leaflet: propTypes.object.isRequired,
   offers: propTypes.arrayOf(
       propTypes.shape({
         placeName: propTypes.string.isRequired,
@@ -74,8 +76,6 @@ WelcomeScreen.propTypes = {
         price: propTypes.number,
       })
   ),
-  currentCity: propTypes.string.isRequired,
-  leaflet: propTypes.object.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) =>

@@ -1,6 +1,6 @@
-import React from 'react';
-import propTypes from 'prop-types';
 import {connect} from 'react-redux';
+import propTypes from 'prop-types';
+import React from 'react';
 
 import {ActionCreator} from '../../reducer';
 

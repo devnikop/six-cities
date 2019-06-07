@@ -5,13 +5,13 @@ import {Map} from './map.jsx';
 import {offersArrayMock, leafletMock} from '../../mocks/mocksForTests';
 
 it(`Map correctly renders`, () => {
-  const offers = offersArrayMock;
   const leaflet = leafletMock;
+  const offers = offersArrayMock;
 
   const tree = renderer
     .create(<Map
-      offers={offers}
       leaflet={leaflet}
+      offers={offers}
     />)
     .toJSON();
 

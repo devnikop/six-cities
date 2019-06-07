@@ -1,13 +1,13 @@
-import React from 'react';
 import {mount} from 'enzyme';
+import React from 'react';
 
-import {OfferCard} from './offer-card.jsx';
 import {offerMock} from '../../mocks/mocksForTests';
+import OfferCard from './offer-card.jsx';
 
 it(`Click on photo calls callback`, () => {
-  const offer = offerMock;
   const clickHandler = jest.fn();
   const linkPrevention = jest.fn();
+  const offer = offerMock;
 
   const offerCard = mount(<OfferCard
     offer={offer}

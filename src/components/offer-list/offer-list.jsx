@@ -1,8 +1,8 @@
-import React from 'react';
-import propTypes from 'prop-types';
 import {connect} from 'react-redux';
+import propTypes from 'prop-types';
+import React from 'react';
 
-import {OfferCard} from '../offer-card/offer-card.jsx';
+import OfferCard from '../offer-card/offer-card.jsx';
 
 class OfferList extends React.PureComponent {
   constructor(props) {
@@ -12,8 +12,8 @@ class OfferList extends React.PureComponent {
       offerCard: -1,
     };
 
-    this.onCardHover = this.onCardHover.bind(this);
     this.onCardClick = this.onCardClick.bind(this);
+    this.onCardHover = this.onCardHover.bind(this);
   }
 
   render() {
@@ -22,8 +22,8 @@ class OfferList extends React.PureComponent {
     } = this.props;
 
     return offers.map((it, i) => <OfferCard
-      key={`offer-${i}`}
       currentId={i}
+      key={`offer-${i}`}
       offer={it}
       onCardClick={this.onCardClick}
       onCardHover={this.onCardHover}
