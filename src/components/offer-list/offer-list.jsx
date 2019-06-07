@@ -5,46 +5,27 @@ import React from 'react';
 import OfferCard from '../offer-card/offer-card.jsx';
 
 class OfferList extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      offerCard: -1,
-    };
-
-    this.onCardClick = this.onCardClick.bind(this);
-    this.onCardHover = this.onCardHover.bind(this);
-  }
-
   render() {
     const {
+      activeItem,
+      changeActiveItem,
       offers
     } = this.props;
 
     return offers.map((it, i) => <OfferCard
+      active={activeItem === i ? activeItem : undefined}
       currentId={i}
       key={`offer-${i}`}
       offer={it}
-      onCardClick={this.onCardClick}
-      onCardHover={this.onCardHover}
+      onCardClick={changeActiveItem}
     />
     );
-  }
-
-  onCardClick(currentCard) {
-    this.setState({
-      offerCard: currentCard,
-    });
-  }
-
-  onCardHover(currentCard) {
-    this.setState({
-      offerCard: currentCard,
-    });
   }
 }
 
 OfferList.propTypes = {
+  activeItem: propTypes.number.isRequired,
+  changeActiveItem: propTypes.func.isRequired,
   offers: propTypes.arrayOf(
       propTypes.shape({
         placeName: propTypes.string.isRequired,

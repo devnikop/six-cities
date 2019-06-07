@@ -2,9 +2,13 @@ import {connect} from 'react-redux';
 import propTypes from 'prop-types';
 import React from 'react';
 
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+
 import CitiesList from '../cities-list/cities-list.jsx';
 import Map from '../map/map.jsx';
 import OfferList from '../offer-list/offer-list.jsx';
+
+const OfferListWrapped = withActiveItem(OfferList);
 
 const WelcomeScreen = (props) => {
   const {
@@ -14,7 +18,7 @@ const WelcomeScreen = (props) => {
   } = props;
 
   const _getOfferList = () => {
-    return <OfferList/>;
+    return <OfferListWrapped/>;
   };
 
   return <React.Fragment>

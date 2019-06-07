@@ -10,7 +10,7 @@ it(`OfferCard renders correctly`, () => {
   const tree = renderer
     .create(<OfferCard
       offer={offer}
-      onCardNameClick={jest.fn()}
+      onCardClick={jest.fn()}
     />)
     .toJSON();
 

@@ -1,27 +1,19 @@
 import propTypes from 'prop-types';
 import React from 'react';
 
-const DOES_NOT_EXIST = -1;
-
 const OfferCard = (props) => {
   const {
+    active,
     currentId,
     offer,
     onCardClick,
-    onCardHover
   } = props;
+
+  const activeCard = active ? `cities__place-card--active` : ``;
 
   const onImageClick = (evt) => {
     evt.preventDefault();
     onCardClick(currentId);
-  };
-
-  const onCardMouseEnter = () => {
-    onCardHover(currentId);
-  };
-
-  const onCardMouseLeave = () => {
-    onCardHover(DOES_NOT_EXIST);
   };
 
   const isPremium = () =>
@@ -30,7 +22,7 @@ const OfferCard = (props) => {
         <span>Premium</span>
       </div> : ``;
 
-  return <article className="cities__place-card place-card" onMouseEnter={onCardMouseEnter} onMouseLeave={onCardMouseLeave}>
+  return <article className={`cities__place-card ${activeCard}place-card`}>
     {isPremium()}
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#" onClick={onImageClick}>
@@ -65,9 +57,9 @@ const OfferCard = (props) => {
 };
 
 OfferCard.propTypes = {
+  active: propTypes.number,
   currentId: propTypes.number,
   onCardClick: propTypes.func,
-  onCardHover: propTypes.func,
   offer: propTypes.shape({
     placeName: propTypes.string.isRequired,
     placeType: propTypes.oneOf([`Apartment`, `Private room`]),
