@@ -3,8 +3,8 @@ import {
 } from './mocks/mocksForTests';
 import {
   ActionCreator,
+  getFilteredOffers,
   reducer,
-  getFilteredOffers
 } from './reducer';
 
 const mock = {
@@ -68,12 +68,12 @@ describe(`Reducer works correctly`, () => {
       currentCity: citiesMock[1].name,
       filteredOffers: [{
         city: `Brussels`,
+        coords: [52.3909553943508, 4.929309666406198],
+        isPremium: false,
         placeName: `Canal View Prinsengracht`,
         placeType: `Apartment`,
-        isPremium: false,
-        src: `img/apartment-02.jpg`,
         price: 132,
-        coords: [52.3909553943508, 4.929309666406198],
+        src: `img/apartment-02.jpg`,
       }],
     });
   });

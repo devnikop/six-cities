@@ -1,10 +1,10 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
+import React from 'react';
+import renderer from 'react-test-renderer';
 
-import {WelcomeScreen} from './welcome-screen.jsx';
 import {leafletMock, offersArrayMock, citiesMock} from '../../mocks/mocksForTests';
+import {WelcomeScreen} from './welcome-screen.jsx';
 
 const getFilteredOffers = (city) =>
   offersArrayMock.filter((offer) =>
@@ -12,9 +12,9 @@ const getFilteredOffers = (city) =>
 
 describe(`Welcome-screen correctly renders`, () => {
   const initialState = {
+    cities: [...new Set(offersArrayMock.map((it) => it.city))],
     currentCity: citiesMock[0].name,
     filteredOffers: getFilteredOffers(citiesMock[0].name),
-    cities: [...new Set(offersArrayMock.map((it) => it.city))]
   };
 
   const mockStore = configureStore();
@@ -30,9 +30,9 @@ describe(`Welcome-screen correctly renders`, () => {
     tree = renderer
       .create(<Provider store={store}>
         <WelcomeScreen
-          offers={offers}
-          leaflet={leaflet}
           currentCity={offers[0].city}
+          leaflet={leaflet}
+          offers={offers}
         /></Provider>)
       .toJSON();
 

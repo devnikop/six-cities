@@ -1,20 +1,24 @@
-import React from 'react';
-import propTypes from 'prop-types';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import OfferList from '../offer-list/offer-list.jsx';
-import Map from '../map/map.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+
 import CitiesList from '../cities-list/cities-list.jsx';
+import Map from '../map/map.jsx';
+import OfferList from '../offer-list/offer-list.jsx';
+
+const OfferListWrapped = withActiveItem(OfferList);
 
 const WelcomeScreen = (props) => {
   const {
-    leaflet,
     currentCity,
+    leaflet,
     offers,
   } = props;
 
   const _getOfferList = () => {
-    return <OfferList/>;
+    return <OfferListWrapped/>;
   };
 
   return <React.Fragment>
@@ -65,17 +69,17 @@ const WelcomeScreen = (props) => {
 };
 
 WelcomeScreen.propTypes = {
-  offers: propTypes.arrayOf(
-      propTypes.shape({
-        placeName: propTypes.string.isRequired,
-        placeType: propTypes.oneOf([`Apartment`, `Private room`]),
-        isPremium: propTypes.bool,
-        src: propTypes.string,
-        price: propTypes.number,
+  currentCity: PropTypes.string.isRequired,
+  leaflet: PropTypes.object.isRequired,
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        placeName: PropTypes.string.isRequired,
+        placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
+        isPremium: PropTypes.bool,
+        src: PropTypes.string,
+        price: PropTypes.number,
       })
   ),
-  currentCity: propTypes.string.isRequired,
-  leaflet: propTypes.object.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) =>

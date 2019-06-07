@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import {OfferCard} from './offer-card.jsx';
 import {offerMock} from '../../mocks/mocksForTests';
+import OfferCard from './offer-card.jsx';
 
 it(`OfferCard renders correctly`, () => {
   const offer = offerMock;
@@ -10,7 +10,7 @@ it(`OfferCard renders correctly`, () => {
   const tree = renderer
     .create(<OfferCard
       offer={offer}
-      onCardNameClick={jest.fn()}
+      onCardClick={jest.fn()}
     />)
     .toJSON();
 

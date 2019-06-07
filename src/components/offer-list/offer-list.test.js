@@ -9,8 +9,9 @@ it(`OfferList correctly renders`, () => {
 
   const tree = renderer
     .create(<OfferList
+      activeItem={-1}
       offers={offers}
-      onCardNameClick={jest.fn()}
+      changeActiveItem={jest.fn()}
     />)
     .toJSON();
 

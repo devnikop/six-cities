@@ -1,6 +1,6 @@
-import React from 'react';
-import propTypes from 'prop-types';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import {ActionCreator} from '../../reducer';
 
@@ -36,9 +36,9 @@ const CitiesList = (props) => {
 };
 
 CitiesList.propTypes = {
-  cities: propTypes.arrayOf(propTypes.string),
-  currentCity: propTypes.string.isRequired,
-  onCity: propTypes.func.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string),
+  currentCity: PropTypes.string.isRequired,
+  onCity: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) =>

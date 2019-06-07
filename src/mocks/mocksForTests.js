@@ -1,8 +1,8 @@
 const leafletMock = {
   icon() {
     return {
+      iconSize: [30, 30],
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
     };
   },
   map() {
@@ -30,80 +30,80 @@ const leafletMock = {
 const offersArrayMock = [
   {
     city: `Amsterdam`,
+    coords: [52.3909553943508, 4.85309666406198],
+    isPremium: true,
     placeName: `Beautiful & luxurious apartment at great location`,
     placeType: `Apartment`,
-    isPremium: true,
-    src: `img/apartment-01.jpg`,
     price: 120,
-    coords: [52.3909553943508, 4.85309666406198],
+    src: `img/apartment-01.jpg`,
   },
   {
     city: `Cologne`,
+    coords: [52.369553943508, 4.85309666406198],
+    isPremium: false,
     placeName: `Wood and stone place`,
     placeType: `Private room`,
-    isPremium: false,
-    src: `img/room.jpg`,
     price: 80,
-    coords: [52.369553943508, 4.85309666406198],
+    src: `img/room.jpg`,
   },
   {
     city: `Brussels`,
+    coords: [52.3909553943508, 4.929309666406198],
+    isPremium: false,
     placeName: `Canal View Prinsengracht`,
     placeType: `Apartment`,
-    isPremium: false,
-    src: `img/apartment-02.jpg`,
     price: 132,
-    coords: [52.3909553943508, 4.929309666406198],
+    src: `img/apartment-02.jpg`,
   },
   {
     city: `Amsterdam`,
+    coords: [52.3809553943508, 4.939309666406198],
+    isPremium: true,
     placeName: `Nice, cozy, warm big bed apartment`,
     placeType: `Apartment`,
-    isPremium: true,
-    src: `img/apartment-03.jpg`,
     price: 180,
-    coords: [52.3809553943508, 4.939309666406198],
+    src: `img/apartment-03.jpg`,
   }
 ];
 
 const citiesMock = [
   {
-    name: `Amsterdam`,
     coords: [52.370216, 4.895168],
+    name: `Amsterdam`,
   },
   {
-    name: `Brussels`,
     coords: [50.850346, 4.351721],
+    name: `Brussels`,
   },
   {
-    name: `Cologne`,
     coords: [51.227741, 6.773456],
+    name: `Cologne`,
   },
   {
-    name: `Dusseldorf`,
     coords: [50.937531, 6.960279],
+    name: `Dusseldorf`,
   },
   {
-    name: `Hamburg`,
     coords: [53.551086, 9.993682],
+    name: `Hamburg`,
   },
   {
-    name: `Paris`,
     coords: [48.856613, 2.352222],
+    name: `Paris`,
   },
 ];
 
 const offerMock = {
+  isPremium: true,
   placeName: `Beautiful & luxurious apartment at great location`,
   placeType: `Apartment`,
-  isPremium: true,
-  src: `img/apartment-01.jpg`,
   price: 120,
+  src: `img/apartment-01.jpg`,
 };
 
 export {
-  leafletMock,
-  offersArrayMock,
   citiesMock,
-  offerMock
+  leafletMock,
+  offerMock,
+  offersArrayMock,
 };

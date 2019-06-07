@@ -1,6 +1,6 @@
-import React from 'react';
-import propTypes from 'prop-types';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 class Map extends React.PureComponent {
   constructor(props) {
@@ -8,13 +8,13 @@ class Map extends React.PureComponent {
 
     this.leaflet = props.leaflet;
 
-    this.map = null;
-    this.layerGroup = null;
     this._mapRef = React.createRef();
     this.icon = this.leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
+    this.layerGroup = null;
+    this.map = null;
   }
 
   render() {
@@ -71,16 +71,16 @@ class Map extends React.PureComponent {
 }
 
 Map.propTypes = {
-  offers: propTypes.arrayOf(
-      propTypes.shape({
-        placeName: propTypes.string.isRequired,
-        placeType: propTypes.oneOf([`Apartment`, `Private room`]),
-        isPremium: propTypes.bool,
-        src: propTypes.string,
-        price: propTypes.number,
+  leaflet: PropTypes.object.isRequired,
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        placeName: PropTypes.string.isRequired,
+        placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
+        isPremium: PropTypes.bool,
+        src: PropTypes.string,
+        price: PropTypes.number,
       })
   ),
-  leaflet: propTypes.object.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) =>
