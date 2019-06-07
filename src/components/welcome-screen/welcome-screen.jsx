@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
@@ -69,15 +69,15 @@ const WelcomeScreen = (props) => {
 };
 
 WelcomeScreen.propTypes = {
-  currentCity: propTypes.string.isRequired,
-  leaflet: propTypes.object.isRequired,
-  offers: propTypes.arrayOf(
-      propTypes.shape({
-        placeName: propTypes.string.isRequired,
-        placeType: propTypes.oneOf([`Apartment`, `Private room`]),
-        isPremium: propTypes.bool,
-        src: propTypes.string,
-        price: propTypes.number,
+  currentCity: PropTypes.string.isRequired,
+  leaflet: PropTypes.object.isRequired,
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        placeName: PropTypes.string.isRequired,
+        placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
+        isPremium: PropTypes.bool,
+        src: PropTypes.string,
+        price: PropTypes.number,
       })
   ),
 };

@@ -1,4 +1,4 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React from "react";
 
 import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
@@ -16,7 +16,7 @@ class App extends React.PureComponent {
 }
 
 App.propTypes = {
-  leaflet: propTypes.object.isRequired,
+  leaflet: PropTypes.object.isRequired,
 };
 
 export {App};

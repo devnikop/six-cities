@@ -1,4 +1,4 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const OfferCard = (props) => {
@@ -57,15 +57,15 @@ const OfferCard = (props) => {
 };
 
 OfferCard.propTypes = {
-  active: propTypes.number,
-  currentId: propTypes.number,
-  onCardClick: propTypes.func,
-  offer: propTypes.shape({
-    placeName: propTypes.string.isRequired,
-    placeType: propTypes.oneOf([`Apartment`, `Private room`]),
-    isPremium: propTypes.bool,
-    src: propTypes.string,
-    price: propTypes.number,
+  active: PropTypes.number,
+  currentId: PropTypes.number,
+  onCardClick: PropTypes.func,
+  offer: PropTypes.shape({
+    placeName: PropTypes.string.isRequired,
+    placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
+    isPremium: PropTypes.bool,
+    src: PropTypes.string,
+    price: PropTypes.number,
   }),
 };
 

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class Map extends React.PureComponent {
@@ -71,14 +71,14 @@ class Map extends React.PureComponent {
 }
 
 Map.propTypes = {
-  leaflet: propTypes.object.isRequired,
-  offers: propTypes.arrayOf(
-      propTypes.shape({
-        placeName: propTypes.string.isRequired,
-        placeType: propTypes.oneOf([`Apartment`, `Private room`]),
-        isPremium: propTypes.bool,
-        src: propTypes.string,
-        price: propTypes.number,
+  leaflet: PropTypes.object.isRequired,
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        placeName: PropTypes.string.isRequired,
+        placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
+        isPremium: PropTypes.bool,
+        src: PropTypes.string,
+        price: PropTypes.number,
       })
   ),
 };

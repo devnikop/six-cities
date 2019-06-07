@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import OfferCard from '../offer-card/offer-card.jsx';
@@ -24,15 +24,15 @@ class OfferList extends React.PureComponent {
 }
 
 OfferList.propTypes = {
-  activeItem: propTypes.number.isRequired,
-  changeActiveItem: propTypes.func.isRequired,
-  offers: propTypes.arrayOf(
-      propTypes.shape({
-        placeName: propTypes.string.isRequired,
-        placeType: propTypes.oneOf([`Apartment`, `Private room`]),
-        isPremium: propTypes.bool,
-        src: propTypes.string,
-        price: propTypes.number,
+  activeItem: PropTypes.number.isRequired,
+  changeActiveItem: PropTypes.func.isRequired,
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        placeName: PropTypes.string.isRequired,
+        placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
+        isPremium: PropTypes.bool,
+        src: PropTypes.string,
+        price: PropTypes.number,
       })
   ),
 };
