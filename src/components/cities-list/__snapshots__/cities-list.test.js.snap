@@ -18,20 +18,7 @@ exports[`CitiesList correctly renders 1`] = `
           onClick={[Function]}
         >
           <span>
-            Amsterdam
-          </span>
-        </a>
-      </li>
-      <li
-        className="locations__item"
-      >
-        <a
-          className="locations__item-link tabs__item  "
-          href="#"
-          onClick={[Function]}
-        >
-          <span>
-            Brussels
+            Paris
           </span>
         </a>
       </li>
@@ -57,7 +44,7 @@ exports[`CitiesList correctly renders 1`] = `
           onClick={[Function]}
         >
           <span>
-            Dusseldorf
+            Amsterdam
           </span>
         </a>
       </li>
@@ -70,20 +57,7 @@ exports[`CitiesList correctly renders 1`] = `
           onClick={[Function]}
         >
           <span>
-            Hamburg
-          </span>
-        </a>
-      </li>
-      <li
-        className="locations__item"
-      >
-        <a
-          className="locations__item-link tabs__item  "
-          href="#"
-          onClick={[Function]}
-        >
-          <span>
-            Paris
+            Brussels
           </span>
         </a>
       </li>

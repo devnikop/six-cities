@@ -1,41 +1,44 @@
+import {configureAPI} from './api';
+import MockAdapter from 'axios-mock-adapter';
+
 import {
   citiesMock,
+  offersArrayMock,
 } from './mocks/mocksForTests';
 import {
   ActionCreator,
   getFilteredOffers,
+  Operation,
   reducer,
 } from './reducer';
 
 const mock = {
   filteredOffersMock: [
     {
-      city: `Amsterdam`,
-      placeName: `Beautiful & luxurious apartment at great location`,
-      placeType: `Apartment`,
+      bedrooms: 1,
+      city: {
+        coords: [50.846557, 4.351697],
+        zoom: 13,
+        name: `Paris`,
+      },
+      description: `Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed`,
+      goods: [],
+      host: {},
+      id: 1,
+      images: [],
+      isFavorite: false,
       isPremium: true,
-      src: `img/apartment-01.jpg`,
-      price: 120,
-      coords: [52.3909553943508, 4.85309666406198],
+      maxAdults: 3,
+      place: {
+        coords: [50.846557, 4.351697],
+        zoom: 16,
+      },
+      previewImage: `https://es31-server.appspot.com/six-cities/static/hotel/19.jpg`,
+      price: 80,
+      rating: 1.5,
+      title: `Wood and stone place`,
+      type: `apartment`,
     },
-    {
-      city: `Amsterdam`,
-      placeName: `Beautiful & luxurious apartment at great location`,
-      placeType: `Apartment`,
-      isPremium: true,
-      src: `img/apartment-01.jpg`,
-      price: 120,
-      coords: [52.3909553943508, 4.85309666406198],
-    },
-    {
-      city: `Amsterdam`,
-      placeName: `Nice, cozy, warm big bed apartment`,
-      placeType: `Apartment`,
-      isPremium: true,
-      src: `img/apartment-03.jpg`,
-      price: 180,
-      coords: [52.3809553943508, 4.939309666406198],
-    }
   ]
 };
 
@@ -43,40 +46,60 @@ describe(`Business logic work correctly`, () => {
   it(`getFilteredOffers return filtered list`, () => {
     const {filteredOffersMock} = mock;
 
-    expect(getFilteredOffers(citiesMock[0].name)).toEqual(filteredOffersMock);
+    expect(getFilteredOffers(offersArrayMock, citiesMock[0])).toEqual(filteredOffersMock);
   });
 });
 
 
 describe(`Action Creators work correctly`, () => {
   it(`City changed correctly`, () => {
-    expect(ActionCreator.changeCity(citiesMock[1].name)).toEqual({
+    expect(ActionCreator.changeCity(citiesMock[1])).toEqual({
       type: `CHANGE_CITY`,
-      payload: citiesMock[1].name,
+      payload: citiesMock[1],
     });
   });
 });
 
 describe(`Reducer works correctly`, () => {
-  it(`Should change city by a given city`, () => {
+  it(`Should change currentCity by a given city`, () => {
     const action = {
       type: `CHANGE_CITY`,
-      payload: citiesMock[1].name,
+      payload: citiesMock[0],
+    };
+    const {filteredOffersMock} = mock;
+
+    const state = {
+      cities: [],
+      currentCity: ``,
+      filteredOffers: [],
+      offers: filteredOffersMock,
     };
 
-    expect(reducer({}, action)).toEqual({
-      currentCity: citiesMock[1].name,
-      filteredOffers: [{
-        city: `Brussels`,
-        coords: [52.3909553943508, 4.929309666406198],
-        isPremium: false,
-        placeName: `Canal View Prinsengracht`,
-        placeType: `Apartment`,
-        price: 132,
-        src: `img/apartment-02.jpg`,
-      }],
+    expect(reducer(state, action)).toEqual({
+      cities: [],
+      currentCity: citiesMock[0],
+      filteredOffers: filteredOffersMock,
+      offers: filteredOffersMock,
     });
   });
+
+  it(`Should make a correct API call to /hotels`, () => {
+    const dispatch = jest.fn();
+    const api = configureAPI(dispatch);
+    const apiMock = new MockAdapter(api);
+    const offersLoader = Operation.loadOffers();
+
+    apiMock
+      .onGet(`/hotels`)
+      .reply(200, [{fake: true}]);
+
+    return offersLoader(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith({
+          type: `LOAD_OFFERS`,
+          payload: [{fake: true}],
+        });
+      });
+  });
 });
-
-

@@ -3,7 +3,7 @@ import configureStore from 'redux-mock-store';
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import {leafletMock, offersArrayMock, citiesMock} from '../../mocks/mocksForTests';
+import {leafletMock, offersArrayMock} from '../../mocks/mocksForTests';
 import {WelcomeScreen} from './welcome-screen.jsx';
 
 const getFilteredOffers = (city) =>
@@ -13,8 +13,8 @@ const getFilteredOffers = (city) =>
 describe(`Welcome-screen correctly renders`, () => {
   const initialState = {
     cities: [...new Set(offersArrayMock.map((it) => it.city))],
-    currentCity: citiesMock[0].name,
-    filteredOffers: getFilteredOffers(citiesMock[0].name),
+    currentCity: offersArrayMock[0].city.name,
+    filteredOffers: getFilteredOffers(offersArrayMock[0].city.name),
   };
 
   const mockStore = configureStore();

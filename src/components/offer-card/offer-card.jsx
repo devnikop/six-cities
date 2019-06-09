@@ -22,11 +22,13 @@ const OfferCard = (props) => {
         <span>Premium</span>
       </div> : ``;
 
+  const getRating = () =>`${offer.rating * 10}%`;
+
   return <article className={`cities__place-card ${activeCard}place-card`}>
     {isPremium()}
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#" onClick={onImageClick}>
-        <img className="place-card__image" src={offer.src} width="260" height="200" alt="Place image" />
+        <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
       </a>
     </div>
     <div className="place-card__info">
@@ -44,14 +46,14 @@ const OfferCard = (props) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: `93%`}}></span>
+          <span style={{width: getRating()}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#">{offer.placeName}</a>
+        <a href="#">{offer.title}</a>
       </h2>
-      <p className="place-card__type">{offer.placeType}</p>
+      <p className="place-card__type">{offer.type}</p>
     </div>
   </article>;
 };
@@ -61,7 +63,7 @@ OfferCard.propTypes = {
   currentId: PropTypes.number,
   onCardClick: PropTypes.func,
   offer: PropTypes.shape({
-    placeName: PropTypes.string.isRequired,
+    placeName: PropTypes.string,
     placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
     isPremium: PropTypes.bool,
     src: PropTypes.string,
