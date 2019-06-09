@@ -30,6 +30,12 @@ class Map extends React.PureComponent {
   componentDidUpdate() {
     this.layerGroup.clearLayers();
     this._addMarkers();
+
+    const filteredOffers = this.props.offers;
+    const currentCity = filteredOffers[0].city;
+    this.city = currentCity.coords;
+    this.zoom = currentCity.zoom;
+    this.map.setView(this.city, this.zoom);
   }
 
   _addMap() {
@@ -58,7 +64,7 @@ class Map extends React.PureComponent {
 
   _addMarkers() {
     this.props.offers.map((offer) => {
-      this._addMarker(offer.coords);
+      this._addMarker(offer.place.coords);
     });
   }
 
@@ -74,7 +80,7 @@ Map.propTypes = {
   leaflet: PropTypes.object.isRequired,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
-        placeName: PropTypes.string.isRequired,
+        placeName: PropTypes.string,
         placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
         isPremium: PropTypes.bool,
         src: PropTypes.string,

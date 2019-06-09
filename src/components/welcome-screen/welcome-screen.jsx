@@ -73,7 +73,7 @@ WelcomeScreen.propTypes = {
   leaflet: PropTypes.object.isRequired,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
-        placeName: PropTypes.string.isRequired,
+        placeName: PropTypes.string,
         placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
         isPremium: PropTypes.bool,
         src: PropTypes.string,

@@ -1,16 +1,12 @@
-import {
-  offers,
-  cities,
-} from "./mocks/offers";
-
-const getFilteredOffers = (city) =>
+const getFilteredOffers = (offers, city) =>
   offers.filter((offer) =>
-    offer.city === city);
+    offer.city.name === city);
 
 const initialState = {
-  cities: [...new Set(offers.map((it) => it.city))],
-  currentCity: cities[0].name,
-  filteredOffers: getFilteredOffers(cities[0].name),
+  cities: [],
+  currentCity: ``,
+  filteredOffers: [],
+  offers: [],
 };
 
 const ActionCreator = {
@@ -18,6 +14,20 @@ const ActionCreator = {
     type: `CHANGE_CITY`,
     payload: city,
   }),
+
+  loadOffers: (offers) => ({
+    type: `LOAD_OFFERS`,
+    payload: offers,
+  }),
+};
+
+const Operation = {
+  loadOffers: () => (dispatch, _getState, api) => {
+    return api.get(`/hotels`)
+      .then((data) =>
+        dispatch(ActionCreator.loadOffers(data))
+      );
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,7 +35,15 @@ const reducer = (state = initialState, action) => {
     case `CHANGE_CITY`:
       return Object.assign({}, state, {
         currentCity: action.payload,
-        filteredOffers: getFilteredOffers(action.payload),
+        filteredOffers: getFilteredOffers(state.offers, action.payload),
+      });
+
+    case `LOAD_OFFERS`:
+      return Object.assign({}, state, {
+        cities: [...new Set(action.payload.map((it) => it.city.name))],
+        currentCity: action.payload[0].city.name,
+        filteredOffers: getFilteredOffers(action.payload, action.payload[0].city.name),
+        offers: action.payload,
       });
   }
   return state;
@@ -34,5 +52,6 @@ const reducer = (state = initialState, action) => {
 export {
   ActionCreator,
   getFilteredOffers,
+  Operation,
   reducer,
 };

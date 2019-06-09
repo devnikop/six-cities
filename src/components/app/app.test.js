@@ -12,8 +12,8 @@ const getFilteredOffers = (city) =>
 
 describe(`App correctly renders`, () => {
   const initialState = {
-    currentCity: citiesMock[0].name,
-    filteredOffers: getFilteredOffers(citiesMock[0].name),
+    currentCity: citiesMock[0],
+    filteredOffers: getFilteredOffers(citiesMock[0]),
     cities: [...new Set(offersArrayMock.map((it) => it.city))]
   };
 
