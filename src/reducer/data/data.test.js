@@ -7,49 +7,9 @@ import {
 } from '../../mocks/mocksForTests';
 import {
   ActionCreator,
-  getFilteredOffers,
   Operation,
   reducer,
 } from './data';
-
-const mock = {
-  filteredOffersMock: [
-    {
-      bedrooms: 1,
-      city: {
-        coords: [50.846557, 4.351697],
-        zoom: 13,
-        name: `Paris`,
-      },
-      description: `Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed`,
-      goods: [],
-      host: {},
-      id: 1,
-      images: [],
-      isFavorite: false,
-      isPremium: true,
-      maxAdults: 3,
-      place: {
-        coords: [50.846557, 4.351697],
-        zoom: 16,
-      },
-      previewImage: `https://es31-server.appspot.com/six-cities/static/hotel/19.jpg`,
-      price: 80,
-      rating: 1.5,
-      title: `Wood and stone place`,
-      type: `apartment`,
-    },
-  ]
-};
-
-describe(`Business logic work correctly`, () => {
-  it(`getFilteredOffers return filtered list`, () => {
-    const {filteredOffersMock} = mock;
-
-    expect(getFilteredOffers(offersArrayMock, citiesMock[0])).toEqual(filteredOffersMock);
-  });
-});
-
 
 describe(`Action Creators work correctly`, () => {
   it(`City changed correctly`, () => {
@@ -66,20 +26,16 @@ describe(`Reducer works correctly`, () => {
       type: `CHANGE_CITY`,
       payload: citiesMock[0],
     };
-    const {filteredOffersMock} = mock;
-
     const state = {
       cities: [],
       currentCity: ``,
-      filteredOffers: [],
-      offers: filteredOffersMock,
+      offers: offersArrayMock,
     };
 
     expect(reducer(state, action)).toEqual({
       cities: [],
       currentCity: citiesMock[0],
-      filteredOffers: filteredOffersMock,
-      offers: filteredOffersMock,
+      offers: offersArrayMock,
     });
   });
 
