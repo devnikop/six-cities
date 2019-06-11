@@ -2,7 +2,12 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {ActionCreator} from '../../reducer';
+import {ActionCreator} from '../../reducer/data/data';
+import {
+  getCities,
+  getCurrentCity,
+  getFilteredOffers,
+} from '../../reducer/data/selectors';
 
 const CITIES_COUNT = 6;
 
@@ -43,9 +48,9 @@ CitiesList.propTypes = {
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    cities: state.cities,
-    currentCity: state.currentCity,
-    filteredOffers: state.filteredOffers,
+    cities: getCities(state),
+    currentCity: getCurrentCity(state),
+    filteredOffers: getFilteredOffers(state),
   });
 
 const mapDispatchToProps = (dispatch) => ({

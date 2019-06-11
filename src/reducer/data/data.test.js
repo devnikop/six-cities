@@ -1,16 +1,16 @@
-import {configureAPI} from './api';
+import {configureAPI} from '../../api';
 import MockAdapter from 'axios-mock-adapter';
 
 import {
   citiesMock,
   offersArrayMock,
-} from './mocks/mocksForTests';
+} from '../../mocks/mocksForTests';
 import {
   ActionCreator,
   getFilteredOffers,
   Operation,
   reducer,
-} from './reducer';
+} from './data';
 
 const mock = {
   filteredOffersMock: [

@@ -39,11 +39,12 @@ const reducer = (state = initialState, action) => {
       });
 
     case `LOAD_OFFERS`:
+      const data = action.payload;
       return Object.assign({}, state, {
-        cities: [...new Set(action.payload.map((it) => it.city.name))],
-        currentCity: action.payload[0].city.name,
-        filteredOffers: getFilteredOffers(action.payload, action.payload[0].city.name),
-        offers: action.payload,
+        cities: [...new Set(data.map((it) => it.city.name))],
+        currentCity: data[0].city.name,
+        filteredOffers: getFilteredOffers(data, data[0].city.name),
+        offers: data,
       });
   }
   return state;

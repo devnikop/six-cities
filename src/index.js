@@ -7,7 +7,8 @@ import thunk from 'redux-thunk';
 import {compose} from 'recompose';
 
 import {configureAPI} from './api';
-import {reducer, Operation} from './reducer';
+import reducer from './reducer/index';
+import {Operation} from './reducer/data/data';
 import App from './components/app/app.jsx';
 
 const init = () => {
