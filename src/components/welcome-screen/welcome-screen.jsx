@@ -2,6 +2,10 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import {
+  getCurrentCity,
+  getFilteredOffers
+} from '../../reducer/data/selectors';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 
 import CitiesList from '../cities-list/cities-list.jsx';
@@ -84,8 +88,8 @@ WelcomeScreen.propTypes = {
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    currentCity: state.currentCity,
-    offers: state.filteredOffers,
+    currentCity: getCurrentCity(state),
+    offers: getFilteredOffers(state),
   });
 
 export {WelcomeScreen};

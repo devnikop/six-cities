@@ -1,11 +1,6 @@
-const getFilteredOffers = (offers, city) =>
-  offers.filter((offer) =>
-    offer.city.name === city);
-
 const initialState = {
   cities: [],
   currentCity: ``,
-  filteredOffers: [],
   offers: [],
 };
 
@@ -35,15 +30,14 @@ const reducer = (state = initialState, action) => {
     case `CHANGE_CITY`:
       return Object.assign({}, state, {
         currentCity: action.payload,
-        filteredOffers: getFilteredOffers(state.offers, action.payload),
       });
 
     case `LOAD_OFFERS`:
+      const data = action.payload;
       return Object.assign({}, state, {
-        cities: [...new Set(action.payload.map((it) => it.city.name))],
-        currentCity: action.payload[0].city.name,
-        filteredOffers: getFilteredOffers(action.payload, action.payload[0].city.name),
-        offers: action.payload,
+        cities: [...new Set(data.map((it) => it.city.name))],
+        currentCity: data[0].city.name,
+        offers: data,
       });
   }
   return state;
@@ -51,7 +45,6 @@ const reducer = (state = initialState, action) => {
 
 export {
   ActionCreator,
-  getFilteredOffers,
   Operation,
   reducer,
 };

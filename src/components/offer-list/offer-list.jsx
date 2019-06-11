@@ -2,6 +2,8 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import {getFilteredOffers} from '../../reducer/data/selectors';
+
 import OfferCard from '../offer-card/offer-card.jsx';
 
 class OfferList extends React.PureComponent {
@@ -39,7 +41,7 @@ OfferList.propTypes = {
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    offers: state.filteredOffers,
+    offers: getFilteredOffers(state),
   });
 
 export {OfferList};
