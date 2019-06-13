@@ -9,7 +9,11 @@ import {compose} from 'recompose';
 import {configureAPI} from './api';
 import reducer from './reducer/index';
 import {Operation} from './reducer/data/data';
+import withChangeScreen from './hocs/with-change-screen/with-change-screen';
+
 import App from './components/app/app.jsx';
+
+const AppWrapped = withChangeScreen(App);
 
 const init = () => {
   const api = configureAPI((...args) => store.dispatch(...args));
@@ -24,7 +28,7 @@ const init = () => {
 
   ReactDOM.render(
       <Provider store={store}>
-        <App
+        <AppWrapped
           leaflet={leaflet}
         />
       </Provider>,
