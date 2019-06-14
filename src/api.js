@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-import {ActionCreator} from './reducer/data/data';
-import {adaptOffers} from './adapter';
+import {ActionCreator} from './reducer/user/user';
 
 const configureAPI = (dispatch) => {
   const api = axios.create({
@@ -10,10 +9,12 @@ const configureAPI = (dispatch) => {
     withCredentials: true,
   });
 
-  const onSuccess = (response) => adaptOffers(response.data);
+  const onSuccess = (response) => {
+    return response;
+  };
   const onFail = (err) => {
     if (err.response.status === 403) {
-      dispatch(ActionCreator);
+      dispatch(ActionCreator.requiredAuthorization(true));
     }
     return err;
   };

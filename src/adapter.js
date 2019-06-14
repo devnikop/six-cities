@@ -1,3 +1,11 @@
+const adaptLoginResponse = (userData) => ({
+  avatarUrl: userData[`avatar_url`],
+  email: userData[`email`],
+  id: userData[`id`],
+  isPro: userData[`is_pro`],
+  name: userData[`name`],
+});
+
 const adaptOffers = (offers) =>
   offers.map((offer) => {
     return {
@@ -38,4 +46,7 @@ const adaptOffers = (offers) =>
     };
   });
 
-export {adaptOffers};
+export {
+  adaptLoginResponse,
+  adaptOffers,
+};

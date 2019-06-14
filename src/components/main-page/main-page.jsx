@@ -14,7 +14,7 @@ import OfferList from '../offer-list/offer-list.jsx';
 
 const OfferListWrapped = withActiveItem(OfferList);
 
-const WelcomeScreen = (props) => {
+const MainPage = (props) => {
   const {
     currentCity,
     leaflet,
@@ -25,7 +25,7 @@ const WelcomeScreen = (props) => {
     return <OfferListWrapped/>;
   };
 
-  return <React.Fragment>
+  return <>
     <h1 className="visually-hidden">Cities</h1>
     <CitiesList/>
     <div className="cities__places-wrapper">
@@ -69,10 +69,10 @@ const WelcomeScreen = (props) => {
         </div>
       </div>
     </div>
-  </React.Fragment>;
+  </>;
 };
 
-WelcomeScreen.propTypes = {
+MainPage.propTypes = {
   currentCity: PropTypes.string.isRequired,
   leaflet: PropTypes.object.isRequired,
   offers: PropTypes.arrayOf(
@@ -92,8 +92,8 @@ const mapStateToProps = (state, ownProps) =>
     offers: getFilteredOffers(state),
   });
 
-export {WelcomeScreen};
+export {MainPage};
 
 export default connect(
     mapStateToProps
-)(WelcomeScreen);
+)(MainPage);
