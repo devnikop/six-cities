@@ -1,3 +1,5 @@
+import {adaptOffers} from '../../adapter';
+
 const initialState = {
   cities: [],
   currentCity: ``,
@@ -19,6 +21,9 @@ const ActionCreator = {
 const Operation = {
   loadOffers: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
+      .then((response) =>
+        adaptOffers(response.data)
+      )
       .then((data) =>
         dispatch(ActionCreator.loadOffers(data))
       );

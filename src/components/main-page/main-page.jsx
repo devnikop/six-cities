@@ -25,7 +25,7 @@ const MainPage = (props) => {
     return <OfferListWrapped/>;
   };
 
-  return <React.Fragment>
+  return <>
     <h1 className="visually-hidden">Cities</h1>
     <CitiesList/>
     <div className="cities__places-wrapper">
@@ -69,7 +69,7 @@ const MainPage = (props) => {
         </div>
       </div>
     </div>
-  </React.Fragment>;
+  </>;
 };
 
 MainPage.propTypes = {

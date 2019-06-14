@@ -6,4 +6,11 @@ const getAuthorizationStatus = (state) => {
   return state[NAME_SPACE].isAuthorizationRequired;
 };
 
-export {getAuthorizationStatus};
+const getUserData = (state) => {
+  return state[NAME_SPACE].user;
+};
+
+export {
+  getAuthorizationStatus,
+  getUserData
+};

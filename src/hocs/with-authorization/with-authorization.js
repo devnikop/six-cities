@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import {configureAPI} from '../../api';
 import {ActionCreator} from '../../reducer/user/user';
 
+import {adaptLoginResponse} from '../../adapter';
+
 const withAuthorization = (Component) => {
   class WithAuthorization extends React.PureComponent {
     constructor(props) {
@@ -60,8 +62,11 @@ const mapDispatchToProps = (dispatch) => ({
     configureAPI(dispatch)
       .post(`/login`, formData)
       .then((response) => {
-        if (response.data) {
-          dispatch(ActionCreator.login(response.data));
+        return adaptLoginResponse(response.data);
+      })
+      .then((data) => {
+        if (data) {
+          dispatch(ActionCreator.login(data));
           dispatch(ActionCreator.requiredAuthorization(false));
         }
       });

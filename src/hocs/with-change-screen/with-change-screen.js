@@ -5,10 +5,13 @@ import React from 'react';
 
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 import withAuthorization from '../with-authorization/with-authorization';
+import withHeader from '../with-header/with-header';
 
+import SignIn from '../../components/sign-in/sign-in.jsx';
+import MainHeader from '../../components/main-header/main-header.jsx';
 import MainPage from "../../components/main-page/main-page.jsx";
-import {SignIn} from '../../components/sign-in/sign-in.jsx';
 
+const MainHeaderWrapped = withHeader(MainHeader);
 const SignInWrapped = withAuthorization(SignIn);
 
 const withChangeScreen = (Component) => {
@@ -32,12 +35,19 @@ const withChangeScreen = (Component) => {
         leaflet
       } = this.props;
 
+
       if (isAuthorizationRequired) {
-        return <SignInWrapped/>;
+        return <>
+          <MainHeaderWrapped/>
+          <SignInWrapped/>
+        </>;
       } else {
-        return <MainPage
-          leaflet={leaflet}
-        />;
+        return <>
+          <MainHeaderWrapped/>
+          <MainPage
+            leaflet={leaflet}
+          />
+        </>;
       }
     }
   }
