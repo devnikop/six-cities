@@ -1,3 +1,5 @@
+import {adaptLoginResponse} from '../../adapter';
+
 const initialState = {
   isAuthorizationRequired: false,
   user: {},
@@ -13,6 +15,22 @@ const ActionCreator = {
     type: `REQUIRED_AUTHORIZATION`,
     payload: status,
   }),
+};
+
+const Operation = {
+  checkAuth: () => {
+    return (dispatch, _getState, api) => {
+      return api
+        .get(`/login`)
+        .then((response) => {
+          if (response.status === 200) {
+            const adaptedData = adaptLoginResponse(response.data);
+            dispatch(ActionCreator.login(adaptedData));
+            dispatch(ActionCreator.requiredAuthorization(false));
+          }
+        });
+    };
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -32,5 +50,6 @@ const reducer = (state = initialState, action) => {
 
 export {
   ActionCreator,
+  Operation,
   reducer,
 };

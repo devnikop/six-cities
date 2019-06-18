@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import {configureAPI} from '../../api';
 import {ActionCreator} from '../../reducer/user/user';
+import history from '../../history';
 
 import {adaptLoginResponse} from '../../adapter';
 
@@ -68,6 +69,7 @@ const mapDispatchToProps = (dispatch) => ({
         if (data) {
           dispatch(ActionCreator.login(data));
           dispatch(ActionCreator.requiredAuthorization(false));
+          history.push(`/`);
         }
       });
   }

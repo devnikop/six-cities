@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const MainHeader = (props) => {
   const {
-    handlerSignInClick,
     user,
   } = props;
 
@@ -29,11 +29,10 @@ const MainHeader = (props) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a onClick={handlerSignInClick} className="header__nav-link header__nav-link--profile" href="#">
-                  <div className="header__avatar-wrapper user__avatar-wrapper">
-                  </div>
+                <Link to="/login" className="header__nav-link header__nav-link--profile" href="#">
+                  <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                   {_isSignedIn()}
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -44,7 +43,6 @@ const MainHeader = (props) => {
 };
 
 MainHeader.propTypes = {
-  handlerSignInClick: PropTypes.func.isRequired,
   user: PropTypes.object,
 };
 
