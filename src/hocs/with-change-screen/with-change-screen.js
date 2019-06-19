@@ -4,7 +4,9 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import {
+  // getAuthorizationStatus,
+  getUserData} from '../../reducer/user/selectors.js';
 import withAuthorization from '../with-authorization/with-authorization';
 import withHeader from '../with-header/with-header';
 import history from '../../history';
