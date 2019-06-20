@@ -8,13 +8,14 @@ import {
   getFilteredOffers,
 } from '../../reducer/data/selectors';
 
+import {City} from '../../types';
+
 interface Props {
   cities: City[],
   currentCity: City,
   onCity: (city: City) => void,
 }
 
-type City = string;
 
 const CITIES_COUNT = 6;
 

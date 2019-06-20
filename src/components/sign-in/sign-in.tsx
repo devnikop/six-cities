@@ -1,7 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
-const SignIn = (props) => {
+interface Props {
+  handlerEmailChange: () => void,
+  handlerFormSubmit: () => void,
+  handlerPasswordChange: () => void,
+}
+
+const SignIn: React.FunctionComponent<Props> = (props) => {
   const {
     handlerEmailChange,
     handlerFormSubmit,
@@ -35,12 +40,6 @@ const SignIn = (props) => {
       </div>
     </main>
   </>;
-};
-
-SignIn.propTypes = {
-  handlerEmailChange: PropTypes.func.isRequired,
-  handlerFormSubmit: PropTypes.func.isRequired,
-  handlerPasswordChange: PropTypes.func.isRequired,
 };
 
 export default SignIn;

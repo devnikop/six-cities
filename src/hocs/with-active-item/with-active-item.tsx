@@ -1,7 +1,20 @@
-import React from 'react';
+import * as React from 'react';
+import {Subtract} from 'utility-types';
+
+interface InjectedProps {
+  activeItem: number,
+  changeActiveItem: (item: number) => void,
+}
+
+interface State {
+  activeItem: number,
+}
 
 const withActiveItem = (Component) => {
-  class WithActiveItem extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectedProps>;
+
+  class WithActiveItem extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 

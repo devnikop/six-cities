@@ -1,10 +1,24 @@
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
 import {getFilteredOffers} from '../../reducer/data/selectors';
 
-class Map extends React.PureComponent {
+import {Offer} from '../../types';
+
+interface Props {
+  leaflet,
+  offers: Offer[],
+}
+
+class Map extends React.PureComponent<Props> {
+  private leaflet;
+  private _mapRef;
+  private icon;
+  private layerGroup;
+  private map;
+  private city;
+  private zoom;
+
   constructor(props) {
     super(props);
 
@@ -77,19 +91,6 @@ class Map extends React.PureComponent {
       .addTo(this.layerGroup);
   }
 }
-
-Map.propTypes = {
-  leaflet: PropTypes.object.isRequired,
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        placeName: PropTypes.string,
-        placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
-        isPremium: PropTypes.bool,
-        src: PropTypes.string,
-        price: PropTypes.number,
-      })
-  ),
-};
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {

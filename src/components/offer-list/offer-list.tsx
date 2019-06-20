@@ -1,12 +1,19 @@
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
 import {getFilteredOffers} from '../../reducer/data/selectors';
 
-import OfferCard from '../offer-card/offer-card.jsx';
+import {Offer} from '../../types';
 
-class OfferList extends React.PureComponent {
+import OfferCard from '../offer-card/offer-card';
+
+interface Props {
+  activeItem: number,
+  changeActiveItem: () => void,
+  offers: Offer[],
+}
+
+class OfferList extends React.PureComponent<Props> {
   render() {
     const {
       activeItem,
@@ -24,20 +31,6 @@ class OfferList extends React.PureComponent {
     );
   }
 }
-
-OfferList.propTypes = {
-  activeItem: PropTypes.number.isRequired,
-  changeActiveItem: PropTypes.func.isRequired,
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        placeName: PropTypes.string,
-        placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
-        isPremium: PropTypes.bool,
-        src: PropTypes.string,
-        price: PropTypes.number,
-      })
-  ),
-};
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {

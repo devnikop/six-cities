@@ -1,5 +1,5 @@
 import {Redirect} from 'react-router-dom';
-import React from 'react';
+import * as React from 'react';
 
 const withPrivateRoute = (Component, data) => {
   class WithPrivateRoute extends React.PureComponent {

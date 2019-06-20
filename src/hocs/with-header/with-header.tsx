@@ -1,14 +1,23 @@
 import {compose} from 'recompose';
 import {connect} from 'react-redux';
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {Subtract} from 'utility-types';
 
 import {getUserData} from '../../reducer/user/selectors';
 import {ActionCreator} from '../../reducer/user/user';
 
+import {User} from '../../types';
+
+interface InjectedProps {
+  requireAuthorization: () => void,
+  user: User,
+}
 
 const withHeader = (Component) => {
-  class WithHeader extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectedProps>;
+
+  class WithHeader extends React.PureComponent<T> {
     constructor(props) {
       super(props);
 
@@ -33,11 +42,6 @@ const withHeader = (Component) => {
       this.props.requireAuthorization();
     }
   }
-
-  WithHeader.propTypes = {
-    requireAuthorization: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
-  };
 
   return WithHeader;
 };

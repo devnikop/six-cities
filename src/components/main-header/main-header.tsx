@@ -1,8 +1,19 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import {Link} from 'react-router-dom';
 
-const MainHeader = (props) => {
+interface Props {
+  user: User,
+}
+
+type User = {
+  avatarUrl: string,
+  email: string,
+  id: number,
+  isPro: boolean,
+  name: string,
+}
+
+const MainHeader: React.FunctionComponent<Props> = (props) => {
   const {
     user,
   } = props;
@@ -40,10 +51,6 @@ const MainHeader = (props) => {
       </div>
     </header>
   </>;
-};
-
-MainHeader.propTypes = {
-  user: PropTypes.object,
 };
 
 export default MainHeader;
