@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 
-import {CitiesList} from './cities-list.jsx';
+import {CitiesList} from './cities-list';
 import {citiesMock} from '../../mocks/mocksForTests.js';
 
 it(`CitiesList correctly renders`, () => {

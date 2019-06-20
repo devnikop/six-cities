@@ -1,7 +1,17 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-const OfferCard = (props) => {
+import {Offer} from '../../types';
+
+interface Props {
+  active: number,
+  currentId: CurrentId,
+  offer: Offer,
+  onCardClick: (id: CurrentId) => void,
+}
+
+type CurrentId = number;
+
+const OfferCard: React.FunctionComponent<Props> = (props) => {
   const {
     active,
     currentId,
@@ -56,19 +66,6 @@ const OfferCard = (props) => {
       <p className="place-card__type">{offer.type}</p>
     </div>
   </article>;
-};
-
-OfferCard.propTypes = {
-  active: PropTypes.number,
-  currentId: PropTypes.number,
-  onCardClick: PropTypes.func,
-  offer: PropTypes.shape({
-    placeName: PropTypes.string,
-    placeType: PropTypes.oneOf([`Apartment`, `Private room`]),
-    isPremium: PropTypes.bool,
-    src: PropTypes.string,
-    price: PropTypes.number,
-  }),
 };
 
 export default OfferCard;

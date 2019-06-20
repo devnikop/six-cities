@@ -1,7 +1,7 @@
 import {compose} from 'recompose';
 import {connect} from 'react-redux';
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {Subtract} from 'utility-types';
 
 import {configureAPI} from '../../api';
 import {ActionCreator} from '../../reducer/user/user';
@@ -9,8 +9,23 @@ import history from '../../history';
 
 import {adaptLoginResponse} from '../../adapter';
 
+interface InjectedProps {
+  handlerEmailChange: React.ChangeEventHandler,
+  handlerFormSubmit: React.FormEventHandler,
+  handlerPasswordChange: React.ChangeEventHandler,
+  onFormSubmit: (formData: React.ComponentState) => void,
+}
+
+interface State {
+  email: string,
+  password: string,
+}
+
 const withAuthorization = (Component) => {
-  class WithAuthorization extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectedProps>;
+
+  class WithAuthorization extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -50,10 +65,6 @@ const withAuthorization = (Component) => {
       });
     }
   }
-
-  WithAuthorization.propTypes = {
-    onFormSubmit: PropTypes.func.isRequired,
-  };
 
   return WithAuthorization;
 };

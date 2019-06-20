@@ -163,9 +163,18 @@ const offerMock = {
   type: `apartment`,
 };
 
+const userLoginMock = {
+  avatarUrl: `/static/avatar/5.jpg`,
+  email: `doppervily@yandex.ru`,
+  id: 1,
+  isPro: false,
+  name: `doppervily`,
+};
+
 export {
   citiesMock,
   leafletMock,
   offerMock,
   offersArrayMock,
+  userLoginMock,
 };
