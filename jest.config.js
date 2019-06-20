@@ -12,4 +12,8 @@ module.exports = {
     `json`,
     `node`
   ],
+  "collectCoverage": true,
+  "setupFilesAfterEnv": [
+    `<rootDir>src/setupTests.ts`
+  ]
 };

@@ -53,7 +53,7 @@
   "jest": {
     "collectCoverage": true,
     "setupFilesAfterEnv": [
-      "<rootDir>src/setupTests.js"
+      "<rootDir>src/setupTests.ts"
     ]
   }
 }
