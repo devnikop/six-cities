@@ -1,12 +1,11 @@
 import {Router, Switch, Route} from 'react-router-dom';
 import {compose} from 'recompose';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
 import {
   // getAuthorizationStatus,
-  getUserData} from '../../reducer/user/selectors.js';
+  getUserData} from '../../reducer/user/selectors';
 import withAuthorization from '../with-authorization/with-authorization';
 import withHeader from '../with-header/with-header';
 import history from '../../history';
@@ -73,11 +72,11 @@ const withChangeScreen = (Component) => {
     }
   }
 
-  WithChangeScreen.propTypes = {
-    // isAuthorizationRequired: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired,
-    leaflet: PropTypes.object.isRequired,
-  };
+  // WithChangeScreen.propTypes = {
+  //   // isAuthorizationRequired: PropTypes.bool.isRequired,
+  //   user: PropTypes.object.isRequired,
+  //   leaflet: PropTypes.object.isRequired,
+  // };
 
   return WithChangeScreen;
 };

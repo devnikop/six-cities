@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
 import {ActionCreator} from '../../reducer/data/data';
 import {
@@ -9,9 +8,17 @@ import {
   getFilteredOffers,
 } from '../../reducer/data/selectors';
 
+interface Props {
+  cities: City[],
+  currentCity: City,
+  onCity: (city: City) => void,
+}
+
+type City = string;
+
 const CITIES_COUNT = 6;
 
-const CitiesList = (props) => {
+const CitiesList: React.FunctionComponent<Props> = (props) => {
   const {
     cities,
     currentCity,
@@ -38,12 +45,6 @@ const CitiesList = (props) => {
       </ul>
     </section>
   </div>;
-};
-
-CitiesList.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string),
-  currentCity: PropTypes.string.isRequired,
-  onCity: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) =>
