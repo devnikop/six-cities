@@ -1,7 +1,7 @@
 import {shallow} from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 
-import SignIn from './sign-in.jsx';
+import SignIn from './sign-in';
 
 it(`Change on login input calls callback`, () => {
   const handlerEmailChange = jest.fn();

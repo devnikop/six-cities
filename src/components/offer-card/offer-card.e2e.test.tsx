@@ -1,8 +1,8 @@
 import {mount} from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 
 import {offerMock} from '../../mocks/mocksForTests';
-import OfferCard from './offer-card.jsx';
+import OfferCard from './offer-card';
 
 it(`Click on photo calls callback`, () => {
   const clickHandler = jest.fn();
@@ -10,6 +10,8 @@ it(`Click on photo calls callback`, () => {
   const offer = offerMock;
 
   const offerCard = mount(<OfferCard
+    active={0}
+    currentId={1}
     offer={offer}
     onCardClick={clickHandler}
   />);

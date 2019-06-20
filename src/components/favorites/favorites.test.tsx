@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 
-import Favorites from './favorites.jsx';
+import Favorites from './favorites';
 
 it(`Favorites correctly renders`, () => {
   const tree = renderer
