@@ -14,10 +14,11 @@ import withPrivateRoute from '../with-private-route/with-private-route';
 
 import {User} from '../../types';
 
-import SignIn from '../../components/sign-in/sign-in';
+import Favorites from '../../components/favorites/favorites';
 import MainHeader from '../../components/main-header/main-header';
 import MainPage from "../../components/main-page/main-page";
-import Favorites from '../../components/favorites/favorites';
+import OfferCardPage from '../../components/offer-card-page/offer-card-page';
+import SignIn from '../../components/sign-in/sign-in';
 
 interface InjectedProps {
   user: User,
@@ -56,6 +57,14 @@ const withChangeScreen = (Component) => {
               <MainHeaderWrapped/>
               <SignInWrapped/>
             </>}
+          />
+          <Route path="/offer" render={() =>
+            <>
+              <MainHeaderWrapped/>
+              <OfferCardPage/>
+            </>}
+          />
+
           />
           {/* Didn't checked code */}
           <Route path="/favorites" render={() => {
