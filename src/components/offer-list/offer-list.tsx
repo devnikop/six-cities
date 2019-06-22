@@ -23,7 +23,7 @@ class OfferList extends React.PureComponent<Props> {
 
     return offers.map((it, i) => <OfferCard
       active={activeItem === i ? activeItem : undefined}
-      currentId={i}
+      // currentId={i}
       key={`offer-${i}`}
       offer={it}
       onCardClick={changeActiveItem}

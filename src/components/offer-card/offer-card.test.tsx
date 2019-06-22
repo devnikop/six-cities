@@ -10,7 +10,6 @@ it(`OfferCard renders correctly`, () => {
   const tree = renderer
     .create(<OfferCard
       active={0}
-      currentId={1}
       offer={offer}
       onCardClick={jest.fn()}
     />)

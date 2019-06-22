@@ -58,11 +58,13 @@ const withChangeScreen = (Component) => {
               <SignInWrapped/>
             </>}
           />
-          <Route path="/offer" render={() =>
-            <>
+          <Route path="/offer/:id" render={({match}) => {
+            return <>
               <MainHeaderWrapped/>
-              <OfferCardPage/>
-            </>}
+              <OfferCardPage
+                match={match}
+              />
+            </>}}
           />
 
           />

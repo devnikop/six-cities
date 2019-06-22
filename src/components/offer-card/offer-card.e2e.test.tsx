@@ -11,7 +11,6 @@ it(`Click on photo calls callback`, () => {
 
   const offerCard = mount(<OfferCard
     active={0}
-    currentId={1}
     offer={offer}
     onCardClick={clickHandler}
   />);
