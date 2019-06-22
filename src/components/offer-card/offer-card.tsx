@@ -1,20 +1,17 @@
 import * as React from 'react';
+import {Link} from 'react-router-dom';
 
 import {Offer} from '../../types';
 
 interface Props {
   active: number,
-  currentId: CurrentId,
   offer: Offer,
-  onCardClick: (id: CurrentId) => void,
+  onCardClick: (id: number) => void,
 }
-
-type CurrentId = number;
 
 const OfferCard: React.FunctionComponent<Props> = (props) => {
   const {
     active,
-    currentId,
     offer,
     onCardClick,
   } = props;
@@ -23,19 +20,18 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
 
   const onImageClick = (evt) => {
     evt.preventDefault();
-    onCardClick(currentId);
+    onCardClick(offer.id);
   };
 
-  const isPremium = () =>
-    offer.isPremium ?
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div> : ``;
+  const _getPremiumMark = () =>
+    <div className="place-card__mark">
+      <span>Premium</span>
+    </div>
 
-  const getRating = () =>`${offer.rating * 10}%`;
+  const _getRating = (offer) =>`${Math.round(offer.rating * 20)}%`;
 
   return <article className={`cities__place-card ${activeCard}place-card`}>
-    {isPremium()}
+    {offer.isPremium ? _getPremiumMark() : ``}
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#" onClick={onImageClick}>
         <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
@@ -56,12 +52,12 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: getRating()}}></span>
+          <span style={{width: _getRating(offer)}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#">{offer.title}</a>
+        <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
       </h2>
       <p className="place-card__type">{offer.type}</p>
     </div>

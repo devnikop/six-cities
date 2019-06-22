@@ -1,3 +1,4 @@
+import {MemoryRouter} from 'react-router';
 import {mount} from 'enzyme';
 import * as React from 'react';
 
@@ -9,12 +10,13 @@ it(`Click on photo calls callback`, () => {
   const linkPrevention = jest.fn();
   const offer = offerMock;
 
-  const offerCard = mount(<OfferCard
-    active={0}
-    currentId={1}
-    offer={offer}
-    onCardClick={clickHandler}
-  />);
+  const offerCard = mount(<MemoryRouter>
+      <OfferCard
+        active={0}
+        offer={offer}
+        onCardClick={clickHandler}
+      />
+    </MemoryRouter>);
 
   const cardImageElement = offerCard.find(`.place-card__image-wrapper a`).at(0);
   cardImageElement.simulate(`click`, {preventDefault: linkPrevention});
