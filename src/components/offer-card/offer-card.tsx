@@ -28,7 +28,7 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
       <span>Premium</span>
     </div>
 
-  const getRating = () =>`${offer.rating * 10}%`;
+  const _getRating = (offer) =>`${Math.round(offer.rating * 20)}%`;
 
   return <article className={`cities__place-card ${activeCard}place-card`}>
     {offer.isPremium ? _getPremiumMark() : ``}
@@ -52,7 +52,7 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: getRating()}}></span>
+          <span style={{width: _getRating(offer)}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>

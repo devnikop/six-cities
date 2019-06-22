@@ -20,6 +20,8 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
       <span>Premium</span>
     </div>
 
+  const _getRating = (offer) =>`${Math.round(offer.rating * 20)}%`;
+
   return <main className="page__main page__main--property">
   <section className="property">
     <div className="property__gallery-container container">
@@ -47,7 +49,7 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
         </div>
         <div className="property__rating rating">
           <div className="property__stars rating__stars">
-            <span style={{width: `${Math.round(offer.rating * 20)}%`}}></span>
+            <span style={{width: _getRating(offer)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
           <span className="property__rating-value rating__value">{offer.rating}</span>
@@ -287,6 +289,8 @@ const mapStateToProps = (state, ownProps) => {
     offer: getOfferById(id, state),
   })
 };
+
+export {OfferCardPage}
 
 export default connect(
   mapStateToProps
