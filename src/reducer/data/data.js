@@ -25,7 +25,7 @@ const ActionCreator = {
     payload: reviews,
   }),
 
-  loadOffers: (offers) => ({
+  setOffers: (offers) => ({
     type: `LOAD_OFFERS`,
     payload: offers,
   }),
@@ -42,9 +42,10 @@ const Operation = {
       .then((response) =>
         adaptOffers(response.data)
       )
-      .then((data) =>
-        dispatch(ActionCreator.loadOffers(data))
-      );
+      .then((data) => {
+        dispatch(ActionCreator.setOffers(data));
+        // dispatch(ActionCreator.setSortedOffers(data));
+      });
   },
   loadReviews: (id) => (dispatch, _getState, api) => {
     return api.get(`/comments/${id}`)
