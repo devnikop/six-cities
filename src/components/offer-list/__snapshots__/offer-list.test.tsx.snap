@@ -50,7 +50,7 @@ Array [
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button  button"
           type="button"
         >
           <svg
@@ -154,7 +154,7 @@ Array [
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button  button"
           type="button"
         >
           <svg
@@ -258,7 +258,7 @@ Array [
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button  button"
           type="button"
         >
           <svg
@@ -362,7 +362,7 @@ Array [
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button  button"
           type="button"
         >
           <svg
