@@ -163,6 +163,58 @@ const offerMock = {
   type: `apartment`,
 };
 
+const reviewMock = {
+  id: 1,
+  user: {
+    id: 4,
+    isPro: false,
+    name: `Max`,
+    avatarUrl: `img/1.png`
+  },
+  rating: 4,
+  comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+  date: `2019-05-08T14:13:56.569Z`
+};
+
+const reviewsArrayMock = [
+  {
+    id: 1,
+    user: {
+      id: 4,
+      isPro: false,
+      name: `Max`,
+      avatarUrl: `img/1.png`
+    },
+    rating: 4,
+    comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    date: `2019-05-08T14:13:56.569Z`
+  },
+  {
+    id: 2,
+    user: {
+      id: 6,
+      isPro: true,
+      name: `Maenx`,
+      avatarUrl: `img/4.png`
+    },
+    rating: 4,
+    comment: `Aijw3ifniknfii2222 a river by the unique lightness of Amsterdam.`,
+    date: `2019-05-08T14:13:56.569Z`
+  },
+  {
+    id: 5,
+    user: {
+      id: 65,
+      isPro: true,
+      name: `Mdgnx`,
+      avatarUrl: `img/9.png`
+    },
+    rating: 1,
+    comment: `Asdaf f234frefdsafdsfggdam.`,
+    date: `2019-05-08T14:13:56.569Z`
+  },
+];
+
 const userLoginMock = {
   avatarUrl: `/static/avatar/5.jpg`,
   email: `doppervily@yandex.ru`,
@@ -176,5 +228,7 @@ export {
   leafletMock,
   offerMock,
   offersArrayMock,
+  reviewMock,
+  reviewsArrayMock,
   userLoginMock,
 };
