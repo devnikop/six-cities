@@ -16,6 +16,7 @@ import CitiesList from '../cities-list/cities-list';
 import Map from '../map/map';
 import OfferList from '../offer-list/offer-list';
 import SortingOptions from '../sorting-options/sorting-options';
+import MainPageEmpty from '../main-page-empty/main-page-empty';
 
 interface Props {
   activeOfferId: number,
@@ -34,33 +35,38 @@ const MainPage:React.FunctionComponent<Props> = (props) => {
     sortedOffers,
   } = props;
 
-  return <>
+  return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <CitiesList/>
-    <div className="cities__places-wrapper">
-      <div className="cities__places-container container">
-        <section className="cities__places places">
-          <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{sortedOffers.length} places to stay in {currentCity}</b>
-          {<SortingOptionsWrapped/>}
-          <div className="cities__places-list places__list tabs__content">
-            {<OfferList
-              offers={sortedOffers}
-            />}
-          </div>
-        </section>
-        <div className="cities__right-section">
-          <section className="cities__map map">
-            <Map
-              activeOfferId={activeOfferId}
-              leaflet={leaflet}
-              offers={sortedOffers}
-            />
+    {/* {sortedOffers */}
+    {false
+    ? <MainPageEmpty currentCity={currentCity}/>
+    : <div className="cities__places-wrapper">
+        <div className="cities__places-container container">
+          <section className="cities__places places">
+            <h2 className="visually-hidden">Places</h2>
+            <b className="places__found">{sortedOffers.length} places to stay in {currentCity}</b>
+            {<SortingOptionsWrapped/>}
+            <div className="cities__places-list places__list tabs__content">
+              {<OfferList
+                offers={sortedOffers}
+              />}
+            </div>
           </section>
+          <div className="cities__right-section">
+            <section className="cities__map map">
+              <Map
+                activeOfferId={activeOfferId}
+                leaflet={leaflet}
+                offers={sortedOffers}
+              />
+            </section>
+          </div>
         </div>
       </div>
-    </div>
-  </>;
+    }
+
+  </main>;
 };
 
 const mapStateToProps = (state, ownProps) =>
