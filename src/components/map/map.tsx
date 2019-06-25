@@ -1,11 +1,9 @@
-import {connect} from 'react-redux';
 import * as React from 'react';
-
-import {getFilteredOffers} from '../../reducer/data/selectors';
 
 import {Offer} from '../../types';
 
 interface Props {
+  activeOfferId,
   leaflet,
   offers: Offer[],
 }
@@ -14,6 +12,7 @@ class Map extends React.PureComponent<Props> {
   private leaflet;
   private _mapRef;
   private icon;
+  private activeIcon;
   private layerGroup;
   private map;
   private currentCity;
@@ -30,6 +29,10 @@ class Map extends React.PureComponent<Props> {
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
+    this.activeIcon = this.leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
     this.layerGroup = null;
     this.map = null;
   }
@@ -44,7 +47,7 @@ class Map extends React.PureComponent<Props> {
     this._addMap();
 
     // DON'T CHANGE CITY
-    
+
     // this.currentCity = this.props.offers[0].city;
     // this.city = this.currentCity.coords;
     // this.zoom = this.currentCity.zoom;
@@ -53,7 +56,7 @@ class Map extends React.PureComponent<Props> {
 
   componentDidUpdate() {
     this.layerGroup.clearLayers();
-    this._addMarkers();
+    this._addMarkers(this.props.offers);
 
     this.currentCity = this.props.offers[0].city;
     this.city = this.currentCity.coords;
@@ -82,13 +85,24 @@ class Map extends React.PureComponent<Props> {
     })
     .addTo(this.map);
 
-    this._addMarkers();
+    this._addMarkers(this.props.offers);
   }
 
-  _addMarkers() {
-    this.props.offers.map((offer) => {
-      this._addMarker(offer.place.coords);
+  _addMarkers(offers) {
+    offers.map((offer) => {
+      if (this.props.activeOfferId && this.props.activeOfferId === offer.id) {
+        this._addActiveMarker(offer.place.coords);
+      } else {
+        this._addMarker(offer.place.coords);
+      }
     });
+  }
+
+  _addActiveMarker(coords) {
+    const icon = this.activeIcon;
+    this.leaflet
+      .marker(coords, {icon})
+      .addTo(this.layerGroup);
   }
 
   _addMarker(coords) {

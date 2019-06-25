@@ -2,7 +2,11 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import * as leaflet from 'leaflet';
 
-import {getOfferById, getNearestOffers} from '../../reducer/data/selectors';
+import {
+  getActiveOfferId,
+  getNearestOffers,
+  getOfferById,
+} from '../../reducer/data/selectors';
 import {Offer} from '../../types';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 
@@ -11,6 +15,7 @@ import OfferList from '../offer-list/offer-list';
 import ReviewList from '../reviews-list/reviews-list';
 
 interface Props {
+  activeOfferId: number,
   match,
   nearestOffers: Offer[],
   offer: Offer,
@@ -20,6 +25,7 @@ const OfferListWrapped = withActiveItem(OfferList);
 
 const OfferCardPage: React.FunctionComponent<Props> = (props) => {
   const {
+    activeOfferId,
     nearestOffers,
     offer,
   } = props;
@@ -163,6 +169,7 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
     </div>
     <section className="property__map map">
       <Map
+        activeOfferId={activeOfferId}
         leaflet={leaflet}
         offers={nearestOffers}
       />
@@ -184,6 +191,7 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
 const mapStateToProps = (state, ownProps) => {
   const id = parseInt(ownProps.match.params.id);
   return Object.assign({}, ownProps, {
+    activeOfferId: getActiveOfferId(state),
     offer: getOfferById(id, state),
     nearestOffers: getNearestOffers(state),
   })

@@ -19,6 +19,7 @@ it.skip(`OfferCardPage renders correctly`, () => {
 
   const tree = renderer
     .create(<OfferCardPage
+      activeOfferId={34}
       match={match}
       nearestOffers={offersArrayMock}
       offer={offerMock}

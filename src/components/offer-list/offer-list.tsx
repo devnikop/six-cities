@@ -1,29 +1,25 @@
 import * as React from 'react';
 
 import {Offer} from '../../types';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
 
 import OfferCard from '../offer-card/offer-card';
 
+const OfferListWrapped = withActiveItem(OfferCard);
+
 interface Props {
-  activeItem: number,
-  changeActiveItem: () => void,
   offers: Offer[],
 }
 
 class OfferList extends React.PureComponent<Props> {
   render() {
     const {
-      activeItem,
-      changeActiveItem,
       offers
     } = this.props;
 
-    return offers.map((it, i) => <OfferCard
-      active={activeItem === i ? activeItem : undefined}
-      // currentId={i}
+    return offers.map((offer, i) => <OfferListWrapped
       key={`offer-${i}`}
-      offer={it}
-      onCardClick={changeActiveItem}
+      offer={offer}
     />
     );
   }

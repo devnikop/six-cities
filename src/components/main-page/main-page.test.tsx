@@ -30,9 +30,10 @@ describe(`Welcome-screen correctly renders`, () => {
     tree = renderer
       .create(<Provider store={store}>
         <MainPage
+          activeOfferId={3}
           currentCity={offers[0].city}
           leaflet={leaflet}
-          offers={offers}
+          sortedOffers={offers}
         /></Provider>)
       .toJSON();
 
