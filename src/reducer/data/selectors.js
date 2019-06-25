@@ -25,10 +25,15 @@ const getOfferById = (id, state) => {
   return getOffers(state).filter((offer) => offer.id === id)[0];
 };
 
+const getReviews = (state) => {
+  return state[NAME_SPACE].reviews;
+};
+
 export {
   getCities,
   getCurrentCity,
   getFilteredOffers,
   getOfferById,
   getOffers,
+  getReviews,
 };

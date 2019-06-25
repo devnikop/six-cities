@@ -1,5 +1,13 @@
 type City = string;
 
+interface Comment {
+  comment: string,
+  date: string,
+  id: number,
+  rating: number,
+  user: User,
+}
+
 interface Offer {
   bedrooms: number,
   city: {
@@ -47,6 +55,7 @@ interface User {
 
 export {
   City,
+  Comment,
   Offer,
   User,
 };
