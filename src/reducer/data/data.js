@@ -2,9 +2,10 @@ import {adaptOffers, adaptComments} from '../../adapter';
 
 const initialState = {
   cities: [],
-  reviews: [],
   currentCity: ``,
   offers: [],
+  reviews: [],
+  sortedOffers: [],
 };
 
 const ActionCreator = {
@@ -22,6 +23,11 @@ const ActionCreator = {
     type: `LOAD_OFFERS`,
     payload: offers,
   }),
+
+  setSortedOffers: (offers) => ({
+    type: `SORT_OFFERS`,
+    payload: offers,
+  })
 };
 
 const Operation = {
@@ -63,6 +69,11 @@ const reducer = (state = initialState, action) => {
         cities: [...new Set(data.map((it) => it.city.name))],
         currentCity: data[0].city.name,
         offers: data,
+      });
+
+    case `SORT_OFFERS`:
+      return Object.assign({}, state, {
+        sortedOffers: action.payload,
       });
   }
   return state;
