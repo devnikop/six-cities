@@ -4,23 +4,19 @@ import {Link} from 'react-router-dom';
 import {Offer} from '../../types';
 
 interface Props {
-  active: number,
   offer: Offer,
-  onCardClick: (id: number) => void,
+  changeActiveItem: (id: number) => void,
 }
 
 const OfferCard: React.FunctionComponent<Props> = (props) => {
   const {
-    active,
     offer,
-    onCardClick,
+    changeActiveItem: _onCardImageClick,
   } = props;
 
-  const activeCard = active ? `cities__place-card--active` : ``;
-
-  const onImageClick = (evt) => {
+  const handleImageClick = (evt) => {
     evt.preventDefault();
-    onCardClick(offer.id);
+    _onCardImageClick(offer.id);
   };
 
   const _getPremiumMark = () =>
@@ -33,10 +29,10 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
 
   const _getRating = (offer) =>`${Math.round(offer.rating * 20)}%`;
 
-  return <article className={`cities__place-card ${activeCard}place-card`}>
+  return <article className={`cities__place-card place-card`}>
     {offer.isPremium ? _getPremiumMark() : ``}
     <div className="cities__image-wrapper place-card__image-wrapper">
-      <a href="#" onClick={onImageClick}>
+      <a href="#" onClick={handleImageClick}>
         <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
       </a>
     </div>

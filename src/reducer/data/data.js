@@ -1,6 +1,7 @@
 import {adaptOffers, adaptComments} from '../../adapter';
 
 const initialState = {
+  activeOfferId: undefined,
   cities: [],
   currentCity: ``,
   offers: [],
@@ -9,6 +10,11 @@ const initialState = {
 };
 
 const ActionCreator = {
+  changeActiveOfferId: (id) => ({
+    type: `CHANGE_ACTIVE_OFFER_ID`,
+    payload: id,
+  }),
+
   changeCity: (city) => ({
     type: `CHANGE_CITY`,
     payload: city,
@@ -53,6 +59,11 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case `CHANGE_ACTIVE_OFFER_ID`:
+      return Object.assign({}, state, {
+        activeOfferId: action.payload,
+      });
+
     case `CHANGE_CITY`:
       return Object.assign({}, state, {
         currentCity: action.payload,

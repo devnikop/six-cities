@@ -2,16 +2,15 @@ import {connect} from 'react-redux';
 import * as React from 'react';
 
 import {
+  getActiveOfferId,
   getCurrentCity,
-  getSortedOffers
+  getSortedOffers,
 } from '../../reducer/data/selectors';
-import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import withSortingOptions from '../../hocs/with-sorting-options/with-sorting-options';
-
 import {
   City,
   Offer,
 } from '../../types';
+import withSortingOptions from '../../hocs/with-sorting-options/with-sorting-options';
 
 import CitiesList from '../cities-list/cities-list';
 import Map from '../map/map';
@@ -19,16 +18,17 @@ import OfferList from '../offer-list/offer-list';
 import SortingOptions from '../sorting-options/sorting-options';
 
 interface Props {
+  activeOfferId: number,
   currentCity: City,
   leaflet,
   sortedOffers: Offer[],
 }
 
-const OfferListWrapped = withActiveItem(OfferList);
 const SortingOptionsWrapped = withSortingOptions(SortingOptions);
 
 const MainPage:React.FunctionComponent<Props> = (props) => {
   const {
+    activeOfferId,
     currentCity,
     leaflet,
     sortedOffers,
@@ -44,7 +44,7 @@ const MainPage:React.FunctionComponent<Props> = (props) => {
           <b className="places__found">{sortedOffers.length} places to stay in {currentCity}</b>
           {<SortingOptionsWrapped/>}
           <div className="cities__places-list places__list tabs__content">
-            {<OfferListWrapped
+            {<OfferList
               offers={sortedOffers}
             />}
           </div>
@@ -52,6 +52,7 @@ const MainPage:React.FunctionComponent<Props> = (props) => {
         <div className="cities__right-section">
           <section className="cities__map map">
             <Map
+              activeOfferId={activeOfferId}
               leaflet={leaflet}
               offers={sortedOffers}
             />
@@ -64,6 +65,7 @@ const MainPage:React.FunctionComponent<Props> = (props) => {
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
+    activeOfferId: getActiveOfferId(state),
     currentCity: getCurrentCity(state),
     sortedOffers: getSortedOffers(state),
   });

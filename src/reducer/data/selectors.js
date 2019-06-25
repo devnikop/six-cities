@@ -3,6 +3,10 @@ import NameSpace from '../name-spaces';
 
 const NAME_SPACE = NameSpace.DATA;
 
+const getActiveOfferId = (state) => {
+  return state[NAME_SPACE].activeOfferId;
+};
+
 const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
@@ -83,6 +87,7 @@ const getSortedOffers = (state) => {
 };
 
 export {
+  getActiveOfferId,
   getCities,
   getCurrentCity,
   getFilteredOffers,

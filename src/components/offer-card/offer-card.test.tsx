@@ -11,9 +11,8 @@ it(`OfferCard renders correctly`, () => {
   const tree = renderer
     .create(<MemoryRouter>
       <OfferCard
-        active={0}
         offer={offer}
-        onCardClick={jest.fn()}
+        changeActiveItem={jest.fn()}
       />
     </MemoryRouter>)
     .toJSON();

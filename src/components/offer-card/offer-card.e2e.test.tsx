@@ -12,9 +12,8 @@ it(`Click on photo calls callback`, () => {
 
   const offerCard = mount(<MemoryRouter>
       <OfferCard
-        active={0}
         offer={offer}
-        onCardClick={clickHandler}
+        changeActiveItem={clickHandler}
       />
     </MemoryRouter>);
 
