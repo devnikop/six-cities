@@ -1,7 +1,8 @@
-import {adaptOffers} from '../../adapter';
+import {adaptOffers, adaptComments} from '../../adapter';
 
 const initialState = {
   cities: [],
+  reviews: [],
   currentCity: ``,
   offers: [],
 };
@@ -10,6 +11,11 @@ const ActionCreator = {
   changeCity: (city) => ({
     type: `CHANGE_CITY`,
     payload: city,
+  }),
+
+  loadReviews: (reviews) => ({
+    type: `LOAD_REVIEWS`,
+    payload: reviews,
   }),
 
   loadOffers: (offers) => ({
@@ -28,6 +34,15 @@ const Operation = {
         dispatch(ActionCreator.loadOffers(data))
       );
   },
+  loadReviews: (id) => (dispatch, _getState, api) => {
+    return api.get(`/comments/${id}`)
+      .then((response) =>
+        adaptComments(response.data)
+      )
+      .then((data) =>
+        dispatch(ActionCreator.loadReviews(data))
+      );
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -35,6 +50,11 @@ const reducer = (state = initialState, action) => {
     case `CHANGE_CITY`:
       return Object.assign({}, state, {
         currentCity: action.payload,
+      });
+
+    case `LOAD_REVIEWS`:
+      return Object.assign({}, state, {
+        reviews: action.payload,
       });
 
     case `LOAD_OFFERS`:
