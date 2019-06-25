@@ -21,6 +21,11 @@ const getFilteredOffers = createSelector(
     (offers, city) => offers.filter((offer) => offer.city.name === city)
 );
 
+const getNearestOffers = createSelector(
+    getFilteredOffers,
+    (offers) => offers.slice(0, 3)
+);
+
 const getOfferById = (id, state) => {
   return getOffers(state).filter((offer) => offer.id === id)[0];
 };
@@ -33,6 +38,7 @@ export {
   getCities,
   getCurrentCity,
   getFilteredOffers,
+  getNearestOffers,
   getOfferById,
   getOffers,
   getReviews,

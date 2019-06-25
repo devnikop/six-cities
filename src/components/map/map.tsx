@@ -16,6 +16,7 @@ class Map extends React.PureComponent<Props> {
   private icon;
   private layerGroup;
   private map;
+  private currentCity;
   private city;
   private zoom;
 
@@ -41,16 +42,22 @@ class Map extends React.PureComponent<Props> {
 
   componentDidMount() {
     this._addMap();
+
+    // DON'T CHANGE CITY
+    
+    // this.currentCity = this.props.offers[0].city;
+    // this.city = this.currentCity.coords;
+    // this.zoom = this.currentCity.zoom;
+    // this.map.setView(this.city, this.zoom);
   }
 
   componentDidUpdate() {
     this.layerGroup.clearLayers();
     this._addMarkers();
 
-    const filteredOffers = this.props.offers;
-    const currentCity = filteredOffers[0].city;
-    this.city = currentCity.coords;
-    this.zoom = currentCity.zoom;
+    this.currentCity = this.props.offers[0].city;
+    this.city = this.currentCity.coords;
+    this.zoom = this.currentCity.zoom;
     this.map.setView(this.city, this.zoom);
   }
 
@@ -92,13 +99,4 @@ class Map extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = (state, ownProps) =>
-  Object.assign({}, ownProps, {
-    offers: getFilteredOffers(state),
-  });
-
-export {Map};
-
-export default connect(
-    mapStateToProps
-)(Map);
+export default Map;

@@ -1,7 +1,4 @@
-import {connect} from 'react-redux';
 import * as React from 'react';
-
-import {getFilteredOffers} from '../../reducer/data/selectors';
 
 import {Offer} from '../../types';
 
@@ -32,13 +29,4 @@ class OfferList extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = (state, ownProps) =>
-  Object.assign({}, ownProps, {
-    offers: getFilteredOffers(state),
-  });
-
-export {OfferList};
-
-export default connect(
-    mapStateToProps
-)(OfferList);
+export default OfferList;

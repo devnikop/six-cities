@@ -31,10 +31,6 @@ const MainPage:React.FunctionComponent<Props> = (props) => {
     offers,
   } = props;
 
-  const _getOfferList = () => {
-    return <OfferListWrapped/>;
-  };
-
   return <>
     <h1 className="visually-hidden">Cities</h1>
     <CitiesList/>
@@ -67,13 +63,16 @@ const MainPage:React.FunctionComponent<Props> = (props) => {
 
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {_getOfferList()}
+            {<OfferListWrapped
+              offers={offers}
+            />}
           </div>
         </section>
         <div className="cities__right-section">
           <section className="cities__map map">
             <Map
               leaflet={leaflet}
+              offers={offers}
             />
           </section>
         </div>

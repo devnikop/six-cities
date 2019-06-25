@@ -2,7 +2,7 @@ import {MemoryRouter} from 'react-router';
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
-import {OfferList} from './offer-list';
+import OfferList from './offer-list';
 import {offersArrayMock} from '../../mocks/mocksForTests';
 
 it(`OfferList correctly renders`, () => {
