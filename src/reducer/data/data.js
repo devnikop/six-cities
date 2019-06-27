@@ -4,6 +4,7 @@ const initialState = {
   activeOfferId: undefined,
   cities: [],
   currentCity: ``,
+  offerOfCity: [],
   offers: [],
   reviews: [],
   sortedOffers: [],
@@ -20,20 +21,25 @@ const ActionCreator = {
     payload: city,
   }),
 
+  changeOffer: (offer) => ({
+    type: `CHANGE_OFFER`,
+    payload: offer,
+  }),
+
   loadReviews: (reviews) => ({
     type: `LOAD_REVIEWS`,
     payload: reviews,
+  }),
+
+  setSortedOffers: (offers) => ({
+    type: `SET_SORTED_OFFERS`,
+    payload: offers,
   }),
 
   setOffers: (offers) => ({
     type: `LOAD_OFFERS`,
     payload: offers,
   }),
-
-  setSortedOffers: (offers) => ({
-    type: `SORT_OFFERS`,
-    payload: offers,
-  })
 };
 
 const Operation = {
@@ -44,7 +50,6 @@ const Operation = {
       )
       .then((data) => {
         dispatch(ActionCreator.setOffers(data));
-        // dispatch(ActionCreator.setSortedOffers(data));
       });
   },
   loadReviews: (id) => (dispatch, _getState, api) => {
@@ -68,6 +73,13 @@ const reducer = (state = initialState, action) => {
     case `CHANGE_CITY`:
       return Object.assign({}, state, {
         currentCity: action.payload,
+        offerOfCity: state.offers.filter((offer) => offer.city.name === action.payload),
+        sortedOffers: state.offers.filter((offer) => offer.city.name === action.payload),
+      });
+
+    case `CHANGE_OFFER`:
+      return Object.assign({}, state, {
+        offers: Object.assign({}, state.offers, action.payload),
       });
 
     case `LOAD_REVIEWS`:
@@ -75,17 +87,19 @@ const reducer = (state = initialState, action) => {
         reviews: action.payload,
       });
 
+    case `SET_SORTED_OFFERS`:
+      return Object.assign({}, state, {
+        sortedOffers: action.payload,
+      });
+
     case `LOAD_OFFERS`:
       const data = action.payload;
       return Object.assign({}, state, {
         cities: [...new Set(data.map((it) => it.city.name))],
         currentCity: data[0].city.name,
+        offerOfCity: data.filter((offer) => offer.city.name === data[0].city.name),
+        sortedOffers: data.filter((offer) => offer.city.name === data[0].city.name),
         offers: data,
-      });
-
-    case `SORT_OFFERS`:
-      return Object.assign({}, state, {
-        sortedOffers: action.payload,
       });
   }
   return state;
