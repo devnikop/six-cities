@@ -21,6 +21,7 @@ it.skip(`OfferCardPage renders correctly`, () => {
     .create(<OfferCardPage
       activeOfferId={34}
       match={match}
+      handleBookmarkClick={jest.fn()}
       nearestOffers={offersArrayMock}
       offer={offerMock}
     />)

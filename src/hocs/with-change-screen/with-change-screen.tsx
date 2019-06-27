@@ -11,6 +11,7 @@ import history from '../../history';
 import withAuthorization from '../with-authorization/with-authorization';
 import withHeader from '../with-header/with-header';
 import withPrivateRoute from '../with-private-route/with-private-route';
+import withBookmark from '../with-bookmark/with-bookmark';
 
 import {User} from '../../types';
 
@@ -25,6 +26,7 @@ interface InjectedProps {
   leaflet,
 }
 
+const OfferCardPageWrapped = withBookmark(OfferCardPage);
 const MainHeaderWrapped = withHeader(MainHeader);
 const SignInWrapped = withAuthorization(SignIn);
 
@@ -61,7 +63,7 @@ const withChangeScreen = (Component) => {
           <Route path="/offer/:id" render={({match}) => {
             return <>
               <MainHeaderWrapped/>
-              <OfferCardPage
+              <OfferCardPageWrapped
                 match={match}
               />
             </>}}

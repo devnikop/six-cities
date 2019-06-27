@@ -5,14 +5,14 @@ import {Subtract} from 'utility-types';
 
 import {ActionCreator} from '../../reducer/data/data';
 import {configureAPI} from '../../api';
-import {Offer} from '../../types';
+// import {Offer} from '../../types';
 import {adaptOffer} from '../../adapter';
 
 
 interface InjectedProps {
   handleBookmarkClick: React.MouseEventHandler<HTMLButtonElement>,
-  offer: Offer,
-  onFormSubmit: (offer: Offer) => void,
+  // offer: Offer,
+  // onFormSubmit: (offer: Offer) => void,
 }
 
 const withBookmark = (Component) => {
@@ -33,8 +33,8 @@ const withBookmark = (Component) => {
       />;
     }
 
-    _handleBookmarkClick() {
-      this.props.onBookmarkClick(this.props.offer);
+    _handleBookmarkClick(offer) {
+      this.props.onBookmarkClick(offer);
     }
   }
 
