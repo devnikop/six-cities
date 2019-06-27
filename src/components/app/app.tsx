@@ -11,11 +11,11 @@ class App extends React.PureComponent<Props> {
     } = this.props;
 
     return <>
-        {renderScreen()}
+      {renderScreen()}
     </>;
   }
 }
 
-export {App};
+export { App };
 
 export default App;

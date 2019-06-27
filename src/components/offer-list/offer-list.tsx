@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import {Offer} from '../../types';
+import { Offer } from '../../types';
+
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withBookmark from '../../hocs/with-bookmark/with-bookmark';
 

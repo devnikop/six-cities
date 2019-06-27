@@ -1,7 +1,9 @@
 import * as React from 'react';
 
+import { City } from '../../types';
+
 interface Props {
-  currentCity: string,
+  currentCity: City,
 }
 
 const MainPageEmpty: React.FunctionComponent<Props> = (props) => {

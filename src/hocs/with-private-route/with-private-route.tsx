@@ -1,4 +1,4 @@
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import * as React from 'react';
 
 const withPrivateRoute = (Component, data) => {
@@ -11,10 +11,10 @@ const withPrivateRoute = (Component, data) => {
       if (!Object.keys(data).length) {
         return <Redirect to="/login" />;
       }
-
-      return Component;
+      return <Component
+        {...this.props}
+      />;
     }
-
   }
 
   return WithPrivateRoute;

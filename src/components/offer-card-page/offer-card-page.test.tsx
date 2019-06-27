@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
-import {OfferCardPage} from './offer-card-page';
-import {offerMock, offersArrayMock} from '../../mocks/mocksForTests';
+import { offerMock, offersArrayMock } from '../../mocks/mocksForTests';
+
+import { OfferCardPage } from './offer-card-page';
 
 const mock = {
   match: {
@@ -20,8 +21,8 @@ it.skip(`OfferCardPage renders correctly`, () => {
   const tree = renderer
     .create(<OfferCardPage
       activeOfferId={34}
-      match={match}
       handleBookmarkClick={jest.fn()}
+      match={match}
       nearestOffers={offersArrayMock}
       offer={offerMock}
     />)

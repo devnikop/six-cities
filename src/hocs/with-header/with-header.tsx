@@ -1,12 +1,12 @@
-import {compose} from 'recompose';
-import {connect} from 'react-redux';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { Subtract } from 'utility-types';
 import * as React from 'react';
-import {Subtract} from 'utility-types';
 
-import {getUserData} from '../../reducer/user/selectors';
-import {ActionCreator} from '../../reducer/user/user';
+import { User } from '../../types';
 
-import {User} from '../../types';
+import { ActionCreator } from '../../reducer/user/user';
+import { getUserData } from '../../reducer/user/selectors';
 
 interface InjectedProps {
   requireAuthorization: () => void,
@@ -58,6 +58,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withHeader
+  connect(mapStateToProps, mapDispatchToProps),
+  withHeader
 );

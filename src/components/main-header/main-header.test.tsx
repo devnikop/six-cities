@@ -1,9 +1,10 @@
+import { MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import {MemoryRouter} from 'react-router-dom';
+
+import { userLoginMock } from '../../mocks/mocksForTests';
 
 import MainHeader from './main-header';
-import {userLoginMock} from '../../mocks/mocksForTests';
 
 it(`MainHeader correctly renders`, () => {
   const tree = renderer

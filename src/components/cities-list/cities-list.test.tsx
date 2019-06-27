@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
-import {CitiesList} from './cities-list';
-import {citiesMock} from '../../mocks/mocksForTests.js';
+import { CitiesList } from './cities-list';
+import { citiesMock } from '../../mocks/mocksForTests';
 
 it(`CitiesList correctly renders`, () => {
   const tree = renderer

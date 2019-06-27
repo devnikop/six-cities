@@ -7,10 +7,6 @@ const getActiveOfferId = (state) => {
   return state[NAME_SPACE].activeOfferId;
 };
 
-const getOffers = (state) => {
-  return state[NAME_SPACE].offers;
-};
-
 const getCities = (state) => {
   return state[NAME_SPACE].cities;
 };
@@ -19,17 +15,16 @@ const getCurrentCity = (state) => {
   return state[NAME_SPACE].currentCity;
 };
 
-const getOfferOfCity = (state) => {
-  return state[NAME_SPACE].offerOfCity;
-};
-
-const getNearestOffers = createSelector(
-    getOfferOfCity,
-    (offers) => offers.slice(0, 3)
-);
-
 const getOfferById = (id, state) => {
   return getOffers(state).filter((offer) => offer.id === id)[0];
+};
+
+const getOffersOfCity = (state) => {
+  return state[NAME_SPACE].offersOfCity;
+};
+
+const getOffers = (state) => {
+  return state[NAME_SPACE].offers;
 };
 
 const getReviews = (state) => {
@@ -40,6 +35,11 @@ const getSortedOffers = (state) => {
   return state[NAME_SPACE].sortedOffers;
 };
 
+const getNearestOffers = createSelector(
+    getOffersOfCity,
+    (offers) => offers.slice(0, 3)
+);
+
 
 export {
   getActiveOfferId,
@@ -47,7 +47,7 @@ export {
   getCurrentCity,
   getNearestOffers,
   getOfferById,
-  getOfferOfCity,
+  getOffersOfCity,
   getOffers,
   getReviews,
   getSortedOffers,

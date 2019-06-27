@@ -5,7 +5,7 @@ import Favorites from './favorites';
 
 it(`Favorites correctly renders`, () => {
   const tree = renderer
-    .create(<Favorites/>)
+    .create(<Favorites />)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -1,13 +1,13 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as React from 'react';
 
-import {ActionCreator} from '../../reducer/data/data';
+import { City } from '../../types';
+
+import { ActionCreator } from '../../reducer/data/data';
 import {
   getCities,
   getCurrentCity,
 } from '../../reducer/data/selectors';
-
-import {City} from '../../types';
 
 interface Props {
   cities: City[],
@@ -15,7 +15,7 @@ interface Props {
   onCity: (city: City) => void,
 }
 
-const CITIES_COUNT = 6;
+const MAX_CITIES_COUNT = 6;
 
 const CitiesList: React.FunctionComponent<Props> = (props) => {
   const {
@@ -24,17 +24,17 @@ const CitiesList: React.FunctionComponent<Props> = (props) => {
     onCity,
   } = props;
 
-  const checkCurrentCity = (city) => city === currentCity;
-  const isActiveCity = (city) => checkCurrentCity(city) ? `tabs__item--active` : ``;
+  const _checkCurrentCity = (city) => city === currentCity;
+  const _isActiveCity = (city) => _checkCurrentCity(city) ? `tabs__item--active` : ``;
 
   return <div className="cities tabs">
     <section className="locations container">
       <ul className="locations__list tabs__list">
-        {cities.slice(0, CITIES_COUNT).map((it, i) =>
+        {cities.slice(0, MAX_CITIES_COUNT).map((it, i) =>
           <li className="locations__item" key={`city-${i}`}>
             <a
-              className={`locations__item-link tabs__item ${isActiveCity(it)} `}
-              href={checkCurrentCity(it) ? undefined : `#`}
+              className={`locations__item-link tabs__item ${_isActiveCity(it)} `}
+              href={_checkCurrentCity(it) ? undefined : `#`}
               onClick={() => onCity(it)}
             >
               <span>{it}</span>
@@ -58,9 +58,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export {CitiesList};
+export { CitiesList };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(CitiesList);

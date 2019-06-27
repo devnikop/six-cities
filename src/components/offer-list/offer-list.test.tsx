@@ -1,11 +1,12 @@
-import {MemoryRouter} from 'react-router';
+import { MemoryRouter } from 'react-router';
+import { Provider } from 'react-redux';
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import configureMockStore  from 'redux-mock-store';
-import {Provider} from 'react-redux';
+import configureMockStore from 'redux-mock-store';
+
+import { offersArrayMock } from '../../mocks/mocksForTests';
 
 import OfferList from './offer-list';
-import {offersArrayMock} from '../../mocks/mocksForTests';
 
 const mockStore = configureMockStore;
 const store = mockStore({});

@@ -1,16 +1,17 @@
+import { connect } from 'react-redux';
 import * as React from 'react';
-import {connect} from 'react-redux';
 
-import {Comment} from '../../types';
-import {getReviews} from '../../reducer/data/selectors';
-import {Operation} from '../../reducer/data/data';
+import { Comment } from '../../types';
+
+import { getReviews } from '../../reducer/data/selectors';
+import { Operation } from '../../reducer/data/data';
 
 import ReviewItem from '../reviews-item/reviews-item';
 
 interface Props {
   offerId: number,
+  onLoadReviews: (id: number) => void,
   reviews: Comment[],
-  onLoadReviews?: (id: number) => void,
 }
 
 class ReviewList extends React.PureComponent<Props> {
@@ -20,16 +21,16 @@ class ReviewList extends React.PureComponent<Props> {
     } = this.props;
 
     return <>
-    <h2 className="reviews__title">Reviews &middot;
+      <h2 className="reviews__title">Reviews &middot;
       <span className="reviews__amount">{reviews.length}</span>
-    </h2>
-    <ul className="reviews__list">
-      {reviews.map((review, it) => <ReviewItem
-        key={`review${it}`}
-        review={review}
-      />)}
-    </ul>
-  </>;
+      </h2>
+      <ul className="reviews__list">
+        {reviews.map((review, it) => <ReviewItem
+          key={`review${it}`}
+          review={review}
+        />)}
+      </ul>
+    </>;
   }
 
   componentDidMount() {
@@ -50,6 +51,9 @@ const mapDispatchToProps = (dispatch) => ({
   onLoadReviews: (id) => dispatch(Operation.loadReviews(id)),
 });
 
-export {ReviewList};
+export { ReviewList };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ReviewList);

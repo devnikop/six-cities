@@ -1,7 +1,7 @@
+import { Link } from 'react-router-dom';
 import * as React from 'react';
-import {Link} from 'react-router-dom';
 
-import {Offer} from '../../types';
+import { Offer } from '../../types';
 
 interface Props {
   changeActiveItem: (id: number) => void,
@@ -31,7 +31,7 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
   const _checkFavorite = (isFavorite) =>
     isFavorite ? `place-card__bookmark-button--active` : ``;
 
-  const _getRating = (offer) =>`${Math.round(offer.rating * 20)}%`;
+  const _getRating = (offer) => `${Math.round(offer.rating * 20)}%`;
 
   return <article className={`cities__place-card place-card`}>
     {offer.isPremium ? _getPremiumMark() : ``}
@@ -58,7 +58,7 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: _getRating(offer)}}></span>
+          <span style={{ width: _getRating(offer) }}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
