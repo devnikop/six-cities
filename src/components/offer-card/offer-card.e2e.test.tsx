@@ -13,6 +13,7 @@ it(`Click on photo calls callback`, () => {
   const offerCard = mount(<MemoryRouter>
       <OfferCard
         offer={offer}
+        handleBookmarkClick={jest.fn()}
         changeActiveItem={clickHandler}
       />
     </MemoryRouter>);

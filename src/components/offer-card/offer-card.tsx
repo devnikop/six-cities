@@ -4,14 +4,16 @@ import {Link} from 'react-router-dom';
 import {Offer} from '../../types';
 
 interface Props {
-  offer: Offer,
   changeActiveItem: (id: number) => void,
+  handleBookmarkClick: React.MouseEventHandler<HTMLButtonElement>,
+  offer: Offer,
 }
 
 const OfferCard: React.FunctionComponent<Props> = (props) => {
   const {
-    offer,
     changeActiveItem: _onCardImageClick,
+    handleBookmarkClick,
+    offer,
   } = props;
 
   const handleImageClick = (evt) => {
@@ -43,6 +45,7 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
         <button
+          onClick={handleBookmarkClick}
           className={`place-card__bookmark-button ${_checkFavorite(offer.isFavorite)} button`}
           type="button">
           <svg className="place-card__bookmark-icon" width="18" height="19">

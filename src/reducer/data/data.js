@@ -10,6 +10,12 @@ const initialState = {
   sortedOffers: [],
 };
 
+const _changeOffer = (offers, newOffer) => {
+  return offers.map((item) => {
+    return item.id === newOffer.id ? newOffer : item;
+  });
+};
+
 const ActionCreator = {
   changeActiveOfferId: (id) => ({
     type: `CHANGE_ACTIVE_OFFER_ID`,
@@ -79,7 +85,9 @@ const reducer = (state = initialState, action) => {
 
     case `CHANGE_OFFER`:
       return Object.assign({}, state, {
-        offers: Object.assign({}, state.offers, action.payload),
+        offers: _changeOffer(state.offers, action.payload),
+        offerOfCity: _changeOffer(state.offerOfCity, action.payload),
+        sortedOffers: _changeOffer(state.sortedOffers, action.payload),
       });
 
     case `LOAD_REVIEWS`:

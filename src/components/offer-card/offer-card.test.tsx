@@ -12,6 +12,7 @@ it(`OfferCard renders correctly`, () => {
     .create(<MemoryRouter>
       <OfferCard
         offer={offer}
+        handleBookmarkClick={jest.fn()}
         changeActiveItem={jest.fn()}
       />
     </MemoryRouter>)
