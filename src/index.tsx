@@ -18,8 +18,7 @@ import App from './components/app/app';
 const AppWrapped = withChangeScreen(App);
 
 const init = () => {
-  const api = configureAPI(() =>
-    history.push(`/login`));
+  const api = configureAPI();
 
   const store = createStore(
       reducer,
