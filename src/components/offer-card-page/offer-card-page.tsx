@@ -18,6 +18,7 @@ import ReviewList from '../reviews-list/reviews-list';
 
 interface Props {
   activeOfferId: number,
+  handleBookmarkClick: (offer: Offer) => void,
   match,
   nearestOffers: Offer[],
   offer: Offer,
@@ -29,14 +30,20 @@ const CommentFormWrapped = withReview(CommentForm);
 const OfferCardPage: React.FunctionComponent<Props> = (props) => {
   const {
     activeOfferId,
+    handleBookmarkClick,
     nearestOffers,
     offer,
   } = props;
+
+  const _handleBookmarkClick = () => handleBookmarkClick(offer);
 
   const _getPremiumMark = () =>
     <div className="property__mark">
       <span>Premium</span>
     </div>
+
+  const _checkFavorite = (isFavorite) =>
+    isFavorite ? `property__bookmark-button--active` : ``;
 
   const _getRating = (offer) =>`${Math.round(offer.rating * 20)}%`;
 
@@ -58,7 +65,10 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
           <h1 className="property__name">
             {offer.title}
           </h1>
-          <button className="property__bookmark-button button" type="button">
+          <button
+            onClick={_handleBookmarkClick}
+            className={`property__bookmark-button ${_checkFavorite(offer.isFavorite)} button`}
+            type="button">
             <svg className="property__bookmark-icon" width="31" height="33">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>

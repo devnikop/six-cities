@@ -22,7 +22,7 @@ interface Props {
   activeOfferId: number,
   currentCity: City,
   leaflet,
-  sortedOffers: Offer[],
+  offers: Offer[],
 }
 
 const SortingOptionsWrapped = withSortingOptions(SortingOptions);
@@ -32,7 +32,7 @@ const MainPage:React.FunctionComponent<Props> = (props) => {
     activeOfferId,
     currentCity,
     leaflet,
-    sortedOffers,
+    offers,
   } = props;
 
   return <main className="page__main page__main--index">
@@ -45,11 +45,11 @@ const MainPage:React.FunctionComponent<Props> = (props) => {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{sortedOffers.length} places to stay in {currentCity}</b>
+            <b className="places__found">{offers.length} places to stay in {currentCity}</b>
             {<SortingOptionsWrapped/>}
             <div className="cities__places-list places__list tabs__content">
               {<OfferList
-                offers={sortedOffers}
+                offers={offers}
               />}
             </div>
           </section>
@@ -58,7 +58,7 @@ const MainPage:React.FunctionComponent<Props> = (props) => {
               <Map
                 activeOfferId={activeOfferId}
                 leaflet={leaflet}
-                offers={sortedOffers}
+                offers={offers}
               />
             </section>
           </div>
@@ -73,7 +73,7 @@ const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     activeOfferId: getActiveOfferId(state),
     currentCity: getCurrentCity(state),
-    sortedOffers: getSortedOffers(state),
+    offers: getSortedOffers(state),
   });
 
 export {MainPage};

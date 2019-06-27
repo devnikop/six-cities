@@ -33,7 +33,7 @@ describe(`Welcome-screen correctly renders`, () => {
           activeOfferId={3}
           currentCity={offers[0].city}
           leaflet={leaflet}
-          sortedOffers={offers}
+          offers={offers}
         /></Provider>)
       .toJSON();
 

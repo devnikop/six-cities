@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Subtract } from 'utility-types';
 
 import { ActionCreator } from '../../reducer/data/data';
-import { getFilteredOffers } from '../../reducer/data/selectors';
+import { getOfferOfCity } from '../../reducer/data/selectors';
 import { Offer } from '../../types';
 
 interface InjectedProps {
@@ -17,6 +17,7 @@ const withSortingOptions = (Component) => {
   type T = Subtract<P, InjectedProps>;
 
   class WithSortingOptions extends React.PureComponent<T> {
+
     constructor(props) {
       super(props);
     }
@@ -27,13 +28,7 @@ const withSortingOptions = (Component) => {
       />;
     }
 
-    // componentDidMount() {
-    //   const { onSelectChange, offers } = this.props;
-
-    //   onSelectChange(this._sortByPopular(offers));
-    // }
-
-    _sortByPopular = (initialOffers) => {
+    _sortByPopular = () => {
       return this.props.offers;
     };
 
@@ -83,7 +78,7 @@ const withSortingOptions = (Component) => {
       const { onSelectChange, offers } = this.props;
       switch (evt.target.value) {
         case `popular`:
-          onSelectChange(this._sortByPopular(offers));
+          onSelectChange(this._sortByPopular());
           break;
         case `to-high`:
           onSelectChange(this._sortByPriceLowToHigh(offers));
@@ -104,7 +99,7 @@ const withSortingOptions = (Component) => {
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    offers: getFilteredOffers(state),
+    offers: getOfferOfCity(state),
   })
 
 const mapDispatchToProps = (dispatch) => ({

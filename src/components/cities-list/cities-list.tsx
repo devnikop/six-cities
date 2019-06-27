@@ -5,7 +5,6 @@ import {ActionCreator} from '../../reducer/data/data';
 import {
   getCities,
   getCurrentCity,
-  getFilteredOffers,
 } from '../../reducer/data/selectors';
 
 import {City} from '../../types';
@@ -15,7 +14,6 @@ interface Props {
   currentCity: City,
   onCity: (city: City) => void,
 }
-
 
 const CITIES_COUNT = 6;
 
@@ -52,7 +50,6 @@ const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     cities: getCities(state),
     currentCity: getCurrentCity(state),
-    filteredOffers: getFilteredOffers(state),
   });
 
 const mapDispatchToProps = (dispatch) => ({
