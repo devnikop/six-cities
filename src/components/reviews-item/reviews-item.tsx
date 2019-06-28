@@ -12,6 +12,11 @@ const ReviewItem: React.FunctionComponent<Props> = (props) => {
     review
   } = props;
 
+  const _getDate = (date) => {
+    const options = { month: `long`, year: `numeric` };
+    return new Date(date).toLocaleDateString(undefined, options);
+  };
+
   return <li className="reviews__item">
     <div className="reviews__user user">
       <div className="reviews__avatar-wrapper user__avatar-wrapper">
@@ -29,7 +34,7 @@ const ReviewItem: React.FunctionComponent<Props> = (props) => {
         </div>
       </div>
       <p className="reviews__text">{review.comment}</p>
-      <time className="reviews__time" dateTime={review.date}>April 2019</time>
+      <time className="reviews__time" dateTime={review.date}>{_getDate(review.date)}</time>
     </div>
   </li>
 }
