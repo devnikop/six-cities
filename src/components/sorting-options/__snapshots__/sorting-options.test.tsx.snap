@@ -11,21 +11,6 @@ exports[`SortingOptions renders correctly 1`] = `
   >
     Sort by
   </span>
-  <span
-    className="places__sorting-type"
-    tabIndex={0}
-  >
-    Popular
-    <svg
-      className="places__sorting-arrow"
-      height="4"
-      width="7"
-    >
-      <use
-        xlinkHref="#icon-arrow-select"
-      />
-    </svg>
-  </span>
   <select
     className="places__sorting-type"
     id="places-sorting"

@@ -1,9 +1,10 @@
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
-import { Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Subtract } from 'utility-types';
 import * as React from 'react';
 
+import { isAuthorized } from '../../utilities';
 import { User } from '../../types';
 import history from '../../history';
 
@@ -54,17 +55,13 @@ const withChangeScreen = (Component) => {
               renderScreen={this._getScreen}
             />}
           />
-          <Route path="/login" render={() => {
-            if (Object.keys(user).length) {
-              history.push(`/`);
-            } else {
-              return <>
+          <Route path="/login" render={() =>
+            isAuthorized(user)
+              ? <Redirect to={`/`} />
+              : <>
                 <MainHeaderWrapped />
                 <SignInWrapped />
               </>
-            }
-
-          }
           }
           />
           <Route path="/offer/:id" render={({ match }) => {

@@ -4,14 +4,17 @@ import * as React from 'react';
 
 import {
   Offer,
-  OfferPageType
+  OfferPageType,
+  User,
 } from '../../types';
+import { isAuthorized } from '../../utilities';
 
 import {
   getActiveOfferId,
   getNearestOffers,
   getOfferById,
 } from '../../reducer/data/selectors';
+import { getUserData } from '../../reducer/user/selectors';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withReview from '../../hocs/with-review/with-review';
@@ -27,7 +30,10 @@ interface Props {
   match,
   nearestOffers: Offer[],
   offer: Offer,
+  user: User,
 }
+
+const MAX_IMAGES_COUNT = 6;
 
 const CommentFormWrapped = withReview(CommentForm);
 const OfferListWrapped = withActiveItem(OfferList);
@@ -38,6 +44,7 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
     handleBookmarkClick,
     nearestOffers,
     offer,
+    user,
   } = props;
 
   const _handleBookmarkClick = () => handleBookmarkClick(offer);
@@ -56,7 +63,7 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
     <section className="property">
       <div className="property__gallery-container container">
         <div className="property__gallery">
-          {offer.images.map((image) =>
+          {offer.images.slice(0, MAX_IMAGES_COUNT).map((image) =>
             <div className="property__image-wrapper" key={`image${image}`}>
               <img className="property__image" src={image} alt="Photo studio" />
             </div>
@@ -129,14 +136,11 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
               <p className="property__text">
                 {offer.description}
               </p>
-              {/* <p className="property__text">
-              An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-            </p> */}
             </div>
           </div>
           <section className="property__reviews reviews">
             {<ReviewList offerId={offer.id} />}
-            {<CommentFormWrapped offerId={offer.id} />}
+            {isAuthorized(user) ? <CommentFormWrapped offerId={offer.id} /> : ``}
           </section>
         </div>
       </div>
@@ -168,6 +172,7 @@ const mapStateToProps = (state, ownProps) => {
     activeOfferId: getActiveOfferId(state),
     nearestOffers: getNearestOffers(state),
     offer: getOfferById(id, state),
+    user: getUserData(state),
   })
 };
 

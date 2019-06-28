@@ -1,6 +1,8 @@
 import { Redirect } from 'react-router-dom';
 import * as React from 'react';
 
+import { isAuthorized } from '../../utilities';
+
 const withPrivateRoute = (Component, authorizationData) => {
   class WithPrivateRoute extends React.PureComponent {
     constructor(props) {
@@ -8,7 +10,7 @@ const withPrivateRoute = (Component, authorizationData) => {
     }
 
     render() {
-      if (!Object.keys(authorizationData).length) {
+      if (isAuthorized(authorizationData)) {
         return <Redirect to="/login" />;
       }
       return <Component
