@@ -14,6 +14,8 @@ interface Props {
   reviews: Comment[],
 }
 
+const MAX_REVIEWS_COUNT = 10;
+
 class ReviewList extends React.PureComponent<Props> {
   render() {
     const {
@@ -25,7 +27,7 @@ class ReviewList extends React.PureComponent<Props> {
       <span className="reviews__amount">{reviews.length}</span>
       </h2>
       <ul className="reviews__list">
-        {reviews.map((review, it) => <ReviewItem
+        {reviews.slice(0, MAX_REVIEWS_COUNT).map((review, it) => <ReviewItem
           key={`review${it}`}
           review={review}
         />)}
