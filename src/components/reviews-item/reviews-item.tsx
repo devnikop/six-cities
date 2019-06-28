@@ -1,12 +1,11 @@
 import * as React from 'react';
 
 import { Comment } from '../../types';
+import { getRating } from '../../utilities';
 
 interface Props {
   review: Comment,
 }
-
-const _getRating = (offer) => `${offer.rating * 20}%`;
 
 const ReviewItem: React.FunctionComponent<Props> = (props) => {
   const {
@@ -25,7 +24,7 @@ const ReviewItem: React.FunctionComponent<Props> = (props) => {
     <div className="reviews__info">
       <div className="reviews__rating rating">
         <div className="reviews__stars rating__stars">
-          <span style={{ width: `${_getRating(review)}` }}></span>
+          <span style={{ width: `${getRating(review)}` }}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>

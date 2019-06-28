@@ -7,7 +7,7 @@ import {
   OfferPageType,
   User,
 } from '../../types';
-import { isAuthorized } from '../../utilities';
+import { isAuthorized, getRating } from '../../utilities';
 
 import {
   getActiveOfferId,
@@ -57,8 +57,6 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
   const _checkFavorite = (isFavorite) =>
     isFavorite ? `property__bookmark-button--active` : ``;
 
-  const _getRating = (offer) => `${offer.rating * 20}%`;
-
   return <main className="page__main page__main--property">
     <section className="property">
       <div className="property__gallery-container container">
@@ -89,7 +87,7 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">
-              <span style={{ width: _getRating(offer) }}></span>
+              <span style={{ width: getRating(offer) }}></span>
               <span className="visually-hidden">Rating</span>
             </div>
             <span className="property__rating-value rating__value">{offer.rating}</span>

@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import history from '../../history';
-
 import {
   Offer,
   OfferPageType
 } from '../../types';
+import { getRating } from '../../utilities';
 
 interface Props {
   changeActiveItem: (id: number) => void,
@@ -41,8 +41,6 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
   const _checkFavorite = (isFavorite) =>
     isFavorite ? `place-card__bookmark-button--active` : ``;
 
-  const _getRating = (offer) => `${offer.rating * 20}%`;
-
   return <article className={`${type}__card place-card`}>
     {offer.isPremium ? _getPremiumMark() : ``}
     <div className={`${type}__image-wrapper place-card__image-wrapper`}>
@@ -74,7 +72,7 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{ width: _getRating(offer) }}></span>
+          <span style={{ width: getRating(offer) }}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
