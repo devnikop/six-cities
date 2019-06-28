@@ -52,7 +52,7 @@ const adaptOffer = (offer) => ({
   },
   previewImage: offer[`preview_image`],
   price: offer[`price`],
-  rating: offer[`rating`],
+  rating: Math.round(offer[`rating`]),
   title: offer[`title`],
   type: offer[`type`],
 });

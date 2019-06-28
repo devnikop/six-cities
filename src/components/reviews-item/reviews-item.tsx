@@ -6,7 +6,7 @@ interface Props {
   review: Comment,
 }
 
-const _getRating = (offer) => `${Math.round(offer.rating * 20)}%`;
+const _getRating = (offer) => `${offer.rating * 20}%`;
 
 const ReviewItem: React.FunctionComponent<Props> = (props) => {
   const {

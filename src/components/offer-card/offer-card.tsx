@@ -36,7 +36,7 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
   const _checkFavorite = (isFavorite) =>
     isFavorite ? `place-card__bookmark-button--active` : ``;
 
-  const _getRating = (offer) => `${Math.round(offer.rating * 20)}%`;
+  const _getRating = (offer) => `${offer.rating * 20}%`;
 
   return <article className={`${type}__card place-card`}>
     {offer.isPremium ? _getPremiumMark() : ``}
