@@ -15,6 +15,14 @@ const initialState = {
   sortedOffers: [],
 };
 
+const getUniqueCities = (offers) => {
+  return [...new Set(offers.map((it) => it.city.name))];
+};
+
+const getRandomNumber = (length) => {
+  return Math.floor(Math.random() * length);
+};
+
 const _changeOffer = (offers, newOffer) => {
   return offers.map((item) => {
     return item.id === newOffer.id ? newOffer : item;
@@ -117,13 +125,16 @@ const reducer = (state = initialState, action) => {
       });
 
     case `LOAD_OFFERS`:
-      const data = action.payload;
+      const offers = action.payload;
+      const uniqueCities = getUniqueCities(offers);
+      const currentCity = offers[getRandomNumber(uniqueCities.length)].city.name;
+
       return Object.assign({}, state, {
-        cities: [...new Set(data.map((it) => it.city.name))],
-        currentCity: data[0].city.name,
-        offersOfCity: data.filter((offer) => offer.city.name === data[0].city.name),
-        sortedOffers: data.filter((offer) => offer.city.name === data[0].city.name),
-        offers: data,
+        cities: uniqueCities,
+        currentCity,
+        offersOfCity: offers.filter((offer) => offer.city.name === currentCity),
+        sortedOffers: offers.filter((offer) => offer.city.name === currentCity),
+        offers,
       });
 
     case `LOAD_REVIEWS`:
