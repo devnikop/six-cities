@@ -1,16 +1,16 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
-import {ReviewList} from './reviews-list';
+import { reviewsArrayMock } from '../../mocks/mocksForTests';
 
-import {reviewsArrayMock} from '../../mocks/mocksForTests';
+import { ReviewList } from './reviews-list';
 
 it(`ReviewList renders correctly`, () => {
   const tree = renderer
     .create(<ReviewList
       offerId={1}
-      reviews={reviewsArrayMock}
       onLoadReviews={jest.fn()}
+      reviews={reviewsArrayMock}
     />)
     .toJSON();
 

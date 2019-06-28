@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
-import ReviewItem from './reviews-item';
+import { reviewMock } from '../../mocks/mocksForTests';
 
-import {reviewMock} from '../../mocks/mocksForTests';
+import ReviewItem from './reviews-item';
 
 it(`ReviewItem renders correctly`, () => {
   const tree = renderer

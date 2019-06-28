@@ -1,10 +1,11 @@
-import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 
-import {leafletMock, offersArrayMock} from '../../mocks/mocksForTests';
-import {MainPage} from './main-page';
+import { leafletMock, offersArrayMock } from '../../mocks/mocksForTests';
+
+import { MainPage } from './main-page';
 
 const getFilteredOffers = (city) =>
   offersArrayMock.filter((offer) =>
@@ -31,7 +32,7 @@ describe(`Welcome-screen correctly renders`, () => {
       .create(<Provider store={store}>
         <MainPage
           activeOfferId={3}
-          currentCity={offers[0].city}
+          currentCity={offers[0].city.name}
           leaflet={leaflet}
           offers={offers}
         /></Provider>)

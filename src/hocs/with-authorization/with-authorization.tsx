@@ -10,9 +10,9 @@ import history from '../../history';
 import {adaptLoginResponse} from '../../adapter';
 
 interface InjectedProps {
-  handlerEmailChange: React.ChangeEventHandler,
-  handlerFormSubmit: React.FormEventHandler,
-  handlerPasswordChange: React.ChangeEventHandler,
+  handlerEmailChange: React.ChangeEventHandler<HTMLInputElement>,
+  handlerFormSubmit: React.FormEventHandler<HTMLFormElement>,
+  handlerPasswordChange: React.ChangeEventHandler<HTMLInputElement>,
   onFormSubmit: (formData: React.ComponentState) => void,
 }
 

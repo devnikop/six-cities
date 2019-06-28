@@ -1,22 +1,22 @@
 import * as React from 'react';
 
-import {Offer} from '../../types';
+import { Offer } from '../../types';
 
 interface Props {
-  activeOfferId,
+  activeOfferId: number,
   leaflet,
   offers: Offer[],
 }
 
 class Map extends React.PureComponent<Props> {
-  private leaflet;
   private _mapRef;
-  private icon;
   private activeIcon;
-  private layerGroup;
-  private map;
-  private currentCity;
   private city;
+  private currentCity;
+  private icon;
+  private layerGroup;
+  private leaflet;
+  private map;
   private zoom;
 
   constructor(props) {
@@ -26,12 +26,12 @@ class Map extends React.PureComponent<Props> {
 
     this._mapRef = React.createRef();
     this.icon = this.leaflet.icon({
+      iconSize: [30, 30],
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
     });
     this.activeIcon = this.leaflet.icon({
+      iconSize: [30, 30],
       iconUrl: `img/pin-active.svg`,
-      iconSize: [30, 30]
     });
     this.layerGroup = null;
     this.map = null;
@@ -39,7 +39,7 @@ class Map extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div id="map" ref={this._mapRef} style={{height: `100%`}}></div>
+      <div id="map" ref={this._mapRef} style={{ height: `100%` }}></div>
     );
   }
 
@@ -79,11 +79,11 @@ class Map extends React.PureComponent<Props> {
     this.layerGroup = this.leaflet.layerGroup().addTo(this.map);
 
     this.leaflet
-    .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-      attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
         contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-    })
-    .addTo(this.map);
+      })
+      .addTo(this.map);
 
     this._addMarkers(this.props.offers);
   }
@@ -101,14 +101,14 @@ class Map extends React.PureComponent<Props> {
   _addActiveMarker(coords) {
     const icon = this.activeIcon;
     this.leaflet
-      .marker(coords, {icon})
+      .marker(coords, { icon })
       .addTo(this.layerGroup);
   }
 
   _addMarker(coords) {
     const icon = this.icon;
     this.leaflet
-      .marker(coords, {icon})
+      .marker(coords, { icon })
       .addTo(this.layerGroup);
   }
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface Props {
-  handleSelectChange: () => void;
+  handleSelectChange: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
 const SortingOptions: React.FunctionComponent<Props> = (props) => {

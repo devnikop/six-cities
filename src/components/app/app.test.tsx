@@ -1,10 +1,14 @@
-import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 
-import {App} from './app';
-import {leafletMock, offersArrayMock, citiesMock} from '../../mocks/mocksForTests';
+import { App } from './app';
+import {
+  leafletMock,
+  offersArrayMock,
+  citiesMock
+} from '../../mocks/mocksForTests';
 
 const getFilteredOffers = (city) =>
   offersArrayMock.filter((offer) =>

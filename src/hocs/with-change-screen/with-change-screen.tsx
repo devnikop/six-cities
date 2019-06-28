@@ -1,19 +1,19 @@
-import {compose} from 'recompose';
-import {connect} from 'react-redux';
-import {Router, Switch, Route} from 'react-router-dom';
-import {Subtract} from 'utility-types';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { Router, Switch, Route } from 'react-router-dom';
+import { Subtract } from 'utility-types';
 import * as React from 'react';
 
-import {
-  // getAuthorizationStatus,
-  getUserData} from '../../reducer/user/selectors';
+import { User } from '../../types';
 import history from '../../history';
+
+import { getUserData } from '../../reducer/user/selectors';
+
 import withAuthorization from '../with-authorization/with-authorization';
+import withBookmark from '../with-bookmark/with-bookmark';
 import withHeader from '../with-header/with-header';
 import withPrivateRoute from '../with-private-route/with-private-route';
-import withBookmark from '../with-bookmark/with-bookmark';
-
-import {User} from '../../types';
+import withFavorite from '../with-favorite/with-favorite'
 
 import Favorites from '../../components/favorites/favorites';
 import MainHeader from '../../components/main-header/main-header';
@@ -22,12 +22,12 @@ import OfferCardPage from '../../components/offer-card-page/offer-card-page';
 import SignIn from '../../components/sign-in/sign-in';
 
 interface InjectedProps {
-  user: User,
   leaflet,
+  user: User,
 }
 
-const OfferCardPageWrapped = withBookmark(OfferCardPage);
 const MainHeaderWrapped = withHeader(MainHeader);
+const OfferCardPageWrapped = withBookmark(OfferCardPage);
 const SignInWrapped = withAuthorization(SignIn);
 
 const withChangeScreen = (Component) => {
@@ -56,28 +56,28 @@ const withChangeScreen = (Component) => {
           />
           <Route path="/login" render={() =>
             <>
-              <MainHeaderWrapped/>
-              <SignInWrapped/>
+              <MainHeaderWrapped />
+              <SignInWrapped />
             </>}
           />
-          <Route path="/offer/:id" render={({match}) => {
+          <Route path="/offer/:id" render={({ match }) => {
             return <>
-              <MainHeaderWrapped/>
+              <MainHeaderWrapped />
               <OfferCardPageWrapped
                 match={match}
               />
-            </>}}
+            </>
+          }}
           />
 
           />
-          {/* Didn't checked code */}
           <Route path="/favorites" render={() => {
-            const WrappedFavorites = withPrivateRoute(Favorites, user);
+            const WrappedFavorites = withFavorite(withPrivateRoute(Favorites, user));
             return <>
-              <MainHeaderWrapped/>
-              <WrappedFavorites/>
+              <MainHeaderWrapped />
+              <WrappedFavorites />
             </>;
-          }}/>
+          }} />
         </Switch>
       </Router>;
     }
@@ -88,7 +88,7 @@ const withChangeScreen = (Component) => {
       } = this.props;
 
       return <>
-        <MainHeaderWrapped/>
+        <MainHeaderWrapped />
         <MainPage
           leaflet={leaflet}
         />
@@ -101,13 +101,10 @@ const withChangeScreen = (Component) => {
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    // isAuthorizationRequired: getAuthorizationStatus(state),
     user: getUserData(state),
   });
 
 export default compose(
-    connect(
-        mapStateToProps
-    ),
-    withChangeScreen
+  connect(mapStateToProps),
+  withChangeScreen
 );

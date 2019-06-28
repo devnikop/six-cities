@@ -1,8 +1,10 @@
-import {MemoryRouter} from 'react-router';
-import {mount} from 'enzyme';
+import { MemoryRouter } from 'react-router';
+import { mount } from 'enzyme';
 import * as React from 'react';
 
-import {offerMock} from '../../mocks/mocksForTests';
+import { offerMock } from '../../mocks/mocksForTests';
+import { OfferType } from '../../types';
+
 import OfferCard from './offer-card';
 
 it(`Click on photo calls callback`, () => {
@@ -11,15 +13,16 @@ it(`Click on photo calls callback`, () => {
   const offer = offerMock;
 
   const offerCard = mount(<MemoryRouter>
-      <OfferCard
-        offer={offer}
-        handleBookmarkClick={jest.fn()}
-        changeActiveItem={clickHandler}
-      />
-    </MemoryRouter>);
+    <OfferCard
+      changeActiveItem={clickHandler}
+      handleBookmarkClick={jest.fn()}
+      offer={offer}
+      type={OfferType.main}
+    />
+  </MemoryRouter>);
 
   const cardImageElement = offerCard.find(`.place-card__image-wrapper a`).at(0);
-  cardImageElement.simulate(`click`, {preventDefault: linkPrevention});
+  cardImageElement.simulate(`click`, { preventDefault: linkPrevention });
 
   expect(clickHandler).toHaveBeenCalledTimes(1);
   expect(linkPrevention).toHaveBeenCalledTimes(1);

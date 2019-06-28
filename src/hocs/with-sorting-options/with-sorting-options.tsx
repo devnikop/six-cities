@@ -1,11 +1,12 @@
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
-import * as React from 'react';
 import { Subtract } from 'utility-types';
+import * as React from 'react';
+
+import { Offer } from '../../types';
 
 import { ActionCreator } from '../../reducer/data/data';
-import { getOfferOfCity } from '../../reducer/data/selectors';
-import { Offer } from '../../types';
+import { getOffersOfCity } from '../../reducer/data/selectors';
 
 interface InjectedProps {
   offers: Offer[],
@@ -99,7 +100,7 @@ const withSortingOptions = (Component) => {
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    offers: getOfferOfCity(state),
+    offers: getOffersOfCity(state),
   })
 
 const mapDispatchToProps = (dispatch) => ({

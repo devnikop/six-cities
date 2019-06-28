@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 interface Props {
-  handlerEmailChange: () => void,
-  handlerFormSubmit: () => void,
-  handlerPasswordChange: () => void,
+  handlerEmailChange: React.ChangeEventHandler<HTMLInputElement>,
+  handlerFormSubmit: React.FormEventHandler<HTMLFormElement>,
+  handlerPasswordChange: React.ChangeEventHandler<HTMLInputElement>,
 }
 
 const SignIn: React.FunctionComponent<Props> = (props) => {
@@ -21,11 +21,11 @@ const SignIn: React.FunctionComponent<Props> = (props) => {
           <form onSubmit={handlerFormSubmit} className="login__form form" action="#" method="post">
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">E-mail</label>
-              <input onChange={handlerEmailChange} className="login__input form__input" type="email" name="email" placeholder="Email" required/>
+              <input onChange={handlerEmailChange} className="login__input form__input" type="email" name="email" placeholder="Email" required />
             </div>
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">Password</label>
-              <input onChange={handlerPasswordChange} className="login__input form__input" type="password" name="password" placeholder="Password" required/>
+              <input onChange={handlerPasswordChange} className="login__input form__input" type="password" name="password" placeholder="Password" required />
             </div>
             <button className="login__submit form__submit button" type="submit">Sign in</button>
           </form>

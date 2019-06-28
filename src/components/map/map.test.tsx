@@ -1,8 +1,12 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
+import {
+  offersArrayMock,
+  leafletMock
+} from '../../mocks/mocksForTests';
+
 import Map from './map';
-import {offersArrayMock, leafletMock} from '../../mocks/mocksForTests';
 
 it(`Map correctly renders`, () => {
   const leaflet = leafletMock;

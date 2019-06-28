@@ -1,11 +1,16 @@
-import {adaptOffers, adaptComments} from '../../adapter';
+import {
+  adaptOffers,
+  adaptComments
+} from '../../adapter';
 
 const initialState = {
   activeOfferId: undefined,
   cities: [],
   currentCity: ``,
-  offerOfCity: [],
+  favoriteOffers: [],
+  favoriteOffersCities: [],
   offers: [],
+  offersOfCity: [],
   reviews: [],
   sortedOffers: [],
 };
@@ -37,8 +42,8 @@ const ActionCreator = {
     payload: reviews,
   }),
 
-  setSortedOffers: (offers) => ({
-    type: `SET_SORTED_OFFERS`,
+  setFavoriteOffers: (offers) => ({
+    type: `LOAD_FAVORITE_OFFERS`,
     payload: offers,
   }),
 
@@ -46,9 +51,23 @@ const ActionCreator = {
     type: `LOAD_OFFERS`,
     payload: offers,
   }),
+
+  setSortedOffers: (offers) => ({
+    type: `SET_SORTED_OFFERS`,
+    payload: offers,
+  }),
 };
 
 const Operation = {
+  loadFavoriteOffers: () => (dispatch, _getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) =>
+        adaptOffers(response.data)
+      )
+      .then((data) =>
+        dispatch(ActionCreator.setFavoriteOffers(data))
+      );
+  },
   loadOffers: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) =>
@@ -79,15 +98,32 @@ const reducer = (state = initialState, action) => {
     case `CHANGE_CITY`:
       return Object.assign({}, state, {
         currentCity: action.payload,
-        offerOfCity: state.offers.filter((offer) => offer.city.name === action.payload),
+        offersOfCity: state.offers.filter((offer) => offer.city.name === action.payload),
         sortedOffers: state.offers.filter((offer) => offer.city.name === action.payload),
       });
 
     case `CHANGE_OFFER`:
       return Object.assign({}, state, {
+        favoriteOffers: _changeOffer(state.favoriteOffers, action.payload),
         offers: _changeOffer(state.offers, action.payload),
-        offerOfCity: _changeOffer(state.offerOfCity, action.payload),
+        offersOfCity: _changeOffer(state.offersOfCity, action.payload),
         sortedOffers: _changeOffer(state.sortedOffers, action.payload),
+      });
+
+    case `LOAD_FAVORITE_OFFERS`:
+      return Object.assign({}, state, {
+        favoriteOffersCities: [...new Set(action.payload.map((it) => it.city.name))],
+        favoriteOffers: action.payload,
+      });
+
+    case `LOAD_OFFERS`:
+      const data = action.payload;
+      return Object.assign({}, state, {
+        cities: [...new Set(data.map((it) => it.city.name))],
+        currentCity: data[0].city.name,
+        offersOfCity: data.filter((offer) => offer.city.name === data[0].city.name),
+        sortedOffers: data.filter((offer) => offer.city.name === data[0].city.name),
+        offers: data,
       });
 
     case `LOAD_REVIEWS`:
@@ -98,16 +134,6 @@ const reducer = (state = initialState, action) => {
     case `SET_SORTED_OFFERS`:
       return Object.assign({}, state, {
         sortedOffers: action.payload,
-      });
-
-    case `LOAD_OFFERS`:
-      const data = action.payload;
-      return Object.assign({}, state, {
-        cities: [...new Set(data.map((it) => it.city.name))],
-        currentCity: data[0].city.name,
-        offerOfCity: data.filter((offer) => offer.city.name === data[0].city.name),
-        sortedOffers: data.filter((offer) => offer.city.name === data[0].city.name),
-        offers: data,
       });
   }
   return state;

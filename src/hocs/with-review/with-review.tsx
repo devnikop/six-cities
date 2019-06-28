@@ -1,12 +1,12 @@
-import {compose} from 'recompose';
-import {connect} from 'react-redux';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { Subtract } from 'utility-types';
 import * as React from 'react';
-import {Subtract} from 'utility-types';
 
-import {configureAPI} from '../../api';
-import {adaptComments} from '../../adapter';
-import {ActionCreator} from '../../reducer/data/data';
+import { adaptComments } from '../../adapter';
+import { configureAPI } from '../../api';
 
+import { ActionCreator } from '../../reducer/data/data';
 
 interface InjectedProps {
   handleCommentInput: React.FormEventHandler<HTMLTextAreaElement>,
@@ -84,6 +84,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default compose(
-    connect(null, mapDispatchToProps),
-    withReview
+  connect(null, mapDispatchToProps),
+  withReview
 );

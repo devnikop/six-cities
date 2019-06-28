@@ -18,19 +18,15 @@ const ActionCreator = {
 };
 
 const Operation = {
-  checkAuth: () => {
-    return (dispatch, _getState, api) => {
-      return api
-        .get(`/login`)
-        .then((response) => {
-          if (response.status === 200) {
-            const adaptedData = adaptLoginResponse(response.data);
-            dispatch(ActionCreator.login(adaptedData));
-            dispatch(ActionCreator.requiredAuthorization(false));
-          }
-        });
-    };
-  }
+  checkAuth: () => (dispatch, _getState, api) =>
+    api.get(`/login`)
+      .then((response) => {
+        if (response.status === 200) {
+          const adaptedData = adaptLoginResponse(response.data);
+          dispatch(ActionCreator.login(adaptedData));
+          dispatch(ActionCreator.requiredAuthorization(false));
+        }
+      })
 };
 
 const reducer = (state = initialState, action) => {
