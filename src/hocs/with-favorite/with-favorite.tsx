@@ -48,7 +48,7 @@ const withFavorite = (Component) => {
 const mapStateToProps = (state) =>
   Object.assign({}, state, {
     cities: getFavoriteOffersCities(state),
-    getOffersOfCity: (...city) => getFavoriteOffersOfCity(city[0], state),
+    getOffersOfCity: (city) => getFavoriteOffersOfCity(city, state),
   });
 
 const mapDispatchToProps = (dispatch) => ({
