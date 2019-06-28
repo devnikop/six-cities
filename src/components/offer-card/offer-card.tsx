@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom';
 import * as React from 'react';
 
-import { Offer } from '../../types';
+import {
+  Offer,
+  OfferType
+} from '../../types';
 
 interface Props {
   changeActiveItem: (id: number) => void,
   handleBookmarkClick: (offer: Offer) => void,
   offer: Offer,
+  type: OfferType,
 }
 
 const OfferCard: React.FunctionComponent<Props> = (props) => {
@@ -14,6 +18,7 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
     changeActiveItem: _onCardImageClick,
     handleBookmarkClick,
     offer,
+    type,
   } = props;
 
   const handleImageClick = (evt) => {
@@ -33,14 +38,20 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
 
   const _getRating = (offer) => `${Math.round(offer.rating * 20)}%`;
 
-  return <article className={`cities__place-card place-card`}>
+  return <article className={`${type}__card place-card`}>
     {offer.isPremium ? _getPremiumMark() : ``}
-    <div className="cities__image-wrapper place-card__image-wrapper">
+    <div className={`${type}__image-wrapper place-card__image-wrapper`}>
       <a href="#" onClick={handleImageClick}>
-        <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
+        <img
+          className="place-card__image"
+          src={offer.previewImage}
+          width={`${type === OfferType.favorite ? `150` : `260`}`}
+          height={`${type === OfferType.favorite ? `110` : `200`}`}
+          alt="Place image"
+        />
       </a>
     </div>
-    <div className="place-card__info">
+    <div className={`${type === OfferType.favorite ? `favorites__card-info` : ``} place-card__info`}>
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
           <b className="place-card__price-value">&euro;{offer.price}</b>

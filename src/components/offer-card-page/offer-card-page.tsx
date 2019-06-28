@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import * as leaflet from 'leaflet';
 import * as React from 'react';
 
-import { Offer } from '../../types';
+import {
+  Offer,
+  OfferType
+} from '../../types';
 
 import {
   getActiveOfferId,
@@ -151,6 +154,7 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
         <div className="near-places__list places__list">
           {<OfferListWrapped
             offers={nearestOffers}
+            type={OfferType.main}
           />}
         </div>
       </section>

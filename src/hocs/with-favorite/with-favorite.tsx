@@ -16,8 +16,8 @@ import { Operation } from '../../reducer/data/data';
 
 interface InjectedProps {
   cities: City[],
-  loadFavoriteOffers: () => void,
   getOffersOfCity: (city: City) => Offer[],
+  loadFavoriteOffers: () => void,
 }
 
 const withFavorite = (Component) => {

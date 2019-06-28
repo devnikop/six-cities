@@ -1,3 +1,8 @@
+enum OfferType {
+  favorite = "favorites",
+  main = "cities",
+}
+
 type City = string;
 
 interface Comment {
@@ -57,5 +62,6 @@ export {
   City,
   Comment,
   Offer,
+  OfferType,
   User,
 };

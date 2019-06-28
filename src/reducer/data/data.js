@@ -104,6 +104,7 @@ const reducer = (state = initialState, action) => {
 
     case `CHANGE_OFFER`:
       return Object.assign({}, state, {
+        favoriteOffers: _changeOffer(state.favoriteOffers, action.payload),
         offers: _changeOffer(state.offers, action.payload),
         offersOfCity: _changeOffer(state.offersOfCity, action.payload),
         sortedOffers: _changeOffer(state.sortedOffers, action.payload),

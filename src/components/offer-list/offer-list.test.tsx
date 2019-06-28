@@ -5,6 +5,7 @@ import * as renderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
 
 import { offersArrayMock } from '../../mocks/mocksForTests';
+import { OfferType } from '../../types';
 
 import OfferList from './offer-list';
 
@@ -17,6 +18,7 @@ it.skip(`OfferList correctly renders`, () => {
       <MemoryRouter>
         <OfferList
           offers={offersArrayMock}
+          type={OfferType.main}
         />
       </MemoryRouter>
     </Provider>)

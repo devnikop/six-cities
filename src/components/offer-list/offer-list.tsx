@@ -1,6 +1,9 @@
 import * as React from 'react';
 
-import { Offer } from '../../types';
+import {
+  Offer,
+  OfferType
+} from '../../types';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withBookmark from '../../hocs/with-bookmark/with-bookmark';
@@ -11,17 +14,20 @@ const OfferCardWrapped = withActiveItem(withBookmark(OfferCard));
 
 interface Props {
   offers: Offer[],
+  type: OfferType,
 }
 
 class OfferList extends React.PureComponent<Props> {
   render() {
     const {
-      offers
+      offers,
+      type,
     } = this.props;
 
     return offers.map((offer, i) => <OfferCardWrapped
       key={`offer-${i}`}
       offer={offer}
+      type={type}
     />
     );
   }
