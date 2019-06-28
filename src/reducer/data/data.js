@@ -7,8 +7,10 @@ const initialState = {
   activeOfferId: undefined,
   cities: [],
   currentCity: ``,
-  offersOfCity: [],
+  favoriteOffers: [],
+  favoriteOffersCities: [],
   offers: [],
+  offersOfCity: [],
   reviews: [],
   sortedOffers: [],
 };
@@ -40,6 +42,11 @@ const ActionCreator = {
     payload: reviews,
   }),
 
+  setFavoriteOffers: (offers) => ({
+    type: `LOAD_FAVORITE_OFFERS`,
+    payload: offers,
+  }),
+
   setOffers: (offers) => ({
     type: `LOAD_OFFERS`,
     payload: offers,
@@ -52,6 +59,15 @@ const ActionCreator = {
 };
 
 const Operation = {
+  loadFavoriteOffers: () => (dispatch, _getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) =>
+        adaptOffers(response.data)
+      )
+      .then((data) =>
+        dispatch(ActionCreator.setFavoriteOffers(data))
+      );
+  },
   loadOffers: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) =>
@@ -91,6 +107,12 @@ const reducer = (state = initialState, action) => {
         offers: _changeOffer(state.offers, action.payload),
         offersOfCity: _changeOffer(state.offersOfCity, action.payload),
         sortedOffers: _changeOffer(state.sortedOffers, action.payload),
+      });
+
+    case `LOAD_FAVORITE_OFFERS`:
+      return Object.assign({}, state, {
+        favoriteOffersCities: [...new Set(action.payload.map((it) => it.city.name))],
+        favoriteOffers: action.payload,
       });
 
     case `LOAD_OFFERS`:

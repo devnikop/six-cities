@@ -13,6 +13,7 @@ import withAuthorization from '../with-authorization/with-authorization';
 import withBookmark from '../with-bookmark/with-bookmark';
 import withHeader from '../with-header/with-header';
 import withPrivateRoute from '../with-private-route/with-private-route';
+import withFavorite from '../with-favorite/with-favorite'
 
 import Favorites from '../../components/favorites/favorites';
 import MainHeader from '../../components/main-header/main-header';
@@ -71,7 +72,7 @@ const withChangeScreen = (Component) => {
 
           />
           <Route path="/favorites" render={() => {
-            const WrappedFavorites = withPrivateRoute(Favorites, user);
+            const WrappedFavorites = withFavorite(withPrivateRoute(Favorites, user));
             return <>
               <MainHeaderWrapped />
               <WrappedFavorites />
