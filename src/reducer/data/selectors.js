@@ -1,4 +1,4 @@
-import {createSelector} from 'reselect';
+// import { createSelector } from 'reselect';
 import NameSpace from '../name-spaces';
 
 const NAME_SPACE = NameSpace.DATA;
@@ -47,10 +47,11 @@ const getSortedOffers = (state) => {
   return state[NAME_SPACE].sortedOffers;
 };
 
-const getNearestOffers = createSelector(
-    getOffersOfCity,
-    (offers) => offers.slice(0, 3)
-);
+const getNearestOffers = (id, state) => {
+  const offers = getOffersOfCity(state).filter((offer) => offer.id !== id).slice(0, 2);
+  offers.push(getOfferById(id, state));
+  return offers;
+};
 
 
 export {

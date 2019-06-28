@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
 import * as React from 'react';
+
+import history from '../../history';
 
 import {
   Offer,
@@ -15,7 +16,7 @@ interface Props {
 
 const OfferCard: React.FunctionComponent<Props> = (props) => {
   const {
-    changeActiveItem: _onCardImageClick,
+    changeActiveItem,
     handleBookmarkClick,
     offer,
     type,
@@ -23,10 +24,14 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
 
   const handleImageClick = (evt) => {
     evt.preventDefault();
-    _onCardImageClick(offer.id);
+    changeActiveItem(offer.id);
   };
 
   const _handleBookmarkClick = () => handleBookmarkClick(offer);
+  const _handleOfferClick = () => {
+    changeActiveItem(offer.id);
+    history.push(`/offer/${offer.id}`);
+  };
 
   const _getPremiumMark = () =>
     <div className="place-card__mark">
@@ -74,7 +79,7 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+        <a onClick={_handleOfferClick}>{offer.title}</a>
       </h2>
       <p className="place-card__type">{offer.type}</p>
     </div>

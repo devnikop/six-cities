@@ -145,11 +145,11 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
         </div>
       </div>
       <section className="property__map map">
-        <Map
+        {<Map
           activeOfferId={activeOfferId}
           leaflet={leaflet}
           offers={nearestOffers}
-        />
+        />}
       </section>
     </section>
     <div className="container">
@@ -170,7 +170,7 @@ const mapStateToProps = (state, ownProps) => {
   const id = parseInt(ownProps.match.params.id);
   return Object.assign({}, ownProps, {
     activeOfferId: getActiveOfferId(state),
-    nearestOffers: getNearestOffers(state),
+    nearestOffers: getNearestOffers(id, state),
     offer: getOfferById(id, state),
     user: getUserData(state),
   })
