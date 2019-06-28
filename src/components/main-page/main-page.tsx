@@ -41,7 +41,7 @@ const MainPage: React.FunctionComponent<Props> = (props) => {
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <CitiesList />
-    {/* {sortedOffers */}
+    {/* {offers */}
     {false
       ? <MainPageEmpty currentCity={currentCity} />
       : <div className="cities__places-wrapper">
