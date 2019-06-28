@@ -54,11 +54,18 @@ const withChangeScreen = (Component) => {
               renderScreen={this._getScreen}
             />}
           />
-          <Route path="/login" render={() =>
-            <>
-              <MainHeaderWrapped />
-              <SignInWrapped />
-            </>}
+          <Route path="/login" render={() => {
+            if (Object.keys(user).length) {
+              history.push(`/`);
+            } else {
+              return <>
+                <MainHeaderWrapped />
+                <SignInWrapped />
+              </>
+            }
+
+          }
+          }
           />
           <Route path="/offer/:id" render={({ match }) => {
             return <>
@@ -69,7 +76,6 @@ const withChangeScreen = (Component) => {
             </>
           }}
           />
-
           />
           <Route path="/favorites" render={() => {
             const WrappedFavorites = withFavorite(withPrivateRoute(Favorites, user));
