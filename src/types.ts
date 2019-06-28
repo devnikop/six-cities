@@ -1,6 +1,13 @@
+enum OfferPageType {
+  FAVORITE = "favorites",
+  MAIN = "cities",
+}
+
 enum OfferType {
-  favorite = "favorites",
-  main = "cities",
+  APARTMENT = "apartment",
+  HOTEL = "hotel",
+  HOUSE = "house",
+  ROOM = "room",
 }
 
 type City = string;
@@ -47,7 +54,7 @@ interface Offer {
   price: number,
   rating: number,
   title: string,
-  type: string,
+  type: OfferType,
 }
 
 interface User {
@@ -62,6 +69,6 @@ export {
   City,
   Comment,
   Offer,
-  OfferType,
+  OfferPageType,
   User,
 };

@@ -4,7 +4,7 @@ import * as React from 'react';
 import {
   City,
   Offer,
-  OfferType,
+  OfferPageType,
 } from '../../types';
 
 import {
@@ -53,7 +53,7 @@ const MainPage: React.FunctionComponent<Props> = (props) => {
             <div className="cities__places-list places__list tabs__content">
               {<OfferList
                 offers={offers}
-                type={OfferType.main}
+                type={OfferPageType.MAIN}
               />}
             </div>
           </section>

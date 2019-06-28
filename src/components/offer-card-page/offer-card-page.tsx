@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import {
   Offer,
-  OfferType
+  OfferPageType
 } from '../../types';
 
 import {
@@ -154,7 +154,7 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
         <div className="near-places__list places__list">
           {<OfferListWrapped
             offers={nearestOffers}
-            type={OfferType.main}
+            type={OfferPageType.MAIN}
           />}
         </div>
       </section>

@@ -3,7 +3,7 @@ import * as React from 'react';
 import {
   City,
   Offer,
-  OfferType,
+  OfferPageType,
 } from '../../types';
 
 import OfferList from '../offer-list/offer-list';
@@ -40,7 +40,7 @@ const Favorites: React.FunctionComponent<Props> = (props) => {
                 <div className="favorites__places">
                   {<OfferList
                     offers={offers}
-                    type={OfferType.favorite}
+                    type={OfferPageType.FAVORITE}
                   />}
                 </div>
               </li>

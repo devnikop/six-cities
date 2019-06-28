@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import {
   Offer,
-  OfferType
+  OfferPageType
 } from '../../types';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
@@ -14,7 +14,7 @@ const OfferCardWrapped = withActiveItem(withBookmark(OfferCard));
 
 interface Props {
   offers: Offer[],
-  type: OfferType,
+  type: OfferPageType,
 }
 
 class OfferList extends React.PureComponent<Props> {

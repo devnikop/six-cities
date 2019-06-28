@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import * as React from 'react';
 
 import { offerMock } from '../../mocks/mocksForTests';
-import { OfferType } from '../../types';
+import { OfferPageType } from '../../types';
 
 import OfferCard from './offer-card';
 
@@ -17,7 +17,7 @@ it(`Click on photo calls callback`, () => {
       changeActiveItem={clickHandler}
       handleBookmarkClick={jest.fn()}
       offer={offer}
-      type={OfferType.main}
+      type={OfferPageType.MAIN}
     />
   </MemoryRouter>);
 

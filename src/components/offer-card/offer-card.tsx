@@ -3,14 +3,14 @@ import * as React from 'react';
 
 import {
   Offer,
-  OfferType
+  OfferPageType
 } from '../../types';
 
 interface Props {
   changeActiveItem: (id: number) => void,
   handleBookmarkClick: (offer: Offer) => void,
   offer: Offer,
-  type: OfferType,
+  type: OfferPageType,
 }
 
 const OfferCard: React.FunctionComponent<Props> = (props) => {
@@ -45,13 +45,13 @@ const OfferCard: React.FunctionComponent<Props> = (props) => {
         <img
           className="place-card__image"
           src={offer.previewImage}
-          width={`${type === OfferType.favorite ? `150` : `260`}`}
-          height={`${type === OfferType.favorite ? `110` : `200`}`}
+          width={`${type === OfferPageType.FAVORITE ? `150` : `260`}`}
+          height={`${type === OfferPageType.FAVORITE ? `110` : `200`}`}
           alt="Place image"
         />
       </a>
     </div>
-    <div className={`${type === OfferType.favorite ? `favorites__card-info` : ``} place-card__info`}>
+    <div className={`${type === OfferPageType.FAVORITE ? `favorites__card-info` : ``} place-card__info`}>
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
           <b className="place-card__price-value">&euro;{offer.price}</b>

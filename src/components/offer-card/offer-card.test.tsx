@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
 import { offerMock } from '../../mocks/mocksForTests';
-import { OfferType } from '../../types';
+import { OfferPageType } from '../../types';
 
 import OfferCard from './offer-card';
 
@@ -16,7 +16,7 @@ it(`OfferCard renders correctly`, () => {
         changeActiveItem={jest.fn()}
         handleBookmarkClick={jest.fn()}
         offer={offer}
-        type={OfferType.main}
+        type={OfferPageType.MAIN}
       />
     </MemoryRouter>)
     .toJSON();
