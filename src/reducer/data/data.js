@@ -1,17 +1,15 @@
 import {
-  adaptOffers,
-  adaptComments
+  adaptOffers
 } from '../../adapter';
 
 const initialState = {
-  activeOfferId: undefined,
+  activeOfferId: null,
   cities: [],
   currentCity: ``,
   favoriteOffers: [],
   favoriteOffersCities: [],
   offers: [],
   offersOfCity: [],
-  reviews: [],
   sortedOffers: [],
 };
 
@@ -45,11 +43,6 @@ const ActionCreator = {
     payload: offer,
   }),
 
-  loadReviews: (reviews) => ({
-    type: `LOAD_REVIEWS`,
-    payload: reviews,
-  }),
-
   setFavoriteOffers: (offers) => ({
     type: `LOAD_FAVORITE_OFFERS`,
     payload: offers,
@@ -76,6 +69,7 @@ const Operation = {
         dispatch(ActionCreator.setFavoriteOffers(data))
       );
   },
+
   loadOffers: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) =>
@@ -84,15 +78,6 @@ const Operation = {
       .then((data) => {
         dispatch(ActionCreator.setOffers(data));
       });
-  },
-  loadReviews: (id) => (dispatch, _getState, api) => {
-    return api.get(`/comments/${id}`)
-      .then((response) =>
-        adaptComments(response.data)
-      )
-      .then((data) =>
-        dispatch(ActionCreator.loadReviews(data))
-      );
   },
 };
 
@@ -135,11 +120,6 @@ const reducer = (state = initialState, action) => {
         offersOfCity: offers.filter((offer) => offer.city.name === currentCity),
         sortedOffers: offers.filter((offer) => offer.city.name === currentCity),
         offers,
-      });
-
-    case `LOAD_REVIEWS`:
-      return Object.assign({}, state, {
-        reviews: action.payload,
       });
 
     case `SET_SORTED_OFFERS`:

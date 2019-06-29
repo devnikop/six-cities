@@ -39,10 +39,6 @@ const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
 
-const getReviews = (state) => {
-  return state[NAME_SPACE].reviews;
-};
-
 const getSortedOffers = (state) => {
   return state[NAME_SPACE].sortedOffers;
 };
@@ -65,6 +61,5 @@ export {
   getOfferById,
   getOffers,
   getOffersOfCity,
-  getReviews,
   getSortedOffers,
 };

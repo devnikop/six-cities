@@ -3,8 +3,8 @@ import * as React from 'react';
 
 import { Comment } from '../../types';
 
-import { getReviews } from '../../reducer/data/selectors';
-import { Operation } from '../../reducer/data/data';
+import { getReviews } from '../../reducer/reviews/selectors';
+import { Operation } from '../../reducer/reviews/reviews';
 
 import ReviewItem from '../reviews-item/reviews-item';
 

@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { Subtract } from 'utility-types';
 import * as React from 'react';
 
-import { adaptComments } from '../../adapter';
-import { configureAPI } from '../../api';
-
-import { ActionCreator } from '../../reducer/data/data';
+import { Operation } from '../../reducer/reviews/reviews';
 
 interface InjectedProps {
   handleCommentChange: React.FormEventHandler<HTMLTextAreaElement>,
@@ -152,16 +149,8 @@ const withReview = (Component) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onFormSubmit: (offerId, formData) => {
-    configureAPI(dispatch)
-      .post(`/comments/${offerId}`, formData)
-      .then((response) =>
-        adaptComments(response.data)
-      )
-      .then((data) =>
-        dispatch(ActionCreator.loadReviews(data))
-      );
-  }
+  onFormSubmit: (offerId, formData) =>
+    dispatch(Operation.postReview(offerId, formData)),
 });
 
 export default compose(
