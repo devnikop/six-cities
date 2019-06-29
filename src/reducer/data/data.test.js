@@ -6,6 +6,7 @@ import MockAdapter from 'axios-mock-adapter';
 import {
   citiesMock,
   offersArrayMock,
+  offerMock,
 } from '../../mocks/mocksForTests';
 import {
   ActionCreator,
@@ -14,10 +15,43 @@ import {
 } from './data';
 
 describe(`Action Creators work correctly`, () => {
+  it(`ActiveOffer changed correctly`, () => {
+    const mock = {
+      id: 1,
+    };
+    const {id} = mock;
+
+    expect(ActionCreator.changeActiveOfferId(id)).toEqual({
+      type: `CHANGE_ACTIVE_OFFER_ID`,
+      payload: id,
+    });
+  });
+
   it(`City changed correctly`, () => {
     expect(ActionCreator.changeCity(citiesMock[1])).toEqual({
       type: `CHANGE_CITY`,
       payload: citiesMock[1],
+    });
+  });
+
+  it(`Offer changed correctly`, () => {
+    expect(ActionCreator.changeOffer(offerMock)).toEqual({
+      type: `CHANGE_OFFER`,
+      payload: offerMock,
+    });
+  });
+
+  it(`Offers set correctly`, () => {
+    expect(ActionCreator.setOffers(offersArrayMock)).toEqual({
+      type: `LOAD_OFFERS`,
+      payload: offersArrayMock,
+    });
+  });
+
+  it(`SortedOffers set correctly`, () => {
+    expect(ActionCreator.setSortedOffers(offersArrayMock)).toEqual({
+      type: `SET_SORTED_OFFERS`,
+      payload: offersArrayMock,
     });
   });
 });
