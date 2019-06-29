@@ -1,16 +1,10 @@
 import { Link } from 'react-router-dom';
 import * as React from 'react';
 
+import { User } from '../../types';
+
 interface Props {
   user: User,
-}
-
-type User = {
-  avatarUrl: string,
-  email: string,
-  id: number,
-  isPro: boolean,
-  name: string,
 }
 
 const MainHeader: React.FunctionComponent<Props> = (props) => {

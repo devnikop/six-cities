@@ -6,8 +6,8 @@ import {
 } from '../../types';
 import { extractUniqueCities } from '../../utilities';
 
-import OfferList from '../offer-list/offer-list';
 import FavoriteEmpty from '../favorites-empty/favorites-empty';
+import OfferList from '../offer-list/offer-list';
 
 interface Props {
   offers: Offer[],
