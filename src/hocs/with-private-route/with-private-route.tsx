@@ -10,7 +10,7 @@ const withPrivateRoute = (Component, authorizationData) => {
     }
 
     render() {
-      if (isAuthorized(authorizationData)) {
+      if (!isAuthorized(authorizationData)) {
         return <Redirect to="/login" />;
       }
       return <Component
