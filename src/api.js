@@ -9,12 +9,13 @@ const configureAPI = () => {
   });
 
   const onSuccess = (response) => {
-    // onLoginFail();
     return response;
   };
   const onFail = (error) => {
-    if (error.response.request.responseURL.indexOf(`/login`) === -1 && error.response.status === 403) {
-      // onLoginFail();
+    const responseText = error.response.request.responseURL.indexOf(`/login`);
+    const responseStatus = error.response.status;
+
+    if (responseText === -1 && responseStatus === 403) {
       history.push(`/login`);
     }
     return error;
