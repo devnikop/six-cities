@@ -3,20 +3,13 @@ import { connect } from 'react-redux';
 import { Subtract } from 'utility-types';
 import * as React from 'react';
 
-import {
-  City,
-  Offer,
-} from '../../types';
+import { Offer } from '../../types';
 
-import {
-  getFavoriteOffersCities,
-  getFavoriteOffersOfCity,
-} from '../../reducer/favorite/selectors';
+import { getFavoriteOffers } from '../../reducer/favorite/selectors';
 import { Operation } from '../../reducer/favorite/favorite';
 
 interface InjectedProps {
-  cities: City[],
-  getOffersOfCity: (city: City) => Offer[],
+  offers: Offer[],
   loadFavoriteOffers: () => void,
 }
 
@@ -34,10 +27,13 @@ const withFavorite = (Component) => {
     }
 
     render() {
+      const {
+        offers,
+      } = this.props;
+
       return <Component
         {...this.props}
-        cities={this.props.cities}
-        getOffersOfCity={this.props.getOffersOfCity}
+        offers={offers}
       />;
     }
   }
@@ -47,8 +43,7 @@ const withFavorite = (Component) => {
 
 const mapStateToProps = (state) =>
   Object.assign({}, state, {
-    cities: getFavoriteOffersCities(state),
-    getOffersOfCity: (city) => getFavoriteOffersOfCity(city, state),
+    offers: getFavoriteOffers(state),
   });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -29,13 +29,10 @@ const withSortingOptions = (Component) => {
       />;
     }
 
-    _sortByPopular = () => {
-      return this.props.offers;
-    };
+    _sortByPopular = () => this.props.offers;
 
-    _sortByPriceLowToHigh = (initialOffers) => {
-      const sortedOffers = [...initialOffers];
-      sortedOffers.sort((a, b) => {
+    _sortByPriceLowToHigh = (initialOffers) => [...initialOffers]
+      .sort((a, b) => {
         if (a.price < b.price) {
           return -1;
         } else if (a.price > b.price) {
@@ -44,12 +41,9 @@ const withSortingOptions = (Component) => {
           return 0;
         }
       })
-      return sortedOffers;
-    };
 
-    _sortByPriceHighToLow = (initialOffers) => {
-      const sortedOffers = [...initialOffers];
-      sortedOffers.sort((a, b) => {
+    _sortByPriceHighToLow = (initialOffers) => [...initialOffers]
+      .sort((a, b) => {
         if (a.price > b.price) {
           return -1;
         } else if (a.price < b.price) {
@@ -58,12 +52,9 @@ const withSortingOptions = (Component) => {
           return 0;
         }
       })
-      return sortedOffers;
-    };
 
-    _sortByRating = (initialOffers) => {
-      const sortedOffers = [...initialOffers];
-      sortedOffers.sort((a, b) => {
+    _sortByRating = (initialOffers) => [...initialOffers]
+      .sort((a, b) => {
         if (a.rating > b.rating) {
           return -1;
         } else if (a.rating < b.rating) {
@@ -72,8 +63,6 @@ const withSortingOptions = (Component) => {
           return 0;
         }
       })
-      return sortedOffers;
-    };
 
     _handleSelectChange = (evt) => {
       const { onSelectChange, offers } = this.props;

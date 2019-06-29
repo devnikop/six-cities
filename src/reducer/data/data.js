@@ -1,5 +1,9 @@
 import {adaptOffers} from '../../adapter';
 import {changeOffer} from '../reducer-utilities';
+import {
+  getRandomNumber,
+  extractUniqueCities,
+} from '../../utilities';
 
 const initialState = {
   activeOfferId: null,
@@ -8,14 +12,6 @@ const initialState = {
   offers: [],
   offersOfCity: [],
   sortedOffers: [],
-};
-
-const getUniqueCities = (offers) => {
-  return [...new Set(offers.map((it) => it.city.name))];
-};
-
-const getRandomNumber = (length) => {
-  return Math.floor(Math.random() * length);
 };
 
 const ActionCreator = {
@@ -80,7 +76,7 @@ const reducer = (state = initialState, action) => {
 
     case `LOAD_OFFERS`:
       const offers = action.payload;
-      const uniqueCities = getUniqueCities(offers);
+      const uniqueCities = extractUniqueCities(offers);
       const currentCity = offers[getRandomNumber(uniqueCities.length)].city.name;
 
       return Object.assign({}, state, {
