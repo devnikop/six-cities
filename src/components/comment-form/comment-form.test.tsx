@@ -6,9 +6,12 @@ import CommentForm from './comment-form';
 it(`CommentForm renders correctly`, () => {
   const tree = renderer
     .create(<CommentForm
-      handleCommentInput={jest.fn()}
+      comment={``}
+      handleCommentChange={jest.fn()}
       handleFormSubmit={jest.fn()}
       handleRatingChange={jest.fn()}
+      isFormDisabled={false}
+      isSubmitButtonDisabled={false}
     />)
     .toJSON();
 
