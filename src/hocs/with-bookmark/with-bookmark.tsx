@@ -1,18 +1,12 @@
-import {connect} from 'react-redux';
-import {compose} from 'recompose';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import * as React from 'react';
-import {Subtract} from 'utility-types';
+import { Subtract } from 'utility-types';
 
-import {ActionCreator} from '../../reducer/data/data';
-import {configureAPI} from '../../api';
-// import {Offer} from '../../types';
-import {adaptOffer} from '../../adapter';
-
+import { Operation } from '../../reducer/favorite/favorite';
 
 interface InjectedProps {
   handleBookmarkClick: React.MouseEventHandler<HTMLButtonElement>,
-  // offer: Offer,
-  // onFormSubmit: (offer: Offer) => void,
 }
 
 const withBookmark = (Component) => {
@@ -42,16 +36,8 @@ const withBookmark = (Component) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onBookmarkClick: (offer) => {
-    configureAPI(dispatch)
-      .post(`/favorite/${offer.id}/${+!offer.isFavorite}`)
-      .then((response) =>
-        adaptOffer(response.data)
-      )
-      .then((data) => {
-        dispatch(ActionCreator.changeOffer(data));
-      });
-  }
+  onBookmarkClick: (offer) =>
+    dispatch(Operation.postFavoriteOffer(offer)),
 });
 
 export default compose(

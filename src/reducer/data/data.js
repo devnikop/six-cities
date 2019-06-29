@@ -1,13 +1,10 @@
-import {
-  adaptOffers
-} from '../../adapter';
+import {adaptOffers} from '../../adapter';
+import {changeOffer} from '../reducer-utilities';
 
 const initialState = {
   activeOfferId: null,
   cities: [],
   currentCity: ``,
-  favoriteOffers: [],
-  favoriteOffersCities: [],
   offers: [],
   offersOfCity: [],
   sortedOffers: [],
@@ -19,12 +16,6 @@ const getUniqueCities = (offers) => {
 
 const getRandomNumber = (length) => {
   return Math.floor(Math.random() * length);
-};
-
-const _changeOffer = (offers, newOffer) => {
-  return offers.map((item) => {
-    return item.id === newOffer.id ? newOffer : item;
-  });
 };
 
 const ActionCreator = {
@@ -43,11 +34,6 @@ const ActionCreator = {
     payload: offer,
   }),
 
-  setFavoriteOffers: (offers) => ({
-    type: `LOAD_FAVORITE_OFFERS`,
-    payload: offers,
-  }),
-
   setOffers: (offers) => ({
     type: `LOAD_OFFERS`,
     payload: offers,
@@ -60,16 +46,6 @@ const ActionCreator = {
 };
 
 const Operation = {
-  loadFavoriteOffers: () => (dispatch, _getState, api) => {
-    return api.get(`/favorite`)
-      .then((response) =>
-        adaptOffers(response.data)
-      )
-      .then((data) =>
-        dispatch(ActionCreator.setFavoriteOffers(data))
-      );
-  },
-
   loadOffers: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) =>
@@ -97,16 +73,9 @@ const reducer = (state = initialState, action) => {
 
     case `CHANGE_OFFER`:
       return Object.assign({}, state, {
-        favoriteOffers: _changeOffer(state.favoriteOffers, action.payload),
-        offers: _changeOffer(state.offers, action.payload),
-        offersOfCity: _changeOffer(state.offersOfCity, action.payload),
-        sortedOffers: _changeOffer(state.sortedOffers, action.payload),
-      });
-
-    case `LOAD_FAVORITE_OFFERS`:
-      return Object.assign({}, state, {
-        favoriteOffersCities: [...new Set(action.payload.map((it) => it.city.name))],
-        favoriteOffers: action.payload,
+        offers: changeOffer(state.offers, action.payload),
+        offersOfCity: changeOffer(state.offersOfCity, action.payload),
+        sortedOffers: changeOffer(state.sortedOffers, action.payload),
       });
 
     case `LOAD_OFFERS`:

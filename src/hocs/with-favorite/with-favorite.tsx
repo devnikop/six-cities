@@ -11,8 +11,8 @@ import {
 import {
   getFavoriteOffersCities,
   getFavoriteOffersOfCity,
-} from '../../reducer/data/selectors';
-import { Operation } from '../../reducer/data/data';
+} from '../../reducer/favorite/selectors';
+import { Operation } from '../../reducer/favorite/favorite';
 
 interface InjectedProps {
   cities: City[],

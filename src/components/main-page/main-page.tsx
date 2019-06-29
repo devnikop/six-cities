@@ -59,11 +59,11 @@ const MainPage: React.FunctionComponent<Props> = (props) => {
           </section>
           <div className="cities__right-section">
             <section className="cities__map map">
-              <Map
+              {<Map
                 activeOfferId={activeOfferId}
                 leaflet={leaflet}
                 offers={offers}
-              />
+              />}
             </section>
           </div>
         </div>
