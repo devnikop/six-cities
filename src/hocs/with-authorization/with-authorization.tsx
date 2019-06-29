@@ -1,13 +1,9 @@
-import {compose} from 'recompose';
-import {connect} from 'react-redux';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
 import * as React from 'react';
-import {Subtract} from 'utility-types';
+import { Subtract } from 'utility-types';
 
-import {configureAPI} from '../../api';
-import {ActionCreator} from '../../reducer/user/user';
-import history from '../../history';
-
-import {adaptLoginResponse} from '../../adapter';
+import { Operation } from '../../reducer/user/user';
 
 interface InjectedProps {
   handlerEmailChange: React.ChangeEventHandler<HTMLInputElement>,
@@ -70,23 +66,11 @@ const withAuthorization = (Component) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onFormSubmit: (formData) => {
-    configureAPI(dispatch)
-      .post(`/login`, formData)
-      .then((response) => {
-        return adaptLoginResponse(response.data);
-      })
-      .then((data) => {
-        if (data) {
-          dispatch(ActionCreator.login(data));
-          dispatch(ActionCreator.requiredAuthorization(false));
-          history.push(`/`);
-        }
-      });
-  }
+  onFormSubmit: (formData) =>
+    dispatch(Operation.postLogin(formData)),
 });
 
 export default compose(
-    connect(null, mapDispatchToProps),
-    withAuthorization
+  connect(null, mapDispatchToProps),
+  withAuthorization
 );

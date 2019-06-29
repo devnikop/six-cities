@@ -1,4 +1,5 @@
 import {adaptLoginResponse} from '../../adapter';
+import history from '../../history';
 
 const initialState = {
   isAuthorizationRequired: false,
@@ -26,7 +27,21 @@ const Operation = {
           dispatch(ActionCreator.login(adaptedData));
           dispatch(ActionCreator.requiredAuthorization(false));
         }
+      }),
+
+  postLogin: (formData) => (dispatch, _getState, api) => {
+    return api.post(`/login`, formData)
+      .then((response) => {
+        return adaptLoginResponse(response.data);
       })
+      .then((data) => {
+        if (data) {
+          dispatch(ActionCreator.login(data));
+          dispatch(ActionCreator.requiredAuthorization(false));
+          history.push(`/`);
+        }
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
