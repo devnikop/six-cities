@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import * as React from 'react';
+import { connect } from 'react-redux';
 import { Subtract } from 'utility-types';
+import * as React from 'react';
 
 import { Operation } from '../../reducer/favorite/favorite';
 

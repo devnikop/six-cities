@@ -22,8 +22,8 @@ interface State {
 }
 
 const CommentLengthLimit = {
-  MIN: 50,
   MAX: 300,
+  MIN: 50,
 };
 
 const withReview = (Component) => {

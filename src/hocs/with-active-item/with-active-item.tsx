@@ -1,9 +1,9 @@
-import {compose} from 'recompose';
-import {connect} from 'react-redux';
-import {Subtract} from 'utility-types';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { Subtract } from 'utility-types';
 import * as React from 'react';
 
-import {ActionCreator} from '../../reducer/data/data';
+import { ActionCreator } from '../../reducer/data/data';
 
 interface InjectedProps {
   activeItem: number,

@@ -1,7 +1,7 @@
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
-import * as React from 'react';
 import { Subtract } from 'utility-types';
+import * as React from 'react';
 
 import { Operation } from '../../reducer/user/user';
 

@@ -38,7 +38,6 @@ const withHeader = (Component) => {
 
     _handlerSignInClick(evt) {
       evt.preventDefault();
-
       this.props.requireAuthorization();
     }
   }
