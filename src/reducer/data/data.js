@@ -7,10 +7,8 @@ import {
 
 const initialState = {
   activeOfferId: null,
-  cities: [],
   currentCity: ``,
   offers: [],
-  offersOfCity: [],
   sortedOffers: [],
 };
 
@@ -63,14 +61,12 @@ const reducer = (state = initialState, action) => {
     case `CHANGE_CITY`:
       return Object.assign({}, state, {
         currentCity: action.payload,
-        offersOfCity: state.offers.filter((offer) => offer.city.name === action.payload),
         sortedOffers: state.offers.filter((offer) => offer.city.name === action.payload),
       });
 
     case `CHANGE_OFFER`:
       return Object.assign({}, state, {
         offers: changeOffer(state.offers, action.payload),
-        offersOfCity: changeOffer(state.offersOfCity, action.payload),
         sortedOffers: changeOffer(state.sortedOffers, action.payload),
       });
 
@@ -80,11 +76,9 @@ const reducer = (state = initialState, action) => {
       const currentCity = offers[getRandomNumber(uniqueCities.length)].city.name;
 
       return Object.assign({}, state, {
-        cities: uniqueCities,
         currentCity,
-        offersOfCity: offers.filter((offer) => offer.city.name === currentCity),
-        sortedOffers: offers.filter((offer) => offer.city.name === currentCity),
         offers,
+        sortedOffers: offers.filter((offer) => offer.city.name === currentCity),
       });
 
     case `SET_SORTED_OFFERS`:

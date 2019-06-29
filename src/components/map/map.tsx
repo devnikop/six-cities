@@ -45,13 +45,6 @@ class Map extends React.PureComponent<Props> {
 
   componentDidMount() {
     this._addMap();
-
-    // DON'T CHANGE CITY
-
-    // this.currentCity = this.props.offers[0].city;
-    // this.city = this.currentCity.coords;
-    // this.zoom = this.currentCity.zoom;
-    // this.map.setView(this.city, this.zoom);
   }
 
   componentDidUpdate() {

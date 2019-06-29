@@ -1,13 +1,12 @@
+import {createSelector} from 'reselect';
+
 import NameSpace from '../name-spaces';
+import {extractUniqueCities} from '../../utilities';
 
 const NAME_SPACE = NameSpace.DATA;
 
 const getActiveOfferId = (state) => {
   return state[NAME_SPACE].activeOfferId;
-};
-
-const getCities = (state) => {
-  return state[NAME_SPACE].cities;
 };
 
 const getCurrentCity = (state) => {
@@ -16,10 +15,6 @@ const getCurrentCity = (state) => {
 
 const getOfferById = (id, state) => {
   return getOffers(state).filter((offer) => offer.id === id)[0];
-};
-
-const getOffersOfCity = (state) => {
-  return state[NAME_SPACE].offersOfCity;
 };
 
 const getOffers = (state) => {
@@ -35,6 +30,17 @@ const getNearestOffers = (id, state) => {
   offers.push(getOfferById(id, state));
   return offers;
 };
+
+const getCities = createSelector(
+    getOffers,
+    (offers) => extractUniqueCities(offers)
+);
+
+const getOffersOfCity = createSelector(
+    getOffers,
+    getCurrentCity,
+    (offers, city) => offers.filter((offer) => offer.city.name === city)
+);
 
 export {
   getActiveOfferId,
