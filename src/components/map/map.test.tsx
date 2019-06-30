@@ -14,7 +14,7 @@ it(`Map correctly renders`, () => {
 
   const tree = renderer
     .create(<Map
-      activeOfferId={32}
+      activeOfferId={0}
       leaflet={leaflet}
       offers={offers}
     />)

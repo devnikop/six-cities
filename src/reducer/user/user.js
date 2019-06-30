@@ -1,5 +1,6 @@
 import {adaptLoginResponse} from '../../adapter';
 import history from '../../history';
+import {ServerResponseStatus} from '../../constants';
 
 const ActionType = {
   SET_AUTHORIZATION_REQUIRED: `SET_AUTHORIZATION_REQUIRED`,
@@ -27,7 +28,7 @@ const Operation = {
   loadLoginData: () => (dispatch, _getState, api) =>
     api.get(`/login`)
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === ServerResponseStatus.SUCCESS) {
           const adaptedData = adaptLoginResponse(response.data);
           dispatch(ActionCreator.setUserData(adaptedData));
           dispatch(ActionCreator.requiredAuthorization(false));

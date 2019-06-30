@@ -1,10 +1,14 @@
 import axios from 'axios';
+
 import history from './history';
+import {ServerResponseStatus} from './constants';
+
+const TIMEOUT_MILLISECONDS = 5000;
 
 const configureAPI = () => {
   const api = axios.create({
     baseURL: `https://es31-server.appspot.com/six-cities`,
-    timeout: 1000 * 5,
+    timeout: TIMEOUT_MILLISECONDS,
     withCredentials: true,
   });
 
@@ -15,7 +19,7 @@ const configureAPI = () => {
     const responseText = error.response.request.responseURL.indexOf(`/login`);
     const responseStatus = error.response.status;
 
-    if (responseText === -1 && responseStatus === 403) {
+    if (responseText === -1 && responseStatus === ServerResponseStatus.FORBIDDEN) {
       history.push(`/login`);
     }
     return error;

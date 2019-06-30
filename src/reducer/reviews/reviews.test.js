@@ -5,6 +5,8 @@ import {adaptedReviewsArrayMock} from '../../mocks/adaptedMocks';
 import {reviewsArrayMock} from '../../mocks/mocksForTests';
 import {rawReviewsArrayMock} from '../../mocks/rawMocks';
 
+import {ServerResponseStatus} from '../../constants';
+
 import {
   ActionCreator,
   ActionType,
@@ -50,7 +52,7 @@ describe(`Operation works correctly`, () => {
 
     apiMock
       .onGet(`/comments/${id}`)
-      .reply(200, serverAnswer);
+      .reply(ServerResponseStatus.SUCCESS, serverAnswer);
 
     return reviewsLoader(dispatch, jest.fn(), api)
       .then(() => {
@@ -80,7 +82,7 @@ describe(`Operation works correctly`, () => {
 
     apiMock
       .onPost(`/comments/${offerId}`, formData)
-      .reply(200, serverAnswer);
+      .reply(ServerResponseStatus.SUCCESS, serverAnswer);
 
     return reviewsLoader(dispatch, jest.fn(), api)
       .then(() => {

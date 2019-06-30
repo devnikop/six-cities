@@ -14,6 +14,7 @@ import {
   extractUniqueCities,
 } from '../../utilities';
 import {changeOffer} from '../reducer-utilities';
+import {ServerResponseStatus} from '../../constants';
 
 import {
   ActionCreator,
@@ -134,7 +135,7 @@ describe(`Operation works correctly`, () => {
 
     apiMock
       .onGet(`/hotels`)
-      .reply(200, serverAnswer);
+      .reply(ServerResponseStatus.SUCCESS, serverAnswer);
 
     return offersLoader(dispatch, jest.fn(), api)
       .then(() => {

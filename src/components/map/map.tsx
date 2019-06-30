@@ -8,6 +8,19 @@ interface Props {
   offers: Offer[],
 }
 
+const IconSize = {
+  WIDTH: 30,
+  HEIGHT: 30,
+};
+
+const CityDefault = {
+  Coords: {
+    LATITUDE: 52.38333,
+    LONGITUDE: 4.9,
+  },
+  ZOOM: 12,
+};
+
 class Map extends React.PureComponent<Props> {
   private _mapRef;
   private activeIcon;
@@ -26,11 +39,11 @@ class Map extends React.PureComponent<Props> {
 
     this._mapRef = React.createRef();
     this.icon = this.leaflet.icon({
-      iconSize: [30, 30],
+      iconSize: [IconSize.WIDTH, IconSize.HEIGHT],
       iconUrl: `img/pin.svg`,
     });
     this.activeIcon = this.leaflet.icon({
-      iconSize: [30, 30],
+      iconSize: [IconSize.WIDTH, IconSize.HEIGHT],
       iconUrl: `img/pin-active.svg`,
     });
     this.layerGroup = null;
@@ -58,8 +71,8 @@ class Map extends React.PureComponent<Props> {
   }
 
   _addMap() {
-    this.city = [52.38333, 4.9];
-    this.zoom = 12;
+    this.city = [CityDefault.Coords.LATITUDE, CityDefault.Coords.LONGITUDE];
+    this.zoom = CityDefault.ZOOM;
 
     this.map = this.leaflet.map(this._mapRef.current, {
       center: this.city,

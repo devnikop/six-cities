@@ -31,7 +31,7 @@ describe(`Welcome-screen correctly renders`, () => {
     tree = renderer
       .create(<Provider store={store}>
         <MainPage
-          activeOfferId={3}
+          activeOfferId={0}
           currentCity={offers[0].city.name}
           leaflet={leaflet}
           offers={offers}

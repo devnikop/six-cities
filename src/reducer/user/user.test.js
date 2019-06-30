@@ -5,6 +5,8 @@ import {adaptedLoginDataMock} from '../../mocks/adaptedMocks';
 import {loginDataMock} from '../../mocks/mocksForTests';
 import {rawLoginDataMock} from '../../mocks/rawMocks';
 
+import {ServerResponseStatus} from '../../constants';
+
 import {
   ActionCreator,
   ActionType,
@@ -56,7 +58,7 @@ describe(`Operation works correclty`, () => {
 
     apiMock
       .onGet(`/login`)
-      .reply(200, serverAnswer);
+      .reply(ServerResponseStatus.SUCCESS, serverAnswer);
 
     return loginDataLoader(dispatch, jest.fn(), api)
       .then(() => {
@@ -89,7 +91,7 @@ describe(`Operation works correclty`, () => {
 
     apiMock
       .onPost(`/login`, formData)
-      .reply(200, serverAnswer);
+      .reply(ServerResponseStatus.SUCCESS, serverAnswer);
 
     return loginDataLoader(dispatch, jest.fn(), api)
       .then(() => {

@@ -15,6 +15,7 @@ import {
 } from '../../mocks/rawMocks';
 
 import {changeOffer} from '../reducer-utilities';
+import {ServerResponseStatus} from '../../constants';
 
 import {ActionType as DataActionType} from '../data/data';
 import {
@@ -72,7 +73,7 @@ describe(`Operation works correctly`, () => {
 
     apiMock
       .onGet(`/favorite`)
-      .reply(200, serverAnswer);
+      .reply(ServerResponseStatus.SUCCESS, serverAnswer);
 
     return favoriteOffersLoader(dispatch, jest.fn(), api)
       .then(() => {
@@ -97,7 +98,7 @@ describe(`Operation works correctly`, () => {
 
     apiMock
       .onPost(`/favorite/${offer.id}/${+!offer.isFavorite}`)
-      .reply(200, serverAnswer);
+      .reply(ServerResponseStatus.SUCCESS, serverAnswer);
 
     return favoriteOffersLoader(dispatch, jest.fn(), api)
       .then(() => {

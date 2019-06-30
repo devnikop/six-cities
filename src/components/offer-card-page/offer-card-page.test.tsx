@@ -20,7 +20,7 @@ it.skip(`OfferCardPage renders correctly`, () => {
 
   const tree = renderer
     .create(<OfferCardPage
-      activeOfferId={34}
+      activeOfferId={0}
       handleBookmarkClick={jest.fn()}
       match={match}
       nearestOffers={offersArrayMock}
