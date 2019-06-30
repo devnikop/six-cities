@@ -3,41 +3,31 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 
-import { leafletMock, offersArrayMock } from '../../mocks/mocksForTests';
+import {
+  leafletMock,
+  offersArrayMock
+} from '../../mocks/mocksForTests';
+import reduxStateMock from '../../mocks/reduxStateMock';
 
-import { MainPage } from './main-page';
+import MainPage from './main-page';
 
-const getFilteredOffers = (city) =>
-  offersArrayMock.filter((offer) =>
-    offer.city === city);
+it(`Welcome-screen correctly renders`, () => {
+  const offers = offersArrayMock;
+  const leaflet = leafletMock;
 
-describe(`Welcome-screen correctly renders`, () => {
-  const initialState = {
-    cities: [...new Set(offersArrayMock.map((it) => it.city))],
-    currentCity: offersArrayMock[0].city.name,
-    filteredOffers: getFilteredOffers(offersArrayMock[0].city.name),
-  };
-
+  const initialState = reduxStateMock;
   const mockStore = configureStore();
-  let store;
-  let tree;
+  const store = mockStore(initialState);
 
-  it.skip(`Welcome-screen correctly renders`, () => {
-    const leaflet = leafletMock;
-    const offers = offersArrayMock;
+  const tree = renderer
+    .create(<Provider store={store}>
+      <MainPage
+        activeOfferId={0}
+        currentCity={offers[0].city.name}
+        leaflet={leaflet}
+        offers={offers}
+      /></Provider>)
+    .toJSON();
 
-    store = mockStore(initialState);
-
-    tree = renderer
-      .create(<Provider store={store}>
-        <MainPage
-          activeOfferId={0}
-          currentCity={offers[0].city.name}
-          leaflet={leaflet}
-          offers={offers}
-        /></Provider>)
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
+  expect(tree).toMatchSnapshot();
 });

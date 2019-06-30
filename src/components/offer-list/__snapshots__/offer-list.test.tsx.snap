@@ -3,7 +3,7 @@
 exports[`OfferList correctly renders 1`] = `
 Array [
   <article
-    className="cities__place-card place-card"
+    className="cities__card place-card"
   >
     <div
       className="place-card__mark"
@@ -29,7 +29,7 @@ Array [
       </a>
     </div>
     <div
-      className="place-card__info"
+      className=" place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -51,6 +51,7 @@ Array [
         </div>
         <button
           className="place-card__bookmark-button  button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -93,7 +94,6 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/offer/1"
           onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
@@ -107,7 +107,7 @@ Array [
     </div>
   </article>,
   <article
-    className="cities__place-card place-card"
+    className="cities__card place-card"
   >
     <div
       className="place-card__mark"
@@ -133,7 +133,7 @@ Array [
       </a>
     </div>
     <div
-      className="place-card__info"
+      className=" place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -155,6 +155,7 @@ Array [
         </div>
         <button
           className="place-card__bookmark-button  button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -197,7 +198,6 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/offer/1"
           onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
@@ -211,7 +211,7 @@ Array [
     </div>
   </article>,
   <article
-    className="cities__place-card place-card"
+    className="cities__card place-card"
   >
     <div
       className="place-card__mark"
@@ -237,7 +237,7 @@ Array [
       </a>
     </div>
     <div
-      className="place-card__info"
+      className=" place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -259,6 +259,7 @@ Array [
         </div>
         <button
           className="place-card__bookmark-button  button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -301,7 +302,6 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/offer/1"
           onClick={[Function]}
         >
           Wood and stone place
@@ -315,7 +315,7 @@ Array [
     </div>
   </article>,
   <article
-    className="cities__place-card place-card"
+    className="cities__card place-card"
   >
     <div
       className="place-card__mark"
@@ -341,7 +341,7 @@ Array [
       </a>
     </div>
     <div
-      className="place-card__info"
+      className=" place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -363,6 +363,7 @@ Array [
         </div>
         <button
           className="place-card__bookmark-button  button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -405,7 +406,6 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/offer/1"
           onClick={[Function]}
         >
           Wood and stone place

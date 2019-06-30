@@ -3,41 +3,21 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 
-import { App } from './app';
-import {
-  leafletMock,
-  offersArrayMock,
-  citiesMock
-} from '../../mocks/mocksForTests';
+import reduxStateMock from '../../mocks/reduxStateMock';
 
-const getFilteredOffers = (city) =>
-  offersArrayMock.filter((offer) =>
-    offer.city === city);
+import App from './app';
 
-describe(`App correctly renders`, () => {
-  const initialState = {
-    cities: [...new Set(offersArrayMock.map((it) => it.city))],
-    currentCity: citiesMock[0],
-    filteredOffers: getFilteredOffers(citiesMock[0]),
-    offers: [],
-  };
-
+it(`App correctly renders`, () => {
+  const initialState = reduxStateMock;
   const mockStore = configureStore();
-  let store;
-  let tree;
+  const store = mockStore(initialState);
 
-  it.skip(`App correctly renders`, () => {
-    const leaflet = leafletMock;
-    store = mockStore(initialState);
+  const tree = renderer
+    .create(<Provider store={store}>
+      <App
+        renderScreen={jest.fn()}
+      /></Provider>)
+    .toJSON();
 
-    tree = renderer
-      .create(<Provider store={store}>
-        <App
-          // store={store}
-          renderScreen={jest.fn()}
-        /></Provider>)
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
+  expect(tree).toMatchSnapshot();
 });
