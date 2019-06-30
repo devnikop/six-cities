@@ -14,7 +14,7 @@ const getCurrentCity = (state) => {
 };
 
 const getOfferById = (id, state) => {
-  return getOffers(state).filter((offer) => offer.id === id)[0];
+  return getOffers(state).find((offer) => offer.id === id);
 };
 
 const getOffers = (state) => {
@@ -26,9 +26,13 @@ const getSortedOffers = (state) => {
 };
 
 const getNearestOffers = (id, state) => {
-  const offers = getOffersOfCity(state).filter((offer) => offer.id !== id).slice(0, 2);
-  offers.push(getOfferById(id, state));
-  return offers;
+  const currentOffer = getOfferById(id, state);
+  const offersOfCity = getOffers(state).filter((offer) =>
+    offer.city.name === currentOffer.city.name && offer.id !== id);
+
+  const nearestOffers = offersOfCity.slice(0, 2);
+  nearestOffers.push(currentOffer);
+  return nearestOffers;
 };
 
 const getCities = createSelector(
