@@ -5,7 +5,7 @@ import {
   extractUniqueCities,
 } from '../../utilities';
 
-const DataActionType = {
+const ActionType = {
   CHANGE_ACTIVE_OFFER_ID: `CHANGE_ACTIVE_OFFER_ID`,
   CHANGE_CITY: `CHANGE_CITY`,
   SET_OFFERS: `SET_OFFERS`,
@@ -24,37 +24,37 @@ const initialState = {
 
 const ActionCreator = {
   changeActiveOfferId: (id) => ({
-    type: DataActionType.CHANGE_ACTIVE_OFFER_ID,
+    type: ActionType.CHANGE_ACTIVE_OFFER_ID,
     payload: id,
   }),
 
   changeCity: (city) => ({
-    type: DataActionType.CHANGE_CITY,
+    type: ActionType.CHANGE_CITY,
     payload: city,
   }),
 
   setOffers: (offers) => ({
-    type: DataActionType.SET_OFFERS,
+    type: ActionType.SET_OFFERS,
     payload: offers,
   }),
 
   setSortedOffersByCity: (city) => ({
-    type: DataActionType.SET_SORTED_OFFERS_BY_CITY,
+    type: ActionType.SET_SORTED_OFFERS_BY_CITY,
     payload: city,
   }),
 
   setSortedOffers: (offers) => ({
-    type: DataActionType.SET_SORTED_OFFERS,
+    type: ActionType.SET_SORTED_OFFERS,
     payload: offers,
   }),
 
   updateOffersByGivenOffer: (offer) => ({
-    type: DataActionType.UPDATE_OFFERS_BY_GIVEN_OFFER,
+    type: ActionType.UPDATE_OFFERS_BY_GIVEN_OFFER,
     payload: offer,
   }),
 
   updateSortedOfferByGivenOffer: (offer) => ({
-    type: DataActionType.UPDATE_SORTED_OFFERS_BY_GIVEN_OFFER,
+    type: ActionType.UPDATE_SORTED_OFFERS_BY_GIVEN_OFFER,
     payload: offer,
   }),
 };
@@ -78,38 +78,38 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case DataActionType.CHANGE_ACTIVE_OFFER_ID:
+    case ActionType.CHANGE_ACTIVE_OFFER_ID:
       return Object.assign({}, state, {
         activeOfferId: action.payload,
       });
 
-    case DataActionType.CHANGE_CITY:
+    case ActionType.CHANGE_CITY:
       return Object.assign({}, state, {
         currentCity: action.payload,
       });
 
-    case DataActionType.SET_OFFERS:
+    case ActionType.SET_OFFERS:
       return Object.assign({}, state, {
         offers: action.payload,
       });
 
 
-    case DataActionType.SET_SORTED_OFFERS_BY_CITY:
+    case ActionType.SET_SORTED_OFFERS_BY_CITY:
       return Object.assign({}, state, {
         sortedOffers: state.offers.filter((offer) => offer.city.name === action.payload),
       });
 
-    case DataActionType.SET_SORTED_OFFERS:
+    case ActionType.SET_SORTED_OFFERS:
       return Object.assign({}, state, {
         sortedOffers: action.payload,
       });
 
-    case DataActionType.UPDATE_OFFERS_BY_GIVEN_OFFER:
+    case ActionType.UPDATE_OFFERS_BY_GIVEN_OFFER:
       return Object.assign({}, state, {
         offers: changeOffer(state.offers, action.payload),
       });
 
-    case DataActionType.UPDATE_SORTED_OFFERS_BY_GIVEN_OFFER:
+    case ActionType.UPDATE_SORTED_OFFERS_BY_GIVEN_OFFER:
       return Object.assign({}, state, {
         sortedOffers: changeOffer(state.sortedOffers, action.payload),
       });
@@ -119,7 +119,7 @@ const reducer = (state = initialState, action) => {
 
 export {
   ActionCreator,
-  DataActionType,
+  ActionType,
   Operation,
   reducer,
 };

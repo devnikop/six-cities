@@ -16,34 +16,34 @@ import {changeOffer} from '../reducer-utilities';
 
 import {
   ActionCreator,
-  DataActionType,
+  ActionType,
   Operation,
   reducer,
 } from './data';
 
 const ActionsMock = {
   changeActiveOfferIdAction: {
-    type: DataActionType.CHANGE_ACTIVE_OFFER_ID,
+    type: ActionType.CHANGE_ACTIVE_OFFER_ID,
     payload: 2,
   },
 
   changeCityAction: {
-    type: DataActionType.CHANGE_CITY,
+    type: ActionType.CHANGE_CITY,
     payload: citiesMock[0],
   },
 
   setOffersAction: {
-    type: DataActionType.SET_OFFERS,
+    type: ActionType.SET_OFFERS,
     payload: offersArrayMock,
   },
 
   setSortedOffersByCityAction: {
-    type: DataActionType.SET_SORTED_OFFERS_BY_CITY,
+    type: ActionType.SET_SORTED_OFFERS_BY_CITY,
     payload: citiesMock[0],
   },
 
   setSortedOffersAction: {
-    type: DataActionType.SET_SORTED_OFFERS,
+    type: ActionType.SET_SORTED_OFFERS,
     payload: offersArrayMock,
   },
 
@@ -53,12 +53,12 @@ const ActionsMock = {
   },
 
   updateOffersByGivenOfferAction: {
-    type: DataActionType.UPDATE_OFFERS_BY_GIVEN_OFFER,
+    type: ActionType.UPDATE_OFFERS_BY_GIVEN_OFFER,
     payload: offerMock,
   },
 
   updateSortedOfferByGivenOfferAction: {
-    type: DataActionType.UPDATE_SORTED_OFFERS_BY_GIVEN_OFFER,
+    type: ActionType.UPDATE_SORTED_OFFERS_BY_GIVEN_OFFER,
     payload: offerMock,
   },
 
@@ -143,15 +143,15 @@ describe(`Operation works correctly`, () => {
 
         expect(dispatch).toHaveBeenCalled();
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: DataActionType.SET_OFFERS,
+          type: ActionType.SET_OFFERS,
           payload: adaptedOffers,
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: DataActionType.CHANGE_CITY,
+          type: ActionType.CHANGE_CITY,
           payload: currentCity,
         });
         expect(dispatch).toHaveBeenNthCalledWith(3, {
-          type: DataActionType.SET_SORTED_OFFERS_BY_CITY,
+          type: ActionType.SET_SORTED_OFFERS_BY_CITY,
           payload: currentCity,
         });
       });

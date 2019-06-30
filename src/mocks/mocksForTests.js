@@ -1,3 +1,34 @@
+const adaptedOfferMock = {
+  bedrooms: 1,
+  city: {
+    coords: [48.85661, 2.351499],
+    zoom: 13,
+    name: `Paris`,
+  },
+  description: `Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.`,
+  goods: [`Towels`, `Laptop friendly workspace`, `Baby seat`, `Washer`, `Breakfast`, `Air conditioning`],
+  host: {
+    avatar: `img/avatar-angelina.jpg`,
+    id: 25,
+    name: `Angelina`,
+    isPro: true,
+  },
+  id: 1,
+  images: [`https://es31-server.appspot.com/six-cities/static/hotel/17.jpg`],
+  isFavorite: true,
+  isPremium: false,
+  maxAdults: 3,
+  place: {
+    coords: [48.834610000000005, 2.364499],
+    zoom: 16,
+  },
+  previewImage: `https://es31-server.appspot.com/six-cities/static/hotel/12.jpg`,
+  price: 231,
+  rating: 5,
+  title: `Canal View Prinsengracht`,
+  type: `room`,
+};
+
 const adaptedOffersArrayMock = [
   {
     bedrooms: 1,
@@ -196,6 +227,25 @@ const offersArrayMock = [
   },
 ];
 
+const rawOfferMock = {
+  "bedrooms": 1,
+  "city": {name: `Paris`, location: {latitude: 48.85661, longitude: 2.351499, zoom: 13}},
+  "description": `Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.`,
+  "goods": [`Towels`, `Laptop friendly workspace`, `Baby seat`, `Washer`, `Breakfast`, `Air conditioning`],
+  "host": {"id": 25, "name": `Angelina`, "is_pro": true, "avatar_url": `img/avatar-angelina.jpg`},
+  "id": 1,
+  "images": [`https://es31-server.appspot.com/six-cities/static/hotel/17.jpg`],
+  "is_favorite": true,
+  "is_premium": false,
+  "location": {latitude: 48.834610000000005, longitude: 2.364499, zoom: 16},
+  "max_adults": 3,
+  "preview_image": `https://es31-server.appspot.com/six-cities/static/hotel/12.jpg`,
+  "price": 231,
+  "rating": 4.8,
+  "title": `Canal View Prinsengracht`,
+  "type": `room`
+};
+
 const rawOffersArrayMock = [
   {
     "bedrooms": 1,
@@ -278,11 +328,13 @@ const userLoginMock = {
 };
 
 export {
+  adaptedOfferMock,
   adaptedOffersArrayMock,
   citiesMock,
   leafletMock,
   offerMock,
   offersArrayMock,
+  rawOfferMock,
   rawOffersArrayMock,
   reviewMock,
   reviewsArrayMock,
