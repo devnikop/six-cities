@@ -31,7 +31,7 @@ const init = () => {
   );
 
   store.dispatch(DataOperation.loadOffers());
-  store.dispatch(UserOperation.checkAuth());
+  store.dispatch(UserOperation.loadLoginData());
 
   ReactDOM.render(
     <Provider store={store}>

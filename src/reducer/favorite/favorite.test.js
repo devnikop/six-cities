@@ -4,11 +4,16 @@ import MockAdapter from 'axios-mock-adapter';
 import {
   adaptedOfferMock,
   adaptedOffersArrayMock,
+} from '../../mocks/adaptedMocks';
+import {
   offersArrayMock,
-  rawOfferMock,
-  rawOffersArrayMock,
   offerMock,
 } from '../../mocks/mocksForTests';
+import {
+  rawOfferMock,
+  rawOffersArrayMock,
+} from '../../mocks/rawMocks';
+
 import {changeOffer} from '../reducer-utilities';
 
 import {ActionType as DataActionType} from '../data/data';

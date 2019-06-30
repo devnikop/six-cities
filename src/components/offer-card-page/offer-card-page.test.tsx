@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
-import { offerMock, offersArrayMock, userLoginMock } from '../../mocks/mocksForTests';
+import { offerMock, offersArrayMock, loginDataMock } from '../../mocks/mocksForTests';
 
 import { OfferCardPage } from './offer-card-page';
 
@@ -25,7 +25,7 @@ it.skip(`OfferCardPage renders correctly`, () => {
       match={match}
       nearestOffers={offersArrayMock}
       offer={offerMock}
-      user={userLoginMock}
+      user={loginDataMock}
     />)
     .toJSON();
 

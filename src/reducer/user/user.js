@@ -1,30 +1,35 @@
 import {adaptLoginResponse} from '../../adapter';
 import history from '../../history';
 
+const ActionType = {
+  SET_AUTHORIZATION_REQUIRED: `SET_AUTHORIZATION_REQUIRED`,
+  SET_USER_DATA: `SET_USER_DATA`,
+};
+
 const initialState = {
   isAuthorizationRequired: false,
-  user: {},
+  loginData: {},
 };
 
 const ActionCreator = {
-  login: (user) => ({
-    type: `LOGIN`,
+  setUserData: (user) => ({
+    type: ActionType.SET_USER_DATA,
     payload: user,
   }),
 
   requiredAuthorization: (status) => ({
-    type: `REQUIRED_AUTHORIZATION`,
+    type: ActionType.SET_AUTHORIZATION_REQUIRED,
     payload: status,
   }),
 };
 
 const Operation = {
-  checkAuth: () => (dispatch, _getState, api) =>
+  loadLoginData: () => (dispatch, _getState, api) =>
     api.get(`/login`)
       .then((response) => {
         if (response.status === 200) {
           const adaptedData = adaptLoginResponse(response.data);
-          dispatch(ActionCreator.login(adaptedData));
+          dispatch(ActionCreator.setUserData(adaptedData));
           dispatch(ActionCreator.requiredAuthorization(false));
         }
       }),
@@ -32,11 +37,9 @@ const Operation = {
   postLogin: (formData) => (dispatch, _getState, api) => {
     return api.post(`/login`, formData)
       .then((response) => {
-        return adaptLoginResponse(response.data);
-      })
-      .then((data) => {
-        if (data) {
-          dispatch(ActionCreator.login(data));
+        if (response.data) {
+          const adaptedData = adaptLoginResponse(response.data);
+          dispatch(ActionCreator.setUserData(adaptedData));
           dispatch(ActionCreator.requiredAuthorization(false));
           history.push(`/`);
         }
@@ -46,12 +49,12 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case `LOGIN`:
+    case ActionType.SET_USER_DATA:
       return Object.assign({}, state, {
-        user: action.payload,
+        loginData: action.payload,
       });
 
-    case `REQUIRED_AUTHORIZATION`:
+    case ActionType.SET_AUTHORIZATION_REQUIRED:
       return Object.assign({}, state, {
         isAuthorizationRequired: action.payload,
       });
@@ -61,6 +64,7 @@ const reducer = (state = initialState, action) => {
 
 export {
   ActionCreator,
+  ActionType,
   Operation,
   reducer,
 };

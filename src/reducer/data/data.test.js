@@ -1,13 +1,14 @@
 import {configureAPI} from '../../api';
 import MockAdapter from 'axios-mock-adapter';
 
+import {adaptedOffersArrayMock} from '../../mocks/adaptedMocks';
 import {
-  adaptedOffersArrayMock,
   citiesMock,
   offersArrayMock,
-  rawOffersArrayMock,
   offerMock,
 } from '../../mocks/mocksForTests';
+import {rawOffersArrayMock} from '../../mocks/rawMocks';
+
 import {
   getRandomNumber,
   extractUniqueCities,

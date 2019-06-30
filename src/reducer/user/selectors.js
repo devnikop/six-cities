@@ -7,7 +7,7 @@ const getAuthorizationStatus = (state) => {
 };
 
 const getUserData = (state) => {
-  return state[NAME_SPACE].user;
+  return state[NAME_SPACE].loginData;
 };
 
 export {

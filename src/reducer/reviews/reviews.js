@@ -1,12 +1,16 @@
 import {adaptComments} from '../../adapter';
 
+const ActionType = {
+  SET_REVIEWS: `SET_REVIEWS`,
+};
+
 const initialState = {
   reviews: [],
 };
 
 const ActionCreator = {
-  loadReviews: (reviews) => ({
-    type: `LOAD_REVIEWS`,
+  setReviews: (reviews) => ({
+    type: ActionType.SET_REVIEWS,
     payload: reviews,
   }),
 };
@@ -18,7 +22,7 @@ const Operation = {
         adaptComments(response.data)
       )
       .then((data) =>
-        dispatch(ActionCreator.loadReviews(data))
+        dispatch(ActionCreator.setReviews(data))
       );
   },
 
@@ -28,14 +32,14 @@ const Operation = {
         adaptComments(response.data)
       )
       .then((data) =>
-        dispatch(ActionCreator.loadReviews(data))
+        dispatch(ActionCreator.setReviews(data))
       );
   },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case `LOAD_REVIEWS`:
+    case ActionType.SET_REVIEWS:
       return Object.assign({}, state, {
         reviews: action.payload,
       });
@@ -45,6 +49,7 @@ const reducer = (state = initialState, action) => {
 
 export {
   ActionCreator,
+  ActionType,
   Operation,
   reducer,
 };
