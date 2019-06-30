@@ -36,7 +36,8 @@ const Operation = {
       )
       .then((data) => {
         dispatch(ActionCreator.updateFavoriteOffer(data));
-        dispatch(ActionCreatorData.changeOffer(data));
+        dispatch(ActionCreatorData.updateOffersByGivenOffer(data));
+        dispatch(ActionCreatorData.updateSortedOfferByGivenOffer(data));
       });
   },
 };

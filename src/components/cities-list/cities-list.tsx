@@ -55,6 +55,7 @@ const mapStateToProps = (state, ownProps) =>
 const mapDispatchToProps = (dispatch) => ({
   onCity: (city) => {
     dispatch(ActionCreator.changeCity(city));
+    dispatch(ActionCreator.setSortedOffersByCity(city));
   },
 });
 

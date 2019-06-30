@@ -5,6 +5,16 @@ import {
   extractUniqueCities,
 } from '../../utilities';
 
+const DataActionType = {
+  CHANGE_ACTIVE_OFFER_ID: `CHANGE_ACTIVE_OFFER_ID`,
+  CHANGE_CITY: `CHANGE_CITY`,
+  SET_OFFERS: `SET_OFFERS`,
+  SET_SORTED_OFFERS_BY_CITY: `SET_SORTED_OFFERS_BY_CITY`,
+  SET_SORTED_OFFERS: `SET_SORTED_OFFERS`,
+  UPDATE_OFFERS_BY_GIVEN_OFFER: `UPDATE_OFFERS_BY_GIVEN_OFFER`,
+  UPDATE_SORTED_OFFERS_BY_GIVEN_OFFER: `UPDATE_SORTED_OFFERS_BY_GIVEN_OFFER`,
+};
+
 const initialState = {
   activeOfferId: null,
   currentCity: ``,
@@ -14,28 +24,38 @@ const initialState = {
 
 const ActionCreator = {
   changeActiveOfferId: (id) => ({
-    type: `CHANGE_ACTIVE_OFFER_ID`,
+    type: DataActionType.CHANGE_ACTIVE_OFFER_ID,
     payload: id,
   }),
 
   changeCity: (city) => ({
-    type: `CHANGE_CITY`,
+    type: DataActionType.CHANGE_CITY,
     payload: city,
   }),
 
-  changeOffer: (offer) => ({
-    type: `CHANGE_OFFER`,
-    payload: offer,
+  setOffers: (offers) => ({
+    type: DataActionType.SET_OFFERS,
+    payload: offers,
   }),
 
-  setOffers: (offers) => ({
-    type: `LOAD_OFFERS`,
-    payload: offers,
+  setSortedOffersByCity: (city) => ({
+    type: DataActionType.SET_SORTED_OFFERS_BY_CITY,
+    payload: city,
   }),
 
   setSortedOffers: (offers) => ({
-    type: `SET_SORTED_OFFERS`,
+    type: DataActionType.SET_SORTED_OFFERS,
     payload: offers,
+  }),
+
+  updateOffersByGivenOffer: (offer) => ({
+    type: DataActionType.UPDATE_OFFERS_BY_GIVEN_OFFER,
+    payload: offer,
+  }),
+
+  updateSortedOfferByGivenOffer: (offer) => ({
+    type: DataActionType.UPDATE_SORTED_OFFERS_BY_GIVEN_OFFER,
+    payload: offer,
   }),
 };
 
@@ -45,45 +65,53 @@ const Operation = {
       .then((response) =>
         adaptOffers(response.data)
       )
-      .then((data) => {
-        dispatch(ActionCreator.setOffers(data));
+      .then((offers) => {
+        const uniqueCities = extractUniqueCities(offers);
+        const currentCity = offers[getRandomNumber(uniqueCities.length)].city.name;
+
+        dispatch(ActionCreator.setOffers(offers));
+        dispatch(ActionCreator.changeCity(currentCity));
+        dispatch(ActionCreator.setSortedOffersByCity(currentCity));
       });
   },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case `CHANGE_ACTIVE_OFFER_ID`:
+    case DataActionType.CHANGE_ACTIVE_OFFER_ID:
       return Object.assign({}, state, {
         activeOfferId: action.payload,
       });
 
-    case `CHANGE_CITY`:
+    case DataActionType.CHANGE_CITY:
       return Object.assign({}, state, {
         currentCity: action.payload,
+      });
+
+    case DataActionType.SET_OFFERS:
+      return Object.assign({}, state, {
+        offers: action.payload,
+      });
+
+
+    case DataActionType.SET_SORTED_OFFERS_BY_CITY:
+      return Object.assign({}, state, {
         sortedOffers: state.offers.filter((offer) => offer.city.name === action.payload),
       });
 
-    case `CHANGE_OFFER`:
-      return Object.assign({}, state, {
-        offers: changeOffer(state.offers, action.payload),
-        sortedOffers: changeOffer(state.sortedOffers, action.payload),
-      });
-
-    case `LOAD_OFFERS`:
-      const offers = action.payload;
-      const uniqueCities = extractUniqueCities(offers);
-      const currentCity = offers[getRandomNumber(uniqueCities.length)].city.name;
-
-      return Object.assign({}, state, {
-        currentCity,
-        offers,
-        sortedOffers: offers.filter((offer) => offer.city.name === currentCity),
-      });
-
-    case `SET_SORTED_OFFERS`:
+    case DataActionType.SET_SORTED_OFFERS:
       return Object.assign({}, state, {
         sortedOffers: action.payload,
+      });
+
+    case DataActionType.UPDATE_OFFERS_BY_GIVEN_OFFER:
+      return Object.assign({}, state, {
+        offers: changeOffer(state.offers, action.payload),
+      });
+
+    case DataActionType.UPDATE_SORTED_OFFERS_BY_GIVEN_OFFER:
+      return Object.assign({}, state, {
+        sortedOffers: changeOffer(state.sortedOffers, action.payload),
       });
   }
   return state;
@@ -91,6 +119,7 @@ const reducer = (state = initialState, action) => {
 
 export {
   ActionCreator,
+  DataActionType,
   Operation,
   reducer,
 };
