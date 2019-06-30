@@ -23,7 +23,6 @@ const loginDataMock = {
   name: `doppervily`,
 };
 
-
 const offerMock = {
   bedrooms: 1,
   city: {
@@ -204,7 +203,6 @@ const reviewsArrayMock = [
     date: `2019-05-08T14:13:56.569Z`
   },
 ];
-
 
 export {
   citiesMock,
