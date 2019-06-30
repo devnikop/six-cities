@@ -5,34 +5,24 @@ const citiesMock = [
   `Brussels`
 ];
 
-const leafletMock = {
-  icon() {
-    return {
-      iconSize: [30, 30],
-      iconUrl: `img/pin.svg`,
-    };
-  },
-  map() {
-    return {
-      setView: jest.fn(),
-    };
-  },
-  tileLayer() {
-    return {
-      addTo: jest.fn(),
-    };
-  },
-  layerGroup() {
-    return {
-      addTo: jest.fn(),
-    };
-  },
-  marker() {
-    return {
-      addTo: jest.fn(),
-    };
-  },
+const createNodeForMap = {
+  createNodeMock: () => {
+    const el = document.createElement(`div`);
+    el.id = `map`;
+    el.style.height = `400px`;
+
+    return el;
+  }
 };
+
+const loginDataMock = {
+  avatarUrl: `/static/avatar/5.jpg`,
+  email: `doppervily@yandex.ru`,
+  id: 1,
+  isPro: false,
+  name: `doppervily`,
+};
+
 
 const offerMock = {
   bedrooms: 1,
@@ -215,20 +205,13 @@ const reviewsArrayMock = [
   },
 ];
 
-const loginDataMock = {
-  avatarUrl: `/static/avatar/5.jpg`,
-  email: `doppervily@yandex.ru`,
-  id: 1,
-  isPro: false,
-  name: `doppervily`,
-};
 
 export {
   citiesMock,
-  leafletMock,
+  createNodeForMap,
+  loginDataMock,
   offerMock,
   offersArrayMock,
   reviewMock,
   reviewsArrayMock,
-  loginDataMock,
 };

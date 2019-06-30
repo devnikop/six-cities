@@ -24,7 +24,6 @@ import SortingOptions from '../sorting-options/sorting-options';
 interface Props {
   activeOfferId: number,
   currentCity: City,
-  leaflet,
   offers: Offer[],
 }
 
@@ -34,7 +33,6 @@ const MainPage: React.FunctionComponent<Props> = (props) => {
   const {
     activeOfferId,
     currentCity,
-    leaflet,
     offers,
   } = props;
 
@@ -61,7 +59,6 @@ const MainPage: React.FunctionComponent<Props> = (props) => {
             <section className="cities__map map">
               {<Map
                 activeOfferId={activeOfferId}
-                leaflet={leaflet}
                 offers={offers}
               />}
             </section>

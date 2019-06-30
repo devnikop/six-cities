@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import * as leaflet from 'leaflet';
 import * as React from 'react';
 
 import {
@@ -145,7 +144,6 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
       <section className="property__map map">
         {<Map
           activeOfferId={activeOfferId}
-          leaflet={leaflet}
           offers={nearestOffers}
         />}
       </section>

@@ -4,8 +4,8 @@ import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 
 import {
-  leafletMock,
-  offersArrayMock
+  createNodeForMap,
+  offersArrayMock,
 } from '../../mocks/mocksForTests';
 import reduxStateMock from '../../mocks/reduxStateMock';
 
@@ -13,7 +13,6 @@ import MainPage from './main-page';
 
 it(`Welcome-screen correctly renders`, () => {
   const offers = offersArrayMock;
-  const leaflet = leafletMock;
 
   const initialState = reduxStateMock;
   const mockStore = configureStore();
@@ -24,9 +23,8 @@ it(`Welcome-screen correctly renders`, () => {
       <MainPage
         activeOfferId={0}
         currentCity={offers[0].city.name}
-        leaflet={leaflet}
         offers={offers}
-      /></Provider>)
+      /></Provider>, createNodeForMap)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

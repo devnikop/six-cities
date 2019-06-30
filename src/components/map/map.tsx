@@ -1,10 +1,10 @@
 import * as React from 'react';
+import * as leaflet from 'leaflet';
 
 import { Offer } from '../../types';
 
 interface Props {
   activeOfferId: number,
-  leaflet,
   offers: Offer[],
 }
 
@@ -28,21 +28,18 @@ class Map extends React.PureComponent<Props> {
   private currentCity;
   private icon;
   private layerGroup;
-  private leaflet;
   private map;
   private zoom;
 
   constructor(props) {
     super(props);
 
-    this.leaflet = props.leaflet;
-
     this._mapRef = React.createRef();
-    this.icon = this.leaflet.icon({
+    this.icon = leaflet.icon({
       iconSize: [IconSize.WIDTH, IconSize.HEIGHT],
       iconUrl: `img/pin.svg`,
     });
-    this.activeIcon = this.leaflet.icon({
+    this.activeIcon = leaflet.icon({
       iconSize: [IconSize.WIDTH, IconSize.HEIGHT],
       iconUrl: `img/pin-active.svg`,
     });
@@ -74,7 +71,7 @@ class Map extends React.PureComponent<Props> {
     this.city = [CityDefault.Coords.LATITUDE, CityDefault.Coords.LONGITUDE];
     this.zoom = CityDefault.ZOOM;
 
-    this.map = this.leaflet.map(this._mapRef.current, {
+    this.map = leaflet.map(this._mapRef.current, {
       center: this.city,
       zoom: this.zoom,
       zoomControl: false,
@@ -82,9 +79,9 @@ class Map extends React.PureComponent<Props> {
     });
     this.map.setView(this.city, this.zoom);
 
-    this.layerGroup = this.leaflet.layerGroup().addTo(this.map);
+    this.layerGroup = leaflet.layerGroup().addTo(this.map);
 
-    this.leaflet
+    leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
         contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
@@ -106,14 +103,14 @@ class Map extends React.PureComponent<Props> {
 
   _addActiveMarker(coords) {
     const icon = this.activeIcon;
-    this.leaflet
+    leaflet
       .marker(coords, { icon })
       .addTo(this.layerGroup);
   }
 
   _addMarker(coords) {
     const icon = this.icon;
-    this.leaflet
+    leaflet
       .marker(coords, { icon })
       .addTo(this.layerGroup);
   }

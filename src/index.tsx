@@ -1,7 +1,6 @@
 import { compose } from 'recompose';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import * as leaflet from 'leaflet';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import thunk from 'redux-thunk';
@@ -35,9 +34,7 @@ const init = () => {
 
   ReactDOM.render(
     <Provider store={store}>
-      <AppWrapped
-        leaflet={leaflet}
-      />
+      <AppWrapped/>
     </Provider>,
     document.querySelector(`#root`)
   );

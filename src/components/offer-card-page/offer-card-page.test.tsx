@@ -1,13 +1,22 @@
 import { Provider } from 'react-redux';
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import configureStore from 'redux-mock-store';
-// import thunk from 'redux-thunk';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 
-import { offerMock, offersArrayMock, loginDataMock } from '../../mocks/mocksForTests';
+import {
+  createNodeForMap,
+  loginDataMock,
+  offerMock,
+  offersArrayMock,
+} from '../../mocks/mocksForTests';
 import reduxStateMock from '../../mocks/reduxStateMock';
 
+import { Operation } from '../../reducer/reviews/reviews';
+
 import OfferCardPage from './offer-card-page';
+
+Operation.loadReviews = () => (dispatch) => dispatch(jest.fn());
 
 const mock = {
   match: {
@@ -17,14 +26,15 @@ const mock = {
   }
 };
 
-it.skip(`OfferCardPage renders correctly`, () => {
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
+const initialState = reduxStateMock;
+const store = mockStore(initialState);
+
+it(`OfferCardPage renders correctly`, () => {
   const {
     match
   } = mock;
-
-  const initialState = reduxStateMock;
-  const mockStore = configureStore();
-  const store = mockStore(initialState);
 
   const tree = renderer
     .create(<Provider store={store}>
@@ -36,7 +46,7 @@ it.skip(`OfferCardPage renders correctly`, () => {
         offer={offerMock}
         user={loginDataMock}
       />
-    </Provider>)
+    </Provider>, createNodeForMap)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

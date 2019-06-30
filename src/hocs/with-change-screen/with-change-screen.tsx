@@ -23,7 +23,6 @@ import OfferCardPage from '../../components/offer-card-page/offer-card-page';
 import SignIn from '../../components/sign-in/sign-in';
 
 interface InjectedProps {
-  leaflet,
   user: User,
 }
 
@@ -86,15 +85,9 @@ const withChangeScreen = (Component) => {
     }
 
     _getScreen() {
-      const {
-        leaflet
-      } = this.props;
-
       return <>
         <MainHeaderWrapped />
-        <MainPage
-          leaflet={leaflet}
-        />
+        <MainPage/>
       </>;
     }
   }
