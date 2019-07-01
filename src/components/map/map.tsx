@@ -13,38 +13,15 @@ const IconSize = {
   HEIGHT: 30,
 };
 
-const CityDefault = {
-  Coords: {
-    LATITUDE: 52.38333,
-    LONGITUDE: 4.9,
-  },
-  ZOOM: 12,
-};
-
 class Map extends React.PureComponent<Props> {
   private _mapRef;
-  private activeIcon;
-  private city;
-  private currentCity;
-  private icon;
-  private layerGroup;
-  private map;
-  private zoom;
+  private _layerGroup;
+  private _map;
 
   constructor(props) {
     super(props);
 
     this._mapRef = React.createRef();
-    this.icon = leaflet.icon({
-      iconSize: [IconSize.WIDTH, IconSize.HEIGHT],
-      iconUrl: `img/pin.svg`,
-    });
-    this.activeIcon = leaflet.icon({
-      iconSize: [IconSize.WIDTH, IconSize.HEIGHT],
-      iconUrl: `img/pin-active.svg`,
-    });
-    this.layerGroup = null;
-    this.map = null;
   }
 
   render() {
@@ -54,65 +31,107 @@ class Map extends React.PureComponent<Props> {
   }
 
   componentDidMount() {
-    this._addMap();
+    this._initMap();
   }
 
   componentDidUpdate() {
-    this.layerGroup.clearLayers();
-    this._addMarkers(this.props.offers);
+    const {
+      activeOfferId,
+      offers,
+    } = this.props;
 
-    this.currentCity = this.props.offers[0].city;
-    this.city = this.currentCity.coords;
-    this.zoom = this.currentCity.zoom;
-    this.map.setView(this.city, this.zoom);
+    const city = offers[0].city;
+    this._setFocus(city);
+
+    this._clearMarkersField();
+    this._addMarkers(offers, activeOfferId);
   }
 
-  _addMap() {
-    this.city = [CityDefault.Coords.LATITUDE, CityDefault.Coords.LONGITUDE];
-    this.zoom = CityDefault.ZOOM;
-
-    this.map = leaflet.map(this._mapRef.current, {
-      center: this.city,
-      zoom: this.zoom,
-      zoomControl: false,
-      marker: true
-    });
-    this.map.setView(this.city, this.zoom);
-
-    this.layerGroup = leaflet.layerGroup().addTo(this.map);
-
+  _addActiveMarker(coords) {
     leaflet
-      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
-        contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-      })
-      .addTo(this.map);
-
-    this._addMarkers(this.props.offers);
+      .marker(coords, { icon: this._iconActive })
+      .addTo(this._layerGroup);
   }
 
-  _addMarkers(offers) {
+  _addMarker(coords) {
+    leaflet
+      .marker(coords, { icon: this._icon })
+      .addTo(this._layerGroup);
+  }
+
+  _addMarkers(offers, activeOfferId) {
     offers.map((offer) => {
-      if (this.props.activeOfferId && this.props.activeOfferId === offer.id) {
+      if (activeOfferId && activeOfferId === offer.id) {
         this._addActiveMarker(offer.place.coords);
+        if (!window.location.pathname.includes(`offer`)) {
+          this._changeFocus(offer.place);
+        }
       } else {
         this._addMarker(offer.place.coords);
       }
     });
   }
 
-  _addActiveMarker(coords) {
-    const icon = this.activeIcon;
-    leaflet
-      .marker(coords, { icon })
-      .addTo(this.layerGroup);
+  _addMarkersField() {
+    this._layerGroup = leaflet.layerGroup().addTo(this._map);
   }
 
-  _addMarker(coords) {
-    const icon = this.icon;
+  _changeFocus(place) {
+    this._map.flyTo(place.coords, place.zoom);
+  }
+
+  _clearMarkersField() {
+    this._layerGroup.clearLayers();
+  }
+
+  _icon = leaflet.icon({
+    iconSize: [IconSize.WIDTH, IconSize.HEIGHT],
+    iconUrl: `img/pin.svg`,
+  });
+
+  _iconActive = leaflet.icon({
+    iconSize: [IconSize.WIDTH, IconSize.HEIGHT],
+    iconUrl: `img/pin-active.svg`,
+  });
+
+  _initMap() {
+    const {
+      activeOfferId,
+      offers,
+    } = this.props;
+
+    if (offers.length === 0) {
+      return null;
+    }
+
+    const city = offers[0].city;
+    this._setInitialMapData(city);
+    this._setFocus(city);
+    this._setLeafletData();
+    this._addMarkersField();
+    this._addMarkers(offers, activeOfferId);
+  }
+
+  _setFocus(place) {
+    this._map.setView(place.coords, place.zoom);
+  }
+
+  _setInitialMapData(city) {
+    this._map = leaflet.map(this._mapRef.current, {
+      center: city.coords,
+      zoom: city.zoom,
+      zoomControl: false,
+      marker: true
+    });
+  }
+
+  _setLeafletData() {
     leaflet
-      .marker(coords, { icon })
-      .addTo(this.layerGroup);
+      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+        contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+      })
+      .addTo(this._map);
   }
 }
 
