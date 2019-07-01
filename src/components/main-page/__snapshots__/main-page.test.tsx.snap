@@ -573,5 +573,6 @@ exports[`Welcome-screen correctly renders 1`] = `
       </div>
     </div>
   </div>
+  }
 </main>
 `;
