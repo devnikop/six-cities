@@ -2,9 +2,9 @@ import * as React from 'react';
 
 interface Props {
   comment: string,
-  handleCommentChange: React.FormEventHandler<HTMLTextAreaElement>,
-  handleFormSubmit: React.FormEventHandler<HTMLFormElement>,
-  handleRatingChange: React.ChangeEventHandler<HTMLFormElement>,
+  onCommentChange: React.FormEventHandler<HTMLTextAreaElement>,
+  onFormSubmit: React.FormEventHandler<HTMLFormElement>,
+  onRatingChange: React.ChangeEventHandler<HTMLFormElement>,
   isFormDisabled: boolean,
   isSubmitButtonDisabled: boolean,
 }
@@ -12,16 +12,16 @@ interface Props {
 const CommentForm: React.FunctionComponent<Props> = (props) => {
   const {
     comment,
-    handleCommentChange,
-    handleFormSubmit,
-    handleRatingChange,
+    onCommentChange,
+    onFormSubmit,
+    onRatingChange,
     isFormDisabled,
     isSubmitButtonDisabled,
   } = props;
 
   return <form
-    onSubmit={handleFormSubmit}
-    onChange={handleRatingChange}
+    onSubmit={onFormSubmit}
+    onChange={onRatingChange}
     className="reviews__form form"
     action="#"
     method="post"
@@ -65,7 +65,7 @@ const CommentForm: React.FunctionComponent<Props> = (props) => {
         </label>
       </div>
       <textarea
-        onChange={handleCommentChange}
+        onChange={onCommentChange}
         className="reviews__textarea form__textarea"
         id="review" name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"

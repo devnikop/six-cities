@@ -14,8 +14,8 @@ it(`Click on photo calls callback`, () => {
 
   const offerCard = mount(<MemoryRouter>
     <OfferCard
-      changeActiveItem={clickHandler}
-      handleBookmarkClick={jest.fn()}
+      onActiveItem={clickHandler}
+      onBookmarkClick={jest.fn()}
       offer={offer}
       type={OfferPageType.MAIN}
     />
@@ -34,8 +34,8 @@ it(`Click on bookmark button calls callback`, () => {
 
   const offerCard = mount(<MemoryRouter>
     <OfferCard
-      changeActiveItem={jest.fn()}
-      handleBookmarkClick={clickHandler}
+      onActiveItem={jest.fn()}
+      onBookmarkClick={clickHandler}
       offer={offer}
       type={OfferPageType.MAIN}
     />

@@ -7,9 +7,9 @@ it(`Change on login input calls callback`, () => {
   const handlerEmailChange = jest.fn();
 
   const screen = shallow(<SignIn
-    handlerEmailChange={handlerEmailChange}
-    handlerFormSubmit={jest.fn()}
-    handlerPasswordChange={jest.fn()}
+    onEmailChange={handlerEmailChange}
+    onFormSubmit={jest.fn()}
+    onPasswordChange={jest.fn()}
   />);
 
   const loginInputElement = screen.find(`input[type="email"]`);
@@ -22,9 +22,9 @@ it(`Change on password input calls callback`, () => {
   const handlerPasswordChange = jest.fn();
 
   const screen = shallow(<SignIn
-    handlerEmailChange={jest.fn()}
-    handlerFormSubmit={jest.fn()}
-    handlerPasswordChange={handlerPasswordChange}
+    onEmailChange={jest.fn()}
+    onFormSubmit={jest.fn()}
+    onPasswordChange={handlerPasswordChange}
   />);
 
   const passwordInputElement = screen.find(`input[type="password"]`);
@@ -37,9 +37,9 @@ it(`Submit form calls callback`, () => {
   const handlerFormSubmit = jest.fn();
 
   const screen = shallow(<SignIn
-    handlerEmailChange={jest.fn()}
-    handlerFormSubmit={handlerFormSubmit}
-    handlerPasswordChange={jest.fn()}
+    onEmailChange={jest.fn()}
+    onFormSubmit={handlerFormSubmit}
+    onPasswordChange={jest.fn()}
   />);
 
   const formElement = screen.find(`.login__form`);

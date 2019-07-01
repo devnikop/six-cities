@@ -8,28 +8,29 @@ import {
 import { getRating } from '../../utilities';
 
 interface Props {
-  changeActiveItem: (id: number) => void,
-  handleBookmarkClick: (offer: Offer) => void,
+  onActiveItem: (id: number) => void,
+  onBookmarkClick: (offer: Offer) => void,
   offer: Offer,
   type: OfferPageType,
 }
 
 const OfferCard: React.FunctionComponent<Props> = (props) => {
   const {
-    changeActiveItem,
-    handleBookmarkClick,
+    onActiveItem,
+    onBookmarkClick,
     offer,
     type,
   } = props;
 
   const handleImageClick = (evt) => {
     evt.preventDefault();
-    changeActiveItem(offer.id);
+    onActiveItem(offer.id);
   };
 
-  const _handleBookmarkClick = () => handleBookmarkClick(offer);
+  const _handleBookmarkClick = () => onBookmarkClick(offer);
+
   const _handleOfferClick = () => {
-    changeActiveItem(offer.id);
+    onActiveItem(offer.id);
     history.push(`/offer/${offer.id}`);
   };
 

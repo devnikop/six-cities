@@ -9,7 +9,7 @@ it(`ReviewList renders correctly`, () => {
   const tree = renderer
     .create(<ReviewList
       offerId={1}
-      onLoadReviews={jest.fn()}
+      loadReviews={jest.fn()}
       reviews={reviewsArrayMock}
     />)
     .toJSON();

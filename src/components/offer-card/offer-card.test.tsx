@@ -13,8 +13,8 @@ it(`OfferCard renders correctly`, () => {
   const tree = renderer
     .create(<MemoryRouter>
       <OfferCard
-        changeActiveItem={jest.fn()}
-        handleBookmarkClick={jest.fn()}
+        onActiveItem={jest.fn()}
+        onBookmarkClick={jest.fn()}
         offer={offer}
         type={OfferPageType.MAIN}
       />

@@ -6,10 +6,10 @@ import * as React from 'react';
 import { Operation } from '../../reducer/user/user';
 
 interface InjectedProps {
-  handlerEmailChange: React.ChangeEventHandler<HTMLInputElement>,
-  handlerFormSubmit: React.FormEventHandler<HTMLFormElement>,
-  handlerPasswordChange: React.ChangeEventHandler<HTMLInputElement>,
-  onFormSubmit: (formData: React.ComponentState) => void,
+  onEmailChange: React.ChangeEventHandler<HTMLInputElement>,
+  onFormSubmit: React.FormEventHandler<HTMLFormElement>,
+  onPasswordChange: React.ChangeEventHandler<HTMLInputElement>,
+  postLogin: (formData: React.ComponentState) => void,
 }
 
 interface State {
@@ -38,9 +38,9 @@ const withAuthorization = (Component) => {
     render() {
       return <Component
         {...this.props}
-        handlerEmailChange={this._handlerEmailChange}
-        handlerFormSubmit={this._handlerFormSubmit}
-        handlerPasswordChange={this._handlerPasswordChange}
+        onEmailChange={this._handlerEmailChange}
+        onFormSubmit={this._handlerFormSubmit}
+        onPasswordChange={this._handlerPasswordChange}
       />;
     }
 
@@ -52,7 +52,7 @@ const withAuthorization = (Component) => {
 
     _handlerFormSubmit(evt) {
       evt.preventDefault();
-      this.props.onFormSubmit(this.state);
+      this.props.postLogin(this.state);
     }
 
     _handlerPasswordChange(evt) {
@@ -66,7 +66,7 @@ const withAuthorization = (Component) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onFormSubmit: (formData) =>
+  postLogin: (formData) =>
     dispatch(Operation.postLogin(formData)),
 });
 

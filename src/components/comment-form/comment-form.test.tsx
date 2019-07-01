@@ -7,9 +7,9 @@ it(`CommentForm renders correctly`, () => {
   const tree = renderer
     .create(<CommentForm
       comment={``}
-      handleCommentChange={jest.fn()}
-      handleFormSubmit={jest.fn()}
-      handleRatingChange={jest.fn()}
+      onCommentChange={jest.fn()}
+      onFormSubmit={jest.fn()}
+      onRatingChange={jest.fn()}
       isFormDisabled={false}
       isSubmitButtonDisabled={false}
     />)

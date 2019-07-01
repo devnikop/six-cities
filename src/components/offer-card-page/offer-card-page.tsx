@@ -25,7 +25,7 @@ import ReviewList from '../reviews-list/reviews-list';
 
 interface Props {
   activeOfferId: number,
-  handleBookmarkClick: (offer: Offer) => void,
+  onBookmarkClick: (offer: Offer) => void,
   match,
   nearestOffers: Offer[],
   offer: Offer,
@@ -40,13 +40,13 @@ const OfferListWrapped = withActiveItem(OfferList);
 const OfferCardPage: React.FunctionComponent<Props> = (props) => {
   const {
     activeOfferId,
-    handleBookmarkClick,
+    onBookmarkClick,
     nearestOffers,
     offer,
     user,
   } = props;
 
-  const _handleBookmarkClick = () => handleBookmarkClick(offer);
+  const _handleBookmarkClick = () => onBookmarkClick(offer);
 
   const _getPremiumMark = () =>
     <div className="property__mark">

@@ -1,16 +1,16 @@
 import * as React from 'react';
 
 interface Props {
-  handlerEmailChange: React.ChangeEventHandler<HTMLInputElement>,
-  handlerFormSubmit: React.FormEventHandler<HTMLFormElement>,
-  handlerPasswordChange: React.ChangeEventHandler<HTMLInputElement>,
+  onEmailChange: React.ChangeEventHandler<HTMLInputElement>,
+  onFormSubmit: React.FormEventHandler<HTMLFormElement>,
+  onPasswordChange: React.ChangeEventHandler<HTMLInputElement>,
 }
 
 const SignIn: React.FunctionComponent<Props> = (props) => {
   const {
-    handlerEmailChange,
-    handlerFormSubmit,
-    handlerPasswordChange,
+    onEmailChange,
+    onFormSubmit,
+    onPasswordChange,
   } = props;
 
   return <>
@@ -18,14 +18,14 @@ const SignIn: React.FunctionComponent<Props> = (props) => {
       <div className="page__login-container container">
         <section className="login">
           <h1 className="login__title">Sign in</h1>
-          <form onSubmit={handlerFormSubmit} className="login__form form" action="#" method="post">
+          <form onSubmit={onFormSubmit} className="login__form form" action="#" method="post">
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">E-mail</label>
-              <input onChange={handlerEmailChange} className="login__input form__input" type="email" name="email" placeholder="Email" required />
+              <input onChange={onEmailChange} className="login__input form__input" type="email" name="email" placeholder="Email" required />
             </div>
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">Password</label>
-              <input onChange={handlerPasswordChange} className="login__input form__input" type="password" name="password" placeholder="Password" required />
+              <input onChange={onPasswordChange} className="login__input form__input" type="password" name="password" placeholder="Password" required />
             </div>
             <button className="login__submit form__submit button" type="submit">Sign in</button>
           </form>

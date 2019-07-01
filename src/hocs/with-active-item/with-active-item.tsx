@@ -25,7 +25,7 @@ const withActiveItem = (Component) => {
     render() {
       return <Component
         {...this.props}
-        changeActiveItem={this._changeActiveItem}
+        onActiveItem={this._changeActiveItem}
       />;
     }
 

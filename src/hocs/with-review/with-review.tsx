@@ -9,7 +9,7 @@ interface InjectedProps {
   handleCommentChange: React.FormEventHandler<HTMLTextAreaElement>,
   handleFormSubmit: React.FormEventHandler<HTMLFormElement>,
   handleRatingChange: React.ChangeEventHandler<HTMLFormElement>,
-  onFormSubmit: (formData: React.ComponentState) => void,
+  postReview: (formData: React.ComponentState) => void,
 }
 
 interface State {
@@ -58,9 +58,9 @@ const withReview = (Component) => {
       return <Component
         {...this.props}
         comment={comment}
-        handleCommentChange={this._handleCommentChange}
-        handleFormSubmit={this._handleFormSubmit}
-        handleRatingChange={this._handleRatingChange}
+        onCommentChange={this._handleCommentChange}
+        onFormSubmit={this._handleFormSubmit}
+        onRatingChange={this._handleRatingChange}
         isFormDisabled={isFormDisabled}
         isSubmitButtonDisabled={isSubmitButtonDisabled}
       />;
@@ -91,7 +91,7 @@ const withReview = (Component) => {
 
     _handleFormSubmit(evt) {
       evt.preventDefault();
-      this.props.onFormSubmit(this.props.offerId, {
+      this.props.postReview(this.props.offerId, {
         comment: this.state.comment,
         rating: this.state.rating
       });
@@ -149,7 +149,7 @@ const withReview = (Component) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onFormSubmit: (offerId, formData) =>
+  postReview: (offerId, formData) =>
     dispatch(Operation.postReview(offerId, formData)),
 });
 

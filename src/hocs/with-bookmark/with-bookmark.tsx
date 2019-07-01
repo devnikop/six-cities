@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Operation } from '../../reducer/favorite/favorite';
 
 interface InjectedProps {
-  handleBookmarkClick: React.MouseEventHandler<HTMLButtonElement>,
+  postFavoriteOffer: React.MouseEventHandler<HTMLButtonElement>,
 }
 
 const withBookmark = (Component) => {
@@ -23,12 +23,12 @@ const withBookmark = (Component) => {
     render() {
       return <Component
         {...this.props}
-        handleBookmarkClick={this._handleBookmarkClick}
+        onBookmarkClick={this._handleBookmarkClick}
       />;
     }
 
     _handleBookmarkClick(offer) {
-      this.props.onBookmarkClick(offer);
+      this.props.postFavoriteOffer(offer);
     }
   }
 
@@ -36,7 +36,7 @@ const withBookmark = (Component) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onBookmarkClick: (offer) =>
+  postFavoriteOffer: (offer) =>
     dispatch(Operation.postFavoriteOffer(offer)),
 });
 

@@ -40,7 +40,7 @@ it(`OfferCardPage renders correctly`, () => {
     .create(<Provider store={store}>
       <OfferCardPage
         activeOfferId={0}
-        handleBookmarkClick={jest.fn()}
+        onBookmarkClick={jest.fn()}
         match={match}
         nearestOffers={offersArrayMock}
         offer={offerMock}

@@ -10,7 +10,7 @@ import ReviewItem from '../reviews-item/reviews-item';
 
 interface Props {
   offerId: number,
-  onLoadReviews: (id: number) => void,
+  loadReviews: (id: number) => void,
   reviews: Comment[],
 }
 
@@ -38,10 +38,10 @@ class ReviewList extends React.PureComponent<Props> {
   componentDidMount() {
     const {
       offerId,
-      onLoadReviews,
+      loadReviews,
     } = this.props;
 
-    onLoadReviews(offerId);
+    loadReviews(offerId);
   }
 }
 
@@ -50,7 +50,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadReviews: (id) => dispatch(Operation.loadReviews(id)),
+  loadReviews: (id) => dispatch(Operation.loadReviews(id)),
 });
 
 export { ReviewList };

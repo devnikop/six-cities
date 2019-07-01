@@ -8,9 +8,9 @@ it(`Change textarea calls callback`, () => {
 
   const wrapper = mount(<CommentForm
     comment={``}
-    handleCommentChange={changeHandler}
-    handleFormSubmit={jest.fn()}
-    handleRatingChange={jest.fn()}
+    onCommentChange={changeHandler}
+    onFormSubmit={jest.fn()}
+    onRatingChange={jest.fn()}
     isFormDisabled={false}
     isSubmitButtonDisabled={false}
   />);
@@ -27,9 +27,9 @@ it(`Change textarea calls callback`, () => {
 
   const wrapper = mount(<CommentForm
     comment={``}
-    handleCommentChange={jest.fn()}
-    handleFormSubmit={submitHandler}
-    handleRatingChange={jest.fn()}
+    onCommentChange={jest.fn()}
+    onFormSubmit={submitHandler}
+    onRatingChange={jest.fn()}
     isFormDisabled={false}
     isSubmitButtonDisabled={false}
   />);
@@ -46,9 +46,9 @@ it(`Change 'rating' input calls callback`, () => {
 
   const wrapper = mount(<CommentForm
     comment={``}
-    handleCommentChange={jest.fn()}
-    handleFormSubmit={jest.fn()}
-    handleRatingChange={changeHandler}
+    onCommentChange={jest.fn()}
+    onFormSubmit={jest.fn()}
+    onRatingChange={changeHandler}
     isFormDisabled={false}
     isSubmitButtonDisabled={false}
   />);

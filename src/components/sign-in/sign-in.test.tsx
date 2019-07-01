@@ -6,9 +6,9 @@ import SignIn from './sign-in';
 it(`SignIn should correctly renders`, () => {
   const tree = renderer
     .create(<SignIn
-      handlerEmailChange={jest.fn()}
-      handlerFormSubmit={jest.fn()}
-      handlerPasswordChange={jest.fn()}
+      onEmailChange={jest.fn()}
+      onFormSubmit={jest.fn()}
+      onPasswordChange={jest.fn()}
     />)
     .toJSON();
 
