@@ -43,7 +43,8 @@ const Operation = {
         dispatch(ActionCreator.updateFavoriteOffersByGivenOffer(data));
         dispatch(ActionCreatorData.updateOffersByGivenOffer(data));
         dispatch(ActionCreatorData.updateSortedOfferByGivenOffer(data));
-      });
+      })
+      .catch(() => null);
   },
 };
 
