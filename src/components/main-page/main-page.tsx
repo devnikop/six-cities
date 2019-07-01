@@ -36,35 +36,36 @@ const MainPage: React.FunctionComponent<Props> = (props) => {
     offers,
   } = props;
 
+  if (offers.length === 0) {
+    return <MainPageEmpty currentCity={currentCity} />;
+  }
+
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <CitiesList />
-    {/* {offers */}
-    {false
-      ? <MainPageEmpty currentCity={currentCity} />
-      : <div className="cities__places-wrapper">
-        <div className="cities__places-container container">
-          <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offers.length} places to stay in {currentCity}</b>
-            {<SortingOptionsWrapped />}
-            <div className="cities__places-list places__list tabs__content">
-              {<OfferList
-                offers={offers}
-                type={OfferPageType.MAIN}
-              />}
-            </div>
-          </section>
-          <div className="cities__right-section">
-            <section className="cities__map map">
-              {<Map
-                activeOfferId={activeOfferId}
-                offers={offers}
-              />}
-            </section>
+    <div className="cities__places-wrapper">
+      <div className="cities__places-container container">
+        <section className="cities__places places">
+          <h2 className="visually-hidden">Places</h2>
+          <b className="places__found">{offers.length} places to stay in {currentCity}</b>
+          {<SortingOptionsWrapped />}
+          <div className="cities__places-list places__list tabs__content">
+            {<OfferList
+              offers={offers}
+              type={OfferPageType.MAIN}
+            />}
           </div>
+        </section>
+        <div className="cities__right-section">
+          <section className="cities__map map">
+            {<Map
+              activeOfferId={activeOfferId}
+              offers={offers}
+            />}
+          </section>
         </div>
       </div>
+    </div>
     }
   </main>;
 };
