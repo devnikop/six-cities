@@ -24,8 +24,8 @@ class OfferList extends React.PureComponent<Props> {
       type,
     } = this.props;
 
-    return offers.map((offer, i) => <OfferCardWrapped
-      key={`offer-${i}`}
+    return offers.map((offer) => <OfferCardWrapped
+      key={`offer-${offer.id}`}
       offer={offer}
       type={type}
     />

@@ -27,8 +27,8 @@ class ReviewList extends React.PureComponent<Props> {
       <span className="reviews__amount">{reviews.length}</span>
       </h2>
       <ul className="reviews__list">
-        {reviews.reverse().slice(0, MAX_REVIEWS_COUNT).map((review, it) => <ReviewItem
-          key={`review${it}`}
+        {reviews.reverse().slice(0, MAX_REVIEWS_COUNT).map((review) => <ReviewItem
+          key={`review-${review.id}`}
           review={review}
         />)}
       </ul>

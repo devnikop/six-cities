@@ -30,14 +30,14 @@ const CitiesList: React.FunctionComponent<Props> = (props) => {
   return <div className="cities tabs">
     <section className="locations container">
       <ul className="locations__list tabs__list">
-        {cities.slice(0, MAX_CITIES_COUNT).map((it, i) =>
-          <li className="locations__item" key={`city-${i}`}>
+        {cities.slice(0, MAX_CITIES_COUNT).map((city) =>
+          <li className="locations__item" key={`city-${city}`}>
             <a
-              className={`locations__item-link tabs__item ${_isActiveCity(it)} `}
-              href={_checkCurrentCity(it) ? undefined : `#`}
-              onClick={() => onCity(it)}
+              className={`locations__item-link tabs__item ${_isActiveCity(city)} `}
+              href={_checkCurrentCity(city) ? undefined : `#`}
+              onClick={() => onCity(city)}
             >
-              <span>{it}</span>
+              <span>{city}</span>
             </a>
           </li>
         )}
