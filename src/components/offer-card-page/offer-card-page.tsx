@@ -56,6 +56,10 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
   const _checkFavorite = (isFavorite) =>
     isFavorite ? `property__bookmark-button--active` : ``;
 
+  if (!offer) {
+    return <div />;
+  }
+
   return <main className="page__main page__main--property">
     <section className="property">
       <div className="property__gallery-container container">
