@@ -57,7 +57,7 @@ const OfferCardPage: React.FunctionComponent<Props> = (props) => {
     isFavorite ? `property__bookmark-button--active` : ``;
 
   if (!offer) {
-    return <div />;
+    return <div>Loading... Please wait</div>;
   }
 
   return <main className="page__main page__main--property">
