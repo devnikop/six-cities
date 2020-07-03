@@ -1,5 +1,5 @@
 # Six cities
-> Simple project to find hotel in your journey
+> Study project to find hotel in your journey
 
 ![Preview screenshot](./readme_assets/preview.jpg)
 
